@@ -26,6 +26,19 @@ def checkcolouridisvalid(id):
     return isvalid
 
 
+def checkgarmentidisvalid(id):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f"SELECT * FROM Garments WHERE ID == '{id}';"
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    if len(results) != 0:
+        isvalid = True
+    if len(results) == 0:
+        isvalid = False
+    return isvalid
+
+
 def fetchallclothes():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -163,7 +176,14 @@ while True:
                 fetchallgarments()
                 while True:
                     id = input("\nEnter Garment ID: ")
-                    fetchclothesbygarment(id)
+                    if id.isnumeric() == True:
+                        if checkgarmentidisvalid(id) == True:
+                            fetchclothesbygarment(id)
+                            break
+                        if checkgarmentidisvalid(id) == False:
+                            print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...")
+                    if id.isnumeric() == False:
+                        print("\nInvalid Input!\nID must be an Integer.\nTry Again...")
             if userinput1 == 'x':
                 break
     if userinput == 'b':
