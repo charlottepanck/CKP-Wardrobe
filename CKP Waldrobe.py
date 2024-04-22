@@ -1,6 +1,21 @@
 import sqlite3
 
 DB = 'ckpwaldrobe.db'
+
+
+def checkclothingidisvalid(id):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f"SELECT * FROM Clothes WHERE ID == '{id}';"
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    if len(results) != 0:
+        isvalid = True
+    if len(results) == 0:
+        isvalid = False
+    return isvalid
+
+
 def checkbrandidisvalid(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -164,19 +179,59 @@ def addcolour(colour):
     db.commit()
 
 
-print("Charlotte's Digital Waldrobe <3")
+def removeclothingitem(id):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f"DELETE FROM Clothes WHERE ID = {id};"
+    cursor.execute(sql)
+    db.commit()
+
+
+def removebrand(id):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f"DELETE FROM Brands WHERE ID = {id};"
+    cursor.execute(sql)
+    db.commit()
+
+
+def removegarment():
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f"DELETE FROM Garments WHERE ID = {id};"
+    cursor.execute(sql)
+    db.commit()
+
+
+def removecolour():
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f"DELETE FROM Colours WHERE ID = {id};"
+    cursor.execute(sql)
+    db.commit()
+
+
+print("\nCharlotte's Digital Waldrobe <3")
 while True:
     userinput = input("""
     Enter 'a' to view all clothes
     Enter 'b' to view all brands
     Enter 'c' to view all garment types
-    Enter 'd' to add a clothing item
-    Enter 'e' to add a brand
-    Enter 'f' to add a garment type
-    Enter 'g' to add a color
-    Enter 'h' to remove a clothing item
+    Enter 'd' to view all colours
+                      
+    Enter 'e' to add a clothing item
+    Enter 'f' to add a brand
+    Enter 'g' to add a garment type
+    Enter 'h' to add a color
+                      
+    Enter 'i' to remove a clothing item
+    Enter 'j' to remove a brand
+    Enter 'k' to remove a garment type
+    Enter 'l' to remove a colour
+                      
     Enter 'exit' to exit program
     Enter 'x' at any point of the program to go back :)
+                      
     >>> """).lower()
     if userinput == 'a':
         fetchallclothes()
@@ -235,6 +290,8 @@ while True:
     if userinput == 'c':
         fetchallgarments()
     if userinput == 'd':
+        fetchcolours()
+    if userinput == 'e':
         flag = False
         while True:
             if flag == True:
@@ -284,20 +341,85 @@ while True:
                                                 addclothigitem(name, brand, colour, garment)
                                                 flag = True
                                                 break
-    if userinput == 'e':
-        fetchallbrands()
-        brand = input("Enter New Brand Name: ").title()
-        addbrand(brand)
     if userinput == 'f':
-        fetchallgarments()
-        garment = input("Enter New Garment Type: ").title()
-        addgarment(garment)
+        fetchallbrands()
+        while True:
+            brand = input("Enter New Brand Name: ").title()
+            if brand == 'X':
+                break
+            else:
+                addbrand(brand)
     if userinput == 'g':
-        fetchcolours()
-        colour = input("Enter New Colour: ").title()
-        addcolour(colour)
+        fetchallgarments()
+        while True:
+            garment = input("Enter New Garment Type: ").title()
+            if garment == 'X':
+                break
+            else:
+                addgarment(garment)
     if userinput == 'h':
+        fetchcolours()
+        while True:
+            colour = input("Enter New Colour: ").title()
+            if colour == 'X':
+                break
+            else:
+                addcolour(colour)
+    if userinput == 'i':
         fetchallclothes()
-        print("Remove clothing here")
-    if userinput == 'exit' or userinput == 'x':
+        while True:
+            id = input("ID of clothing item to be deleted: ")
+            if id == 'x' or id == 'X':
+                break
+            if id.isnumeric() == False:
+                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+            if id.isnumeric() == True:
+                if checkclothingidisvalid(id) == False:
+                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                if checkclothingidisvalid(id) == True:
+                    removeclothingitem(id)
+                    break
+    if userinput == 'j':
+        fetchallbrands()
+        while True:
+            id = input("ID of brand to be deleted: ")
+            if id == 'x' or id == 'X':
+                break
+            if id.isnumeric() == False:
+                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+            if id.isnumeric() == True:
+                if checkbrandidisvalid(id) == False:
+                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                if checkbrandidisvalid(id) == True:
+                    removebrand(id)
+                    break
+    if userinput == 'k':
+        fetchallgarments()
+        while True:
+            id = input("ID of garment type to be deleted: ")
+            if id == 'x' or id == 'X':
+                break
+            if id.isnumeric() == False:
+                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+            if id.isnumeric() == True:
+                if checkgarmentidisvalid(id) == False:
+                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                if checkgarmentidisvalid(id) == True:
+                    removegarment(id)
+                    break
+    if userinput == 'l':
+        fetchcolours()
+        while True:
+            id = input("ID of colour to be deleted: ")
+            if id == 'x' or id == 'X':
+                break
+            if id.isnumeric() == False:
+                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+            if id.isnumeric() == True:
+                if checkcolouridisvalid(id) == False:
+                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                if checkcolouridisvalid(id) == True:
+                    removecolour(id)
+                    break
+    if userinput == 'exit':
         break
