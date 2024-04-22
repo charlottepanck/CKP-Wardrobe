@@ -27,7 +27,8 @@ def checkbrandidisvalid(id):
     if len(results) == 0:
         isvalid = False
     return isvalid
-    
+
+ 
 def checkcolouridisvalid(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -53,15 +54,18 @@ def checkgarmentidisvalid(id):
         isvalid = False
     return isvalid
 
+
 def fetchallbrands():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
     sql = "SELECT * FROM Brands;"
     cursor.execute(sql)
     results = cursor.fetchall()
+    print("ID | Brand")
     for i in results:
-        print(i)
+        print(f"{i[0]:2} | {i[1]}")
     db.close
+
 
 def fetchallgarments():
     db = sqlite3.connect(DB)
@@ -69,8 +73,9 @@ def fetchallgarments():
     sql = "SELECT * FROM Garments;"
     cursor.execute(sql)
     results = cursor.fetchall()
+    print("ID | Garment")
     for i in results:
-        print(i)
+        print(f"{i[0]:2} | {i[1]}")
     db.close
 
 
@@ -80,30 +85,34 @@ def fetchcolours():
     sql = "SELECT * FROM Colours;"
     cursor.execute(sql)
     results = cursor.fetchall()
+    print("ID | Colour")
     for i in results:
-        print(i)
+        print(f"{i[0]:2} | {i[1]}")
     db.close
 
 
 def fetchallclothes():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql = """SELECT Clothes.ID, Clothes.Name, Brands.Brand_Name, Colours.Colour, Garments.Garment
+    sql = """SELECT Clothes.ID, Clothes.Name,
+    Brands.Brand_Name, Colours.Colour, Garments.Garment
     FROM Clothes
     LEFT JOIN Brands ON Clothes.Brand = Brands.ID  
     LEFT JOIN Garments ON Clothes.Garment = Garments.ID
     LEFT JOIN Colours ON Clothes.Colour = Colours.ID;"""
     cursor.execute(sql)
     results = cursor.fetchall()
+    print("ID | Name | Brand | Colour | Garment")
     for i in results:
-        print(i)
+        print(f"{i[0]} | {i[1]} | {i[2]} | {i[3]} | {i[4]} ")
     db.close
 
 
 def fetchclothesbycolour(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql = f"""SELECT Clothes.ID, Clothes.Name, Brands.Brand_Name, Colours.Colour, Garments.Garment
+    sql = f"""SELECT Clothes.ID, Clothes.Name,
+    Brands.Brand_Name, Colours.Colour, Garments.Garment
     FROM Clothes
     LEFT JOIN Brands ON Clothes.Brand = Brands.ID  
     LEFT JOIN Garments ON Clothes.Garment = Garments.ID
@@ -111,14 +120,52 @@ def fetchclothesbycolour(id):
     WHERE Clothes.Colour == '{id}';"""
     cursor.execute(sql)
     results = cursor.fetchall()
+    print("ID | Name | Brand | Colour | Garment")
     for i in results:
-        print(i)
+        print(f"{i[0]} | {i[1]} | {i[2]} | {i[3]} | {i[4]} ")
     db.close
 
 def fetchclothesbybrand(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql = f"""SELECT Clothes.ID, Clothes.Name, Brands.Brand_Name, Colours.Colour, Garments.Garment
+    # name column format
+    sql1 = """SELECT Name FROM Clothes
+    ORDER BY Length(Name) desc LIMIT 1;"""
+    cursor.execute(sql1)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        nlg = len(x)
+        nsp = (nlg-4) * " "
+    # brand column format
+    sql2 = """SELECT Brand_Name FROM Brands
+    ORDER BY Length(Brand_Name) desc LIMIT 1;"""
+    cursor.execute(sql2)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        blg = len(x)
+        bsp = (blg-5) * " "
+    # colour column format
+    sql3 = """SELECT Colour FROM Colours
+    ORDER BY Length(Colour) desc LIMIT 1;"""
+    cursor.execute(sql3)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        clg = len(x)
+        csp = (clg-6) * " "
+    # garment column format
+    sql3 = """SELECT Garment FROM Garments
+    ORDER BY Length(Garment) desc LIMIT 1;"""
+    cursor.execute(sql3)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        glg = len(x)
+        gsp = (glg-7) * " "
+    sql = f"""SELECT Clothes.ID, Clothes.Name,
+    Brands.Brand_Name, Colours.Colour, Garments.Garment
     FROM Clothes
     LEFT JOIN Brands ON Clothes.Brand = Brands.ID  
     LEFT JOIN Garments ON Clothes.Garment = Garments.ID
@@ -126,15 +173,54 @@ def fetchclothesbybrand(id):
     WHERE Clothes.Brand == '{id}';"""
     cursor.execute(sql)
     results = cursor.fetchall()
+    print(f"| ID | Name {nsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
-        print(i)
+        print(f"| {i[0]:2} | {i[1]:{nlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
     db.close
 
 
 def fetchclothesbygarment(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql = f"""SELECT Clothes.ID, Clothes.Name, Brands.Brand_Name, Colours.Colour, Garments.Garment
+    # name column format
+    sql1 = """SELECT Name FROM Clothes
+    ORDER BY Length(Name) desc LIMIT 1;"""
+    cursor.execute(sql1)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        nlg = len(x)
+        nsp = (nlg-4) * " "
+    # brand column format
+    sql2 = """SELECT Brand_Name FROM Brands
+    ORDER BY Length(Brand_Name) desc LIMIT 1;"""
+    cursor.execute(sql2)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        blg = len(x)
+        bsp = (blg-5) * " "
+    # colour column format
+    sql3 = """SELECT Colour FROM Colours
+    ORDER BY Length(Colour) desc LIMIT 1;"""
+    cursor.execute(sql3)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        clg = len(x)
+        csp = (clg-6) * " "
+    # garment column format
+    sql3 = """SELECT Garment FROM Garments
+    ORDER BY Length(Garment) desc LIMIT 1;"""
+    cursor.execute(sql3)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        glg = len(x)
+        gsp = (glg-7) * " "
+    # print table
+    sql = f"""SELECT Clothes.ID, Clothes.Name,
+    Brands.Brand_Name, Colours.Colour, Garments.Garment
     FROM Clothes
     LEFT JOIN Brands ON Clothes.Brand = Brands.ID  
     LEFT JOIN Garments ON Clothes.Garment = Garments.ID
@@ -142,15 +228,17 @@ def fetchclothesbygarment(id):
     WHERE Clothes.Garment == '{id}';"""
     cursor.execute(sql)
     results = cursor.fetchall()
+    print(f"| ID | Name {nsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
-        print(i)
+        print(f"| {i[0]:2} | {i[1]:{nlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
     db.close
 
 
 def addclothigitem(name, brand, colour, garment):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql = f'INSERT INTO Clothes (Name, Brand, Colour, Garment) VALUES ("{name}", "{brand}", "{colour}", "{garment}");'
+    sql = f'''INSERT INTO Clothes (Name, Brand, Colour, Garment)
+    VALUES ("{name}", "{brand}", "{colour}", "{garment}");'''
     cursor.execute(sql)
     db.commit()
 
