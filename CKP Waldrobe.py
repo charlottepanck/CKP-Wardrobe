@@ -140,6 +140,30 @@ def addclothigitem(name, brand, colour, garment):
     db.commit()
 
 
+def addbrand(brand):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f'INSERT INTO Brands (Brand_Name) VALUES ("{brand}");'
+    cursor.execute(sql)
+    db.commit()
+
+
+def addgarment(garment):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f'INSERT INTO Garments (Garment) VALUES ("{garment}");'
+    cursor.execute(sql)
+    db.commit()
+
+
+def addcolour(colour):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f'INSERT INTO Colours (Colour) VALUES ("{colour}");'
+    cursor.execute(sql)
+    db.commit()
+
+
 print("Charlotte's Digital Waldrobe <3")
 while True:
     userinput = input("""
@@ -150,7 +174,9 @@ while True:
     Enter 'e' to add a brand
     Enter 'f' to add a garment type
     Enter 'g' to add a color
+    Enter 'h' to remove a clothing item
     Enter 'exit' to exit program
+    Enter 'x' at any point of the program to go back :)
     >>> """).lower()
     if userinput == 'a':
         fetchallclothes()
@@ -159,12 +185,13 @@ while True:
     Enter 'a' to show clothes filtered by colour
     Enter 'b' to show clothes filtered by brand
     Enter 'c' to show clothes filtered by garment type
-    Enter 'x' to go back
     >>> """).lower()
             if userinput1 == 'a':
                 fetchcolours()
                 while True:
                     id = input("\nEnter Colour ID: ")
+                    if id == 'x' or id == 'X':
+                        break
                     if id.isnumeric() == True:
                         if checkcolouridisvalid(id) == True:
                             fetchclothesbycolour(id)
@@ -177,6 +204,8 @@ while True:
                 fetchallbrands()
                 while True:
                     id = input("\nEnter Brand ID: ")
+                    if id == 'x' or id == 'X':
+                        break
                     if id.isnumeric() == True:
                         if checkbrandidisvalid(id) == True:
                             fetchclothesbybrand(id)
@@ -184,11 +213,13 @@ while True:
                         if checkbrandidisvalid(id) == False:
                             print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...")
                     if id.isnumeric() == False:
-                        print("\nInvalid Input!\nId must be an Integer.\nTry Again...")
+                        print("\nInvalid Input!\nID must be an Integer.\nTry Again...")
             if userinput1 == 'c':
                 fetchallgarments()
                 while True:
                     id = input("\nEnter Garment ID: ")
+                    if id == 'x' or id == 'X':
+                        break
                     if id.isnumeric() == True:
                         if checkgarmentidisvalid(id) == True:
                             fetchclothesbygarment(id)
@@ -204,14 +235,69 @@ while True:
     if userinput == 'c':
         fetchallgarments()
     if userinput == 'd':
-        name = input("Name: ")
+        flag = False
+        while True:
+            if flag == True:
+                break
+            name = input("Name: ").title()
+            if name == 'x' or name == 'X':
+                break
+            fetchallbrands()
+            while True:
+                if flag == True:
+                    break
+                brand = input("Brand ID: ").lower()
+                if brand == 'x':
+                    flag = True
+                elif brand.isnumeric() == False:
+                    print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+                elif brand.isnumeric() == True:
+                    if checkbrandidisvalid(brand) == False:
+                        print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                    if checkbrandidisvalid(brand) == True:
+                        fetchcolours()
+                        while True:
+                            if flag == True:
+                                break
+                            colour = input("Colour ID: ").lower()
+                            if colour == 'x':
+                                flag = True
+                            elif colour.isnumeric() == False:
+                                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+                            elif colour.isnumeric() == True:
+                                if checkcolouridisvalid(colour) == False:
+                                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                                if checkcolouridisvalid(colour) == True:
+                                    fetchallgarments()
+                                    while True:
+                                        if flag == True:
+                                            break
+                                        garment = input("Garment ID: ").lower()
+                                        if garment == 'x':
+                                            flag = True
+                                        elif garment.isnumeric() == False:
+                                            print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+                                        elif garment.isnumeric() == True:
+                                            if checkgarmentidisvalid(garment) == False:
+                                                print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                                            if checkgarmentidisvalid(garment) == True:
+                                                addclothigitem(name, brand, colour, garment)
+                                                flag = True
+                                                break
+    if userinput == 'e':
         fetchallbrands()
-        brand = input("Brand ID: ")
-        fetchcolours()
-        colour = input("Colour ID: ")
+        brand = input("Enter New Brand Name: ").title()
+        addbrand(brand)
+    if userinput == 'f':
         fetchallgarments()
-        garment = input("Garment: ")
-        addclothigitem(name, brand, colour, garment)
-
-    if userinput == 'exit':
+        garment = input("Enter New Garment Type: ").title()
+        addgarment(garment)
+    if userinput == 'g':
+        fetchcolours()
+        colour = input("Enter New Colour: ").title()
+        addcolour(colour)
+    if userinput == 'h':
+        fetchallclothes()
+        print("Remove clothing here")
+    if userinput == 'exit' or userinput == 'x':
         break
