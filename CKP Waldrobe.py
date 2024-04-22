@@ -38,21 +38,6 @@ def checkgarmentidisvalid(id):
         isvalid = False
     return isvalid
 
-
-def fetchallclothes():
-    db = sqlite3.connect(DB)
-    cursor = db.cursor()
-    sql = """SELECT Clothes.ID, Clothes.Name, Brands.Brand_Name, Colours.Colour, Garments.Garment
-    FROM Clothes
-    LEFT JOIN Brands ON Clothes.Brand = Brands.ID  
-    LEFT JOIN Garments ON Clothes.Garment = Garments.ID
-    LEFT JOIN Colours ON Clothes.Colour = Colours.ID;"""
-    cursor.execute(sql)
-    results = cursor.fetchall()
-    for i in results:
-        print(i)
-    db.close
-
 def fetchallbrands():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -78,6 +63,21 @@ def fetchcolours():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
     sql = "SELECT * FROM Colours;"
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    for i in results:
+        print(i)
+    db.close
+
+
+def fetchallclothes():
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = """SELECT Clothes.ID, Clothes.Name, Brands.Brand_Name, Colours.Colour, Garments.Garment
+    FROM Clothes
+    LEFT JOIN Brands ON Clothes.Brand = Brands.ID  
+    LEFT JOIN Garments ON Clothes.Garment = Garments.ID
+    LEFT JOIN Colours ON Clothes.Colour = Colours.ID;"""
     cursor.execute(sql)
     results = cursor.fetchall()
     for i in results:
@@ -131,12 +131,25 @@ def fetchclothesbygarment(id):
         print(i)
     db.close
 
+
+def addclothigitem(name, brand, colour, garment):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f'INSERT INTO Clothes (Name, Brand, Colour, Garment) VALUES ("{name}", "{brand}", "{colour}", "{garment}");'
+    cursor.execute(sql)
+    db.commit()
+
+
 print("Charlotte's Digital Waldrobe <3")
 while True:
     userinput = input("""
     Enter 'a' to view all clothes
     Enter 'b' to view all brands
     Enter 'c' to view all garment types
+    Enter 'd' to add a clothing item
+    Enter 'e' to add a brand
+    Enter 'f' to add a garment type
+    Enter 'g' to add a color
     Enter 'exit' to exit program
     >>> """).lower()
     if userinput == 'a':
@@ -190,5 +203,15 @@ while True:
         fetchallbrands()
     if userinput == 'c':
         fetchallgarments()
+    if userinput == 'd':
+        name = input("Name: ")
+        fetchallbrands()
+        brand = input("Brand ID: ")
+        fetchcolours()
+        colour = input("Colour ID: ")
+        fetchallgarments()
+        garment = input("Garment: ")
+        addclothigitem(name, brand, colour, garment)
+
     if userinput == 'exit':
         break
