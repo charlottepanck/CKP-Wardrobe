@@ -1034,6 +1034,7 @@ while True:
                 break
             else:
                 addbrand(brand)
+                break
     if userinput == 'g':
         fetchallgarments()
         while True:
@@ -1042,6 +1043,7 @@ while True:
                 break
             else:
                 addgarment(garment)
+                break
     if userinput == 'h':
         fetchcolours()
         while True:
