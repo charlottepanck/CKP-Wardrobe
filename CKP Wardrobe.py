@@ -1,6 +1,6 @@
 import sqlite3
 
-DB = 'ckpwaldrobe.db'
+DB = 'ckpwardrobe.db'
 
 
 def checkbottomidisvalid(id):
@@ -965,7 +965,7 @@ def removecolour(id):
     db.commit()
 
 
-print("\nCharlotte's Digital Waldrobe <3")
+print("\nCharlotte's Digital Wardrobe <3")
 while True:
     userinput = input("""
     Enter 'a' to view all clothes
