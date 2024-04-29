@@ -40,6 +40,18 @@ def checktopidisvalid(id):
         isvalid = False
     return isvalid
 
+def checkouterwearidisvalid(id):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f"SELECT * FROM Outerwear WHERE ID == '{id}';"
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    if len(results) != 0:
+        isvalid = True
+    if len(results) == 0:
+        isvalid = False
+    return isvalid
+
 
 def checkbrandidisvalid(id):
     db = sqlite3.connect(DB)
@@ -919,6 +931,14 @@ def removebottom(id):
     db.commit()
 
 
+def removeouterwear(id):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f"DELETE FROM Outerwear WHERE ID = {id};"
+    cursor.execute(sql)
+    db.commit() 
+
+
 def removebrand(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -1273,7 +1293,6 @@ while True:
                 addcolour(colour)
                 break
     if userinput == 'l':
-        print("coding this section atm")
         fetchalltops()
         while True:
             id = input("ID of top to be deleted: ")
@@ -1288,7 +1307,6 @@ while True:
                     removetop(id)
                     break
     if userinput == 'm':
-        print("coding this section atm")
         fetchallbottoms()
         while True:
             id = input("ID of bottom to be deleted: ")
@@ -1303,7 +1321,19 @@ while True:
                     removebottom(id)
                     break
     if userinput == 'n':
-        print("coding this section atm")
+        fetchallouterwears()
+        while True:
+            id = input("ID of outerwear item to be deleted: ")
+            if id == 'x' or id == 'X':
+                break
+            if id.isnumeric() == False:
+                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+            if id.isnumeric() == True:
+                if checkouterwearidisvalid(id) == False:
+                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                if checkouterwearidisvalid(id) == True:
+                    removeouterwear(id)
+                    break
     if userinput == 'o':
         print("coding this section atm")
     if userinput == 'p':
