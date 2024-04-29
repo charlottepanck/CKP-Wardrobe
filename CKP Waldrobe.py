@@ -16,6 +16,18 @@ def checkclothingidisvalid(id):
     return isvalid
 
 
+def checkbottomidisvalid(id):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f"SELECT * FROM Bottoms WHERE ID == '{id}';"
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    if len(results) != 0:
+        isvalid = True
+    if len(results) == 0:
+        isvalid = False
+    return isvalid
+
 def checktopidisvalid(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -899,6 +911,14 @@ def removetop(id):
     db.commit()
 
 
+def removebottom(id):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f"DELETE FROM Bottoms WHERE ID = {id};"
+    cursor.execute(sql)
+    db.commit()
+
+
 def removebrand(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -1269,6 +1289,19 @@ while True:
                     break
     if userinput == 'm':
         print("coding this section atm")
+        fetchallbottoms()
+        while True:
+            id = input("ID of bottom to be deleted: ")
+            if id == 'x' or id == 'X':
+                break
+            if id.isnumeric() == False:
+                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+            if id.isnumeric() == True:
+                if checkbottomidisvalid(id) == False:
+                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                if checkbottomidisvalid(id) == True:
+                    removebottom(id)
+                    break
     if userinput == 'n':
         print("coding this section atm")
     if userinput == 'o':
