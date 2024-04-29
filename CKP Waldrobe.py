@@ -16,6 +16,19 @@ def checkclothingidisvalid(id):
     return isvalid
 
 
+def checktopidisvalid(id):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f"SELECT * FROM Tops WHERE ID == '{id}';"
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    if len(results) != 0:
+        isvalid = True
+    if len(results) == 0:
+        isvalid = False
+    return isvalid
+
+
 def checkbrandidisvalid(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -878,6 +891,14 @@ def removeclothingitem(id):
     db.commit()
 
 
+def removetop(id):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f"DELETE FROM Tops WHERE ID = {id};"
+    cursor.execute(sql)
+    db.commit()
+
+
 def removebrand(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -918,14 +939,17 @@ while True:
     Enter 'j' to add a garment type
     Enter 'k' to add a color
                       
-    Enter 'l' to remove a clothing item
-    Enter 'm' to remove a brand
-    Enter 'n' to remove a garment type
-    Enter 'o' to remove a colour
+    Enter 'l' to remove a top
+    Enter 'm' to remove a bottom
+    Enter 'n' to remove an outerwear item
+    Enter 'o' to remove a dress
+    Enter 'p' to remove a brand
+    Enter 'q' to remove a garment type
+    Enter 'r' to remove a colour
                       
-    Enter 'p' to view outfits
-    Enter 'q' to add an outfit
-    Enter 'r' to remove an outfit
+    Enter 's' to view outfits
+    Enter 't' to add an outfit
+    Enter 'u' to remove an outfit
                       
     Enter 'exit' to exit program
     Enter 'x' at any point of the program to go back :)
@@ -1229,20 +1253,27 @@ while True:
                 addcolour(colour)
                 break
     if userinput == 'l':
-        fetchallclothes()
+        print("coding this section atm")
+        fetchalltops()
         while True:
-            id = input("ID of clothing item to be deleted: ")
+            id = input("ID of top to be deleted: ")
             if id == 'x' or id == 'X':
                 break
             if id.isnumeric() == False:
                 print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
             if id.isnumeric() == True:
-                if checkclothingidisvalid(id) == False:
+                if checktopidisvalid(id) == False:
                     print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                if checkclothingidisvalid(id) == True:
-                    removeclothingitem(id)
+                if checktopidisvalid(id) == True:
+                    removetop(id)
                     break
     if userinput == 'm':
+        print("coding this section atm")
+    if userinput == 'n':
+        print("coding this section atm")
+    if userinput == 'o':
+        print("coding this section atm")
+    if userinput == 'p':
         fetchallbrands()
         while True:
             id = input("ID of brand to be deleted: ")
@@ -1256,7 +1287,7 @@ while True:
                 if checkbrandidisvalid(id) == True:
                     removebrand(id)
                     break
-    if userinput == 'n':
+    if userinput == 'q':
         fetchallgarments()
         while True:
             id = input("ID of garment type to be deleted: ")
@@ -1270,7 +1301,7 @@ while True:
                 if checkgarmentidisvalid(id) == True:
                     removegarment(id)
                     break
-    if userinput == 'o':
+    if userinput == 'r':
         fetchcolours()
         while True:
             id = input("ID of colour to be deleted: ")
@@ -1284,11 +1315,11 @@ while True:
                 if checkcolouridisvalid(id) == True:
                     removecolour(id)
                     break
-    if userinput == 'p':
+    if userinput == 's':
         print("im in the middle of coding this section :p")
-    if userinput == 'q':
+    if userinput == 't':
         print("im in the middle of coding this section :p")
-    if userinput == 'r':
+    if userinput == 'u':
         print("im in the middle of coding this section :p")
     if userinput == 'exit':
         break
