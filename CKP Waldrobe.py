@@ -502,21 +502,67 @@ def fetchclothesbycolour(id):
     print(f"\n| ID | Name {bnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{bnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
+    
+    # outerwear name column format
+    sql1 = """SELECT Name FROM Outerwear
+    ORDER BY Length(Name) desc LIMIT 1;"""
+    cursor.execute(sql1)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        onlg = len(x)
+        onsp = (onlg-4) * " "
+    # print table
+    sql = f"""SELECT Outerwear.ID, Outerwear.Name,
+    Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
+    FROM Outerwear
+    LEFT JOIN Brands ON Outerwear.Brand = Brands.ID  
+    LEFT JOIN Garments ON Outerwear.Garment = Garments.ID
+    LEFT JOIN Colours ON Outerwear.Colour = Colours.ID
+    WHERE Outerwear.Colour == '{id}';"""
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    print(f"\n| ID | Name {onsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    for i in results:
+        print(f"| {i[0]:2} | {i[1]:{onlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
+    
+    # dresses name column format
+    sql1 = """SELECT Name FROM Dresses
+    ORDER BY Length(Name) desc LIMIT 1;"""
+    cursor.execute(sql1)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        dnlg = len(x)
+        dnsp = (dnlg-4) * " "
+    # print table
+    sql = f"""SELECT Dresses.ID, Dresses.Name,
+    Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
+    FROM Dresses
+    LEFT JOIN Brands ON Dresses.Brand = Brands.ID  
+    LEFT JOIN Garments ON Dresses.Garment = Garments.ID
+    LEFT JOIN Colours ON Dresses.Colour = Colours.ID
+    WHERE Dresses.Colour == '{id}';"""
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    print(f"\n| ID | Name {dnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    for i in results:
+        print(f"| {i[0]:2} | {i[1]:{dnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
     db.close
 
 
 def fetchclothesbybrand(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    # name column format
-    sql1 = """SELECT Name FROM Clothes
+    # tops name column format
+    sql1 = """SELECT Name FROM Tops
     ORDER BY Length(Name) desc LIMIT 1;"""
     cursor.execute(sql1)
     results = cursor.fetchone()
     for i in results:
         x = (f"{i}")
-        nlg = len(x)
-        nsp = (nlg-4) * " "
+        tnlg = len(x)
+        tnsp = (tnlg-4) * " "
     # brand column format
     sql2 = """SELECT Brand_Name FROM Brands
     ORDER BY Length(Brand_Name) desc LIMIT 1;"""
@@ -527,8 +573,8 @@ def fetchclothesbybrand(id):
         blg = len(x)
         bsp = (blg-5) * " "
     # colour column format
-    sql3 = """SELECT Colour FROM Colours
-    ORDER BY Length(Colour) desc LIMIT 1;"""
+    sql3 = """SELECT Colour_Type FROM Colours
+    ORDER BY Length(Colour_Type) desc LIMIT 1;"""
     cursor.execute(sql3)
     results = cursor.fetchone()
     for i in results:
@@ -536,8 +582,8 @@ def fetchclothesbybrand(id):
         clg = len(x)
         csp = (clg-6) * " "
     # garment column format
-    sql3 = """SELECT Garment FROM Garments
-    ORDER BY Length(Garment) desc LIMIT 1;"""
+    sql3 = """SELECT Garment_Type FROM Garments
+    ORDER BY Length(Garment_Type) desc LIMIT 1;"""
     cursor.execute(sql3)
     results = cursor.fetchone()
     for i in results:
@@ -545,33 +591,102 @@ def fetchclothesbybrand(id):
         glg = len(x)
         gsp = (glg-7) * " "
     # print table
-    sql = f"""SELECT Clothes.ID, Clothes.Name,
-    Brands.Brand_Name, Colours.Colour, Garments.Garment
-    FROM Clothes
-    LEFT JOIN Brands ON Clothes.Brand = Brands.ID  
-    LEFT JOIN Garments ON Clothes.Garment = Garments.ID
-    LEFT JOIN Colours ON Clothes.Colour = Colours.ID
-    WHERE Clothes.Brand == '{id}';"""
+    sql = f"""SELECT Tops.ID, Tops.Name,
+    Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
+    FROM Tops
+    LEFT JOIN Brands ON Tops.Brand = Brands.ID  
+    LEFT JOIN Garments ON Tops.Garment = Garments.ID
+    LEFT JOIN Colours ON Tops.Colour = Colours.ID
+    WHERE Tops.Brand == '{id}';"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"| ID | Name {nsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
-        print(f"| {i[0]:2} | {i[1]:{nlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
+        print(f"| {i[0]:2} | {i[1]:{tnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
+    
+    # bottoms name column format
+    sql1 = """SELECT Name FROM Bottoms
+    ORDER BY Length(Name) desc LIMIT 1;"""
+    cursor.execute(sql1)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        bnlg = len(x)
+        bnsp = (bnlg-4) * " "
+    # print table
+    sql = f"""SELECT Bottoms.ID, Bottoms.Name,
+    Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
+    FROM Bottoms
+    LEFT JOIN Brands ON Bottoms.Brand = Brands.ID  
+    LEFT JOIN Garments ON Bottoms.Garment = Garments.ID
+    LEFT JOIN Colours ON Bottoms.Colour = Colours.ID
+    WHERE Bottoms.Brand == '{id}';"""
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    print(f"\n| ID | Name {bnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    for i in results:
+        print(f"| {i[0]:2} | {i[1]:{bnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
+    
+    # outerwear name column format
+    sql1 = """SELECT Name FROM Outerwear
+    ORDER BY Length(Name) desc LIMIT 1;"""
+    cursor.execute(sql1)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        onlg = len(x)
+        onsp = (onlg-4) * " "
+    # print table
+    sql = f"""SELECT Outerwear.ID, Outerwear.Name,
+    Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
+    FROM Outerwear
+    LEFT JOIN Brands ON Outerwear.Brand = Brands.ID  
+    LEFT JOIN Garments ON Outerwear.Garment = Garments.ID
+    LEFT JOIN Colours ON Outerwear.Colour = Colours.ID
+    WHERE Outerwear.Brand == '{id}';"""
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    print(f"\n| ID | Name {onsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    for i in results:
+        print(f"| {i[0]:2} | {i[1]:{onlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
+    
+    # dresses name column format
+    sql1 = """SELECT Name FROM Dresses
+    ORDER BY Length(Name) desc LIMIT 1;"""
+    cursor.execute(sql1)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        dnlg = len(x)
+        dnsp = (dnlg-4) * " "
+    # print table
+    sql = f"""SELECT Dresses.ID, Dresses.Name,
+    Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
+    FROM Dresses
+    LEFT JOIN Brands ON Dresses.Brand = Brands.ID  
+    LEFT JOIN Garments ON Dresses.Garment = Garments.ID
+    LEFT JOIN Colours ON Dresses.Colour = Colours.ID
+    WHERE Dresses.Brand == '{id}';"""
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    print(f"\n| ID | Name {dnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    for i in results:
+        print(f"| {i[0]:2} | {i[1]:{dnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
     db.close
 
 
 def fetchclothesbygarment(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    # name column format
-    sql1 = """SELECT Name FROM Clothes
+    # tops name column format
+    sql1 = """SELECT Name FROM Tops
     ORDER BY Length(Name) desc LIMIT 1;"""
     cursor.execute(sql1)
     results = cursor.fetchone()
     for i in results:
         x = (f"{i}")
-        nlg = len(x)
-        nsp = (nlg-4) * " "
+        tnlg = len(x)
+        tnsp = (tnlg-4) * " "
     # brand column format
     sql2 = """SELECT Brand_Name FROM Brands
     ORDER BY Length(Brand_Name) desc LIMIT 1;"""
@@ -582,8 +697,8 @@ def fetchclothesbygarment(id):
         blg = len(x)
         bsp = (blg-5) * " "
     # colour column format
-    sql3 = """SELECT Colour FROM Colours
-    ORDER BY Length(Colour) desc LIMIT 1;"""
+    sql3 = """SELECT Colour_Type FROM Colours
+    ORDER BY Length(Colour_Type) desc LIMIT 1;"""
     cursor.execute(sql3)
     results = cursor.fetchone()
     for i in results:
@@ -591,8 +706,8 @@ def fetchclothesbygarment(id):
         clg = len(x)
         csp = (clg-6) * " "
     # garment column format
-    sql3 = """SELECT Garment FROM Garments
-    ORDER BY Length(Garment) desc LIMIT 1;"""
+    sql3 = """SELECT Garment_Type FROM Garments
+    ORDER BY Length(Garment_Type) desc LIMIT 1;"""
     cursor.execute(sql3)
     results = cursor.fetchone()
     for i in results:
@@ -600,18 +715,87 @@ def fetchclothesbygarment(id):
         glg = len(x)
         gsp = (glg-7) * " "
     # print table
-    sql = f"""SELECT Clothes.ID, Clothes.Name,
-    Brands.Brand_Name, Colours.Colour, Garments.Garment
-    FROM Clothes
-    LEFT JOIN Brands ON Clothes.Brand = Brands.ID  
-    LEFT JOIN Garments ON Clothes.Garment = Garments.ID
-    LEFT JOIN Colours ON Clothes.Colour = Colours.ID
-    WHERE Clothes.Garment == '{id}';"""
+    sql = f"""SELECT Tops.ID, Tops.Name,
+    Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
+    FROM Tops
+    LEFT JOIN Brands ON Tops.Brand = Brands.ID  
+    LEFT JOIN Garments ON Tops.Garment = Garments.ID
+    LEFT JOIN Colours ON Tops.Colour = Colours.ID
+    WHERE Tops.Garment == '{id}';"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"| ID | Name {nsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
-        print(f"| {i[0]:2} | {i[1]:{nlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
+        print(f"| {i[0]:2} | {i[1]:{tnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
+    
+    # bottoms name column format
+    sql1 = """SELECT Name FROM Bottoms
+    ORDER BY Length(Name) desc LIMIT 1;"""
+    cursor.execute(sql1)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        bnlg = len(x)
+        bnsp = (bnlg-4) * " "
+    # print table
+    sql = f"""SELECT Bottoms.ID, Bottoms.Name,
+    Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
+    FROM Bottoms
+    LEFT JOIN Brands ON Bottoms.Brand = Brands.ID  
+    LEFT JOIN Garments ON Bottoms.Garment = Garments.ID
+    LEFT JOIN Colours ON Bottoms.Colour = Colours.ID
+    WHERE Bottoms.Garment == '{id}';"""
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    print(f"\n| ID | Name {bnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    for i in results:
+        print(f"| {i[0]:2} | {i[1]:{bnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
+    
+    # outerwear name column format
+    sql1 = """SELECT Name FROM Outerwear
+    ORDER BY Length(Name) desc LIMIT 1;"""
+    cursor.execute(sql1)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        onlg = len(x)
+        onsp = (onlg-4) * " "
+    # print table
+    sql = f"""SELECT Outerwear.ID, Outerwear.Name,
+    Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
+    FROM Outerwear
+    LEFT JOIN Brands ON Outerwear.Brand = Brands.ID  
+    LEFT JOIN Garments ON Outerwear.Garment = Garments.ID
+    LEFT JOIN Colours ON Outerwear.Colour = Colours.ID
+    WHERE Outerwear.Garment == '{id}';"""
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    print(f"\n| ID | Name {onsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    for i in results:
+        print(f"| {i[0]:2} | {i[1]:{onlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
+    
+    # dresses name column format
+    sql1 = """SELECT Name FROM Dresses
+    ORDER BY Length(Name) desc LIMIT 1;"""
+    cursor.execute(sql1)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        dnlg = len(x)
+        dnsp = (dnlg-4) * " "
+    # print table
+    sql = f"""SELECT Dresses.ID, Dresses.Name,
+    Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
+    FROM Dresses
+    LEFT JOIN Brands ON Dresses.Brand = Brands.ID  
+    LEFT JOIN Garments ON Dresses.Garment = Garments.ID
+    LEFT JOIN Colours ON Dresses.Colour = Colours.ID
+    WHERE Dresses.Garment == '{id}';"""
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    print(f"\n| ID | Name {dnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    for i in results:
+        print(f"| {i[0]:2} | {i[1]:{dnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
     db.close
 
 
@@ -727,21 +911,21 @@ while True:
     Enter 'd' to view all colours
                       
     Enter 'e' to add a top
-    Enter 'p' to add a bottom
-    Enter 'q' to add outerwear item
-    Enter 'r' to add a dress
-    Enter 'f' to add a brand
-    Enter 'g' to add a garment type
-    Enter 'h' to add a color
+    Enter 'f' to add a bottom
+    Enter 'g' to add outerwear item
+    Enter 'h' to add a dress
+    Enter 'i' to add a brand
+    Enter 'j' to add a garment type
+    Enter 'k' to add a color
                       
-    Enter 'i' to remove a clothing item
-    Enter 'j' to remove a brand
-    Enter 'k' to remove a garment type
-    Enter 'l' to remove a colour
+    Enter 'l' to remove a clothing item
+    Enter 'm' to remove a brand
+    Enter 'n' to remove a garment type
+    Enter 'o' to remove a colour
                       
-    Enter 'm' to view outfits
-    Enter 'n' to add an outfit
-    Enter 'o' to remove an outfit
+    Enter 'p' to view outfits
+    Enter 'q' to add an outfit
+    Enter 'r' to remove an outfit
                       
     Enter 'exit' to exit program
     Enter 'x' at any point of the program to go back :)
@@ -867,7 +1051,7 @@ while True:
                                                 addtop(name, brand, colour, garment)
                                                 flag = True
                                                 break
-    if userinput == 'p':
+    if userinput == 'f':
         flag = False
         while True:
             if flag == True:
@@ -917,7 +1101,7 @@ while True:
                                                 addbottom(name, brand, colour, garment)
                                                 flag = True
                                                 break
-    if userinput == 'q':
+    if userinput == 'g':
         flag = False
         while True:
             if flag == True:
@@ -967,7 +1151,7 @@ while True:
                                                 addouterwear(name, brand, colour, garment)
                                                 flag = True
                                                 break
-    if userinput == 'r':
+    if userinput == 'h':
         flag = False
         while True:
             if flag == True:
@@ -1017,7 +1201,7 @@ while True:
                                                 adddress(name, brand, colour, garment)
                                                 flag = True
                                                 break
-    if userinput == 'f':
+    if userinput == 'i':
         fetchallbrands()
         while True:
             brand = input("Enter New Brand Name: ").title()
@@ -1026,7 +1210,7 @@ while True:
             else:
                 addbrand(brand)
                 break
-    if userinput == 'g':
+    if userinput == 'j':
         fetchallgarments()
         while True:
             garment = input("Enter New Garment Type: ").title()
@@ -1035,7 +1219,7 @@ while True:
             else:
                 addgarment(garment)
                 break
-    if userinput == 'h':
+    if userinput == 'k':
         fetchcolours()
         while True:
             colour = input("Enter New Colour: ").title()
@@ -1044,7 +1228,7 @@ while True:
             else:
                 addcolour(colour)
                 break
-    if userinput == 'i':
+    if userinput == 'l':
         fetchallclothes()
         while True:
             id = input("ID of clothing item to be deleted: ")
@@ -1058,7 +1242,7 @@ while True:
                 if checkclothingidisvalid(id) == True:
                     removeclothingitem(id)
                     break
-    if userinput == 'j':
+    if userinput == 'm':
         fetchallbrands()
         while True:
             id = input("ID of brand to be deleted: ")
@@ -1072,7 +1256,7 @@ while True:
                 if checkbrandidisvalid(id) == True:
                     removebrand(id)
                     break
-    if userinput == 'k':
+    if userinput == 'n':
         fetchallgarments()
         while True:
             id = input("ID of garment type to be deleted: ")
@@ -1086,7 +1270,7 @@ while True:
                 if checkgarmentidisvalid(id) == True:
                     removegarment(id)
                     break
-    if userinput == 'l':
+    if userinput == 'o':
         fetchcolours()
         while True:
             id = input("ID of colour to be deleted: ")
@@ -1100,11 +1284,11 @@ while True:
                 if checkcolouridisvalid(id) == True:
                     removecolour(id)
                     break
-    if userinput == 'm':
+    if userinput == 'p':
         print("im in the middle of coding this section :p")
-    if userinput == 'n':
+    if userinput == 'q':
         print("im in the middle of coding this section :p")
-    if userinput == 'o':
+    if userinput == 'r':
         print("im in the middle of coding this section :p")
     if userinput == 'exit':
         break
