@@ -626,15 +626,6 @@ def fetchalloutfits():
     db.close
 
 
-def addclothigitem(name, brand, colour, garment):
-    db = sqlite3.connect(DB)
-    cursor = db.cursor()
-    sql = f'''INSERT INTO Clothes (Name, Brand, Colour, Garment)
-    VALUES ("{name}", "{brand}", "{colour}", "{garment}");'''
-    cursor.execute(sql)
-    db.commit()
-
-
 def addtop(name, brand, colour, garment):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -711,7 +702,7 @@ def removebrand(id):
     db.commit()
 
 
-def removegarment():
+def removegarment(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
     sql = f"DELETE FROM Garments WHERE ID = {id};"
@@ -719,7 +710,7 @@ def removegarment():
     db.commit()
 
 
-def removecolour():
+def removecolour(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
     sql = f"DELETE FROM Colours WHERE ID = {id};"
