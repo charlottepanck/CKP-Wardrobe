@@ -3,19 +3,6 @@ import sqlite3
 DB = 'ckpwaldrobe.db'
 
 
-def checkclothingidisvalid(id):
-    db = sqlite3.connect(DB)
-    cursor = db.cursor()
-    sql = f"SELECT * FROM Clothes WHERE ID == '{id}';"
-    cursor.execute(sql)
-    results = cursor.fetchall()
-    if len(results) != 0:
-        isvalid = True
-    if len(results) == 0:
-        isvalid = False
-    return isvalid
-
-
 def checkbottomidisvalid(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -28,6 +15,7 @@ def checkbottomidisvalid(id):
         isvalid = False
     return isvalid
 
+
 def checktopidisvalid(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -39,6 +27,7 @@ def checktopidisvalid(id):
     if len(results) == 0:
         isvalid = False
     return isvalid
+
 
 def checkouterwearidisvalid(id):
     db = sqlite3.connect(DB)
@@ -916,14 +905,6 @@ def addcolour(colour):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
     sql = f'INSERT INTO Colours (Colour_Type) VALUES ("{colour}");'
-    cursor.execute(sql)
-    db.commit()
-
-
-def removeclothingitem(id):
-    db = sqlite3.connect(DB)
-    cursor = db.cursor()
-    sql = f"DELETE FROM Clothes WHERE ID = {id};"
     cursor.execute(sql)
     db.commit()
 
