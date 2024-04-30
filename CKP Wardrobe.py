@@ -515,7 +515,7 @@ def fetchclothesbycolour(id):
     WHERE Tops.Colour == '{id}';"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nTops:\n| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{tnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
 
@@ -538,7 +538,7 @@ def fetchclothesbycolour(id):
     WHERE Bottoms.Colour == '{id}';"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"\n| ID | Name {bnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nBottoms:\n| ID | Name {bnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{bnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
 
