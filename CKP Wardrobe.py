@@ -1449,6 +1449,7 @@ while True:
         fetchalloutfits()
     if userinput == 't':
         print("\ni havent written this section yet :p")
+        
     if userinput == 'u':
         print("\ni havent written this section yet :p")
     if userinput == 'exit':
