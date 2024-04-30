@@ -561,7 +561,7 @@ def fetchclothesbycolour(id):
     WHERE Outerwear.Colour == '{id}';"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"\n| ID | Name {onsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nOuterwear:\n| ID | Name {onsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{onlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
 
@@ -584,7 +584,7 @@ def fetchclothesbycolour(id):
     WHERE Dresses.Colour == '{id}';"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"\n| ID | Name {dnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nDresses:\n| ID | Name {dnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{dnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
     db.close
@@ -641,7 +641,7 @@ def fetchclothesbybrand(id):
     results = cursor.fetchall()
     print(f"| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
-        print(f"| {i[0]:2} | {i[1]:{tnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
+        print(f"\nTops:\n| {i[0]:2} | {i[1]:{tnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
 
     # bottoms name column format
     sql1 = """SELECT Name FROM Bottoms
@@ -662,7 +662,7 @@ def fetchclothesbybrand(id):
     WHERE Bottoms.Brand == '{id}';"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"\n| ID | Name {bnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nBottoms:\n| ID | Name {bnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{bnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
 
@@ -685,7 +685,7 @@ def fetchclothesbybrand(id):
     WHERE Outerwear.Brand == '{id}';"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"\n| ID | Name {onsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nOuterwear:\n| ID | Name {onsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{onlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
 
@@ -708,7 +708,7 @@ def fetchclothesbybrand(id):
     WHERE Dresses.Brand == '{id}';"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"\n| ID | Name {dnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nDresses:\n| ID | Name {dnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{dnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
     db.close
@@ -763,7 +763,7 @@ def fetchclothesbygarment(id):
     WHERE Tops.Garment == '{id}';"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nTops:\n| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{tnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
 
@@ -786,7 +786,7 @@ def fetchclothesbygarment(id):
     WHERE Bottoms.Garment == '{id}';"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"\n| ID | Name {bnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nBottoms:\n| ID | Name {bnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{bnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
 
@@ -809,7 +809,7 @@ def fetchclothesbygarment(id):
     WHERE Outerwear.Garment == '{id}';"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"\n| ID | Name {onsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nOuterwear:\n| ID | Name {onsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{onlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
 
@@ -832,7 +832,7 @@ def fetchclothesbygarment(id):
     WHERE Dresses.Garment == '{id}';"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"\n| ID | Name {dnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nDresses:\n| ID | Name {dnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{dnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
     db.close
@@ -841,11 +841,36 @@ def fetchclothesbygarment(id):
 def fetchalloutfits():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql = ""
+    # tops name column format
+    sql1 = """SELECT Name FROM Tops
+    ORDER BY Length(Name) desc LIMIT 1;"""
+    cursor.execute(sql1)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        tnlg = len(x)
+        tnsp = (tnlg-4) * " "
+    # bottoms name column format
+    sql2 = """SELECT Name FROM Bottoms
+    ORDER BY Length(Name) desc LIMIT 1;"""
+    cursor.execute(sql2)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        bnlg = len(x)
+        bnsp = (bnlg-4) * " "
+    sql = """SELECT Outfits.ID, Tops.Name, Bottoms.Name, Outerwear.Name, Dresses.Name, Styles.Style_Name
+    FROM Outfits
+    LEFT JOIN Tops ON Outfits.Top == Tops.ID
+    LEFT JOIN Bottoms ON Outfits.Bottoms == Bottoms.ID
+    LEFT JOIN Outerwear ON Outfits.Outerwear == Outerwear.ID
+    LEFT JOIN Dresses ON Outfits.Dress == Dresses.ID
+    LEFT JOIN Styles ON Outfits.Style == Styles.ID;"""
     cursor.execute(sql)
     results = cursor.fetchall()
+    print(f"\n| ID | Top {tnsp}| Bottom {bnsp}| Outerwear | Dress | Style |")
     for i in results:
-        print("|  |  |  |")
+        print(f"|{i[0]:2}|{i[1]:{tnlg}}|{i[2]:{bnlg}}|{i[3]}|{i[4]}|{i[5]}|")
     db.close
 
 
@@ -1393,10 +1418,11 @@ while True:
                     removecolour(id)
                     break
     if userinput == 's':
-        print("im in the middle of coding this section :p")
+        print("\ni havent finished this section yet :p")
+        fetchalloutfits()
     if userinput == 't':
-        print("im in the middle of coding this section :p")
+        print("\ni havent written this section yet :p")
     if userinput == 'u':
-        print("im in the middle of coding this section :p")
+        print("\ni havent written this section yet :p")
     if userinput == 'exit':
         break
