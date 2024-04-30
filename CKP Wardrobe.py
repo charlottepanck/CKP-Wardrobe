@@ -849,7 +849,7 @@ def fetchalloutfits():
     for i in results:
         x = (f"{i}")
         tnlg = len(x)
-        tnsp = (tnlg-4) * " "
+        tnsp = (tnlg-3) * " "
     # bottoms name column format
     sql2 = """SELECT Name FROM Bottoms
     ORDER BY Length(Name) desc LIMIT 1;"""
@@ -858,7 +858,34 @@ def fetchalloutfits():
     for i in results:
         x = (f"{i}")
         bnlg = len(x)
-        bnsp = (bnlg-4) * " "
+        bnsp = (bnlg-6) * " "
+    # outerwear name column format
+    sql3 = """SELECT Name FROM Outerwear
+    ORDER BY Length(Name) desc LIMIT 1;"""
+    cursor.execute(sql3)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        onlg = len(x)
+        onsp = (onlg-9) * " "
+    # dresses name column format
+    sql4 = """SELECT Name FROM Dresses
+    ORDER BY Length(Name) desc LIMIT 1;"""
+    cursor.execute(sql4)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        dnlg = len(x)
+        dnsp = (dnlg-5) * " "
+    # style column format
+    sql5 = """SELECT Style_Name FROM Styles
+    ORDER BY Length(Style_Name) desc LIMIT 1;"""
+    cursor.execute(sql5)
+    results = cursor.fetchone()
+    for i in results:
+        x = (f"{i}")
+        slg = len(x)
+        ssp = (slg-5) * " "
     sql = """SELECT Outfits.ID, Tops.Name, Bottoms.Name, Outerwear.Name, Dresses.Name, Styles.Style_Name
     FROM Outfits
     LEFT JOIN Tops ON Outfits.Top == Tops.ID
@@ -868,9 +895,9 @@ def fetchalloutfits():
     LEFT JOIN Styles ON Outfits.Style == Styles.ID;"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"\n| ID | Top {tnsp}| Bottom {bnsp}| Outerwear | Dress | Style |")
+    print(f"| ID | Top {tnsp}| Bottom {bnsp}| Outerwear {onsp}| Dress {dnsp}| Style {ssp}|")
     for i in results:
-        print(f"|{i[0]:2}|{i[1]:{tnlg}}|{i[2]:{bnlg}}|{i[3]}|{i[4]}|{i[5]}|")
+        print(f"| {i[0]:2} | {i[1]:{tnlg}} | {i[2]:{bnlg}} | {i[3]:{onlg}} | {i[4]:{dnlg}} | {i[5]:{slg}} |")
     db.close
 
 
