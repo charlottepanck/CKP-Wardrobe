@@ -178,7 +178,7 @@ def fetchallclothes():
     LEFT JOIN Colours ON Tops.Colour = Colours.ID;"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nTops:\n| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{tnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
 
@@ -200,7 +200,7 @@ def fetchallclothes():
     LEFT JOIN Colours ON Bottoms.Colour = Colours.ID;"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"\n| ID | Name {bnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nBottoms:\n| ID | Name {bnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{bnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
 
@@ -222,7 +222,7 @@ def fetchallclothes():
     LEFT JOIN Colours ON Outerwear.Colour = Colours.ID;"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"\n| ID | Name {onsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nOuterwear:\n| ID | Name {onsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{onlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
 
@@ -244,7 +244,7 @@ def fetchallclothes():
     LEFT JOIN Colours ON Dresses.Colour = Colours.ID;"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"\n| ID | Name {dnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nDresses:\n| ID | Name {dnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{dnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
     db.close
