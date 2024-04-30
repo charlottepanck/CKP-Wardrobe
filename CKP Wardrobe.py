@@ -67,7 +67,7 @@ def checkbrandidisvalid(id):
         isvalid = False
     return isvalid
 
- 
+
 def checkcolouridisvalid(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -173,7 +173,7 @@ def fetchallclothes():
     sql = """SELECT Tops.ID, Tops.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Tops
-    LEFT JOIN Brands ON Tops.Brand = Brands.ID  
+    LEFT JOIN Brands ON Tops.Brand = Brands.ID
     LEFT JOIN Garments ON Tops.Garment = Garments.ID
     LEFT JOIN Colours ON Tops.Colour = Colours.ID;"""
     cursor.execute(sql)
@@ -181,7 +181,7 @@ def fetchallclothes():
     print(f"| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{tnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
-    
+
     # bottoms name column format
     sql1 = """SELECT Name FROM Bottoms
     ORDER BY Length(Name) desc LIMIT 1;"""
@@ -195,7 +195,7 @@ def fetchallclothes():
     sql = """SELECT Bottoms.ID, Bottoms.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Bottoms
-    LEFT JOIN Brands ON Bottoms.Brand = Brands.ID  
+    LEFT JOIN Brands ON Bottoms.Brand = Brands.ID
     LEFT JOIN Garments ON Bottoms.Garment = Garments.ID
     LEFT JOIN Colours ON Bottoms.Colour = Colours.ID;"""
     cursor.execute(sql)
@@ -203,7 +203,7 @@ def fetchallclothes():
     print(f"\n| ID | Name {bnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{bnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
-    
+
     # outerwear name column format
     sql1 = """SELECT Name FROM Outerwear
     ORDER BY Length(Name) desc LIMIT 1;"""
@@ -217,7 +217,7 @@ def fetchallclothes():
     sql = """SELECT Outerwear.ID, Outerwear.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Outerwear
-    LEFT JOIN Brands ON Outerwear.Brand = Brands.ID  
+    LEFT JOIN Brands ON Outerwear.Brand = Brands.ID
     LEFT JOIN Garments ON Outerwear.Garment = Garments.ID
     LEFT JOIN Colours ON Outerwear.Colour = Colours.ID;"""
     cursor.execute(sql)
@@ -225,7 +225,7 @@ def fetchallclothes():
     print(f"\n| ID | Name {onsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{onlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
-    
+
     # dresses name column format
     sql1 = """SELECT Name FROM Dresses
     ORDER BY Length(Name) desc LIMIT 1;"""
@@ -239,7 +239,7 @@ def fetchallclothes():
     sql = """SELECT Dresses.ID, Dresses.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Dresses
-    LEFT JOIN Brands ON Dresses.Brand = Brands.ID  
+    LEFT JOIN Brands ON Dresses.Brand = Brands.ID
     LEFT JOIN Garments ON Dresses.Garment = Garments.ID
     LEFT JOIN Colours ON Dresses.Colour = Colours.ID;"""
     cursor.execute(sql)
@@ -293,7 +293,7 @@ def fetchalldresses():
     sql = """SELECT Dresses.ID, Dresses.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Dresses
-    LEFT JOIN Brands ON Dresses.Brand = Brands.ID  
+    LEFT JOIN Brands ON Dresses.Brand = Brands.ID
     LEFT JOIN Garments ON Dresses.Garment = Garments.ID
     LEFT JOIN Colours ON Dresses.Colour = Colours.ID;"""
     cursor.execute(sql)
@@ -347,7 +347,7 @@ def fetchallouterwears():
     sql = """SELECT Outerwear.ID, Outerwear.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Outerwear
-    LEFT JOIN Brands ON Outerwear.Brand = Brands.ID  
+    LEFT JOIN Brands ON Outerwear.Brand = Brands.ID
     LEFT JOIN Garments ON Outerwear.Garment = Garments.ID
     LEFT JOIN Colours ON Outerwear.Colour = Colours.ID;"""
     cursor.execute(sql)
@@ -401,7 +401,7 @@ def fetchallbottoms():
     sql = """SELECT Bottoms.ID, Bottoms.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Bottoms
-    LEFT JOIN Brands ON Bottoms.Brand = Brands.ID  
+    LEFT JOIN Brands ON Bottoms.Brand = Brands.ID
     LEFT JOIN Garments ON Bottoms.Garment = Garments.ID
     LEFT JOIN Colours ON Bottoms.Colour = Colours.ID;"""
     cursor.execute(sql)
@@ -455,7 +455,7 @@ def fetchalltops():
     sql = """SELECT Tops.ID, Tops.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Tops
-    LEFT JOIN Brands ON Tops.Brand = Brands.ID  
+    LEFT JOIN Brands ON Tops.Brand = Brands.ID
     LEFT JOIN Garments ON Tops.Garment = Garments.ID
     LEFT JOIN Colours ON Tops.Colour = Colours.ID;"""
     cursor.execute(sql)
@@ -509,7 +509,7 @@ def fetchclothesbycolour(id):
     sql = f"""SELECT Tops.ID, Tops.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Tops
-    LEFT JOIN Brands ON Tops.Brand = Brands.ID  
+    LEFT JOIN Brands ON Tops.Brand = Brands.ID
     LEFT JOIN Garments ON Tops.Garment = Garments.ID
     LEFT JOIN Colours ON Tops.Colour = Colours.ID
     WHERE Tops.Colour == '{id}';"""
@@ -518,7 +518,7 @@ def fetchclothesbycolour(id):
     print(f"| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{tnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
-    
+
     # bottoms name column format
     sql1 = """SELECT Name FROM Bottoms
     ORDER BY Length(Name) desc LIMIT 1;"""
@@ -532,7 +532,7 @@ def fetchclothesbycolour(id):
     sql = f"""SELECT Bottoms.ID, Bottoms.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Bottoms
-    LEFT JOIN Brands ON Bottoms.Brand = Brands.ID  
+    LEFT JOIN Brands ON Bottoms.Brand = Brands.ID
     LEFT JOIN Garments ON Bottoms.Garment = Garments.ID
     LEFT JOIN Colours ON Bottoms.Colour = Colours.ID
     WHERE Bottoms.Colour == '{id}';"""
@@ -541,7 +541,7 @@ def fetchclothesbycolour(id):
     print(f"\n| ID | Name {bnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{bnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
-    
+
     # outerwear name column format
     sql1 = """SELECT Name FROM Outerwear
     ORDER BY Length(Name) desc LIMIT 1;"""
@@ -555,7 +555,7 @@ def fetchclothesbycolour(id):
     sql = f"""SELECT Outerwear.ID, Outerwear.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Outerwear
-    LEFT JOIN Brands ON Outerwear.Brand = Brands.ID  
+    LEFT JOIN Brands ON Outerwear.Brand = Brands.ID
     LEFT JOIN Garments ON Outerwear.Garment = Garments.ID
     LEFT JOIN Colours ON Outerwear.Colour = Colours.ID
     WHERE Outerwear.Colour == '{id}';"""
@@ -564,7 +564,7 @@ def fetchclothesbycolour(id):
     print(f"\n| ID | Name {onsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{onlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
-    
+
     # dresses name column format
     sql1 = """SELECT Name FROM Dresses
     ORDER BY Length(Name) desc LIMIT 1;"""
@@ -578,7 +578,7 @@ def fetchclothesbycolour(id):
     sql = f"""SELECT Dresses.ID, Dresses.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Dresses
-    LEFT JOIN Brands ON Dresses.Brand = Brands.ID  
+    LEFT JOIN Brands ON Dresses.Brand = Brands.ID
     LEFT JOIN Garments ON Dresses.Garment = Garments.ID
     LEFT JOIN Colours ON Dresses.Colour = Colours.ID
     WHERE Dresses.Colour == '{id}';"""
@@ -633,7 +633,7 @@ def fetchclothesbybrand(id):
     sql = f"""SELECT Tops.ID, Tops.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Tops
-    LEFT JOIN Brands ON Tops.Brand = Brands.ID  
+    LEFT JOIN Brands ON Tops.Brand = Brands.ID
     LEFT JOIN Garments ON Tops.Garment = Garments.ID
     LEFT JOIN Colours ON Tops.Colour = Colours.ID
     WHERE Tops.Brand == '{id}';"""
@@ -642,7 +642,7 @@ def fetchclothesbybrand(id):
     print(f"| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{tnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
-    
+
     # bottoms name column format
     sql1 = """SELECT Name FROM Bottoms
     ORDER BY Length(Name) desc LIMIT 1;"""
@@ -656,7 +656,7 @@ def fetchclothesbybrand(id):
     sql = f"""SELECT Bottoms.ID, Bottoms.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Bottoms
-    LEFT JOIN Brands ON Bottoms.Brand = Brands.ID  
+    LEFT JOIN Brands ON Bottoms.Brand = Brands.ID
     LEFT JOIN Garments ON Bottoms.Garment = Garments.ID
     LEFT JOIN Colours ON Bottoms.Colour = Colours.ID
     WHERE Bottoms.Brand == '{id}';"""
@@ -665,7 +665,7 @@ def fetchclothesbybrand(id):
     print(f"\n| ID | Name {bnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{bnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
-    
+
     # outerwear name column format
     sql1 = """SELECT Name FROM Outerwear
     ORDER BY Length(Name) desc LIMIT 1;"""
@@ -679,7 +679,7 @@ def fetchclothesbybrand(id):
     sql = f"""SELECT Outerwear.ID, Outerwear.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Outerwear
-    LEFT JOIN Brands ON Outerwear.Brand = Brands.ID  
+    LEFT JOIN Brands ON Outerwear.Brand = Brands.ID
     LEFT JOIN Garments ON Outerwear.Garment = Garments.ID
     LEFT JOIN Colours ON Outerwear.Colour = Colours.ID
     WHERE Outerwear.Brand == '{id}';"""
@@ -688,7 +688,7 @@ def fetchclothesbybrand(id):
     print(f"\n| ID | Name {onsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{onlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
-    
+
     # dresses name column format
     sql1 = """SELECT Name FROM Dresses
     ORDER BY Length(Name) desc LIMIT 1;"""
@@ -702,7 +702,7 @@ def fetchclothesbybrand(id):
     sql = f"""SELECT Dresses.ID, Dresses.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Dresses
-    LEFT JOIN Brands ON Dresses.Brand = Brands.ID  
+    LEFT JOIN Brands ON Dresses.Brand = Brands.ID
     LEFT JOIN Garments ON Dresses.Garment = Garments.ID
     LEFT JOIN Colours ON Dresses.Colour = Colours.ID
     WHERE Dresses.Brand == '{id}';"""
@@ -757,7 +757,7 @@ def fetchclothesbygarment(id):
     sql = f"""SELECT Tops.ID, Tops.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Tops
-    LEFT JOIN Brands ON Tops.Brand = Brands.ID  
+    LEFT JOIN Brands ON Tops.Brand = Brands.ID
     LEFT JOIN Garments ON Tops.Garment = Garments.ID
     LEFT JOIN Colours ON Tops.Colour = Colours.ID
     WHERE Tops.Garment == '{id}';"""
@@ -766,7 +766,7 @@ def fetchclothesbygarment(id):
     print(f"| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{tnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
-    
+
     # bottoms name column format
     sql1 = """SELECT Name FROM Bottoms
     ORDER BY Length(Name) desc LIMIT 1;"""
@@ -780,7 +780,7 @@ def fetchclothesbygarment(id):
     sql = f"""SELECT Bottoms.ID, Bottoms.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Bottoms
-    LEFT JOIN Brands ON Bottoms.Brand = Brands.ID  
+    LEFT JOIN Brands ON Bottoms.Brand = Brands.ID
     LEFT JOIN Garments ON Bottoms.Garment = Garments.ID
     LEFT JOIN Colours ON Bottoms.Colour = Colours.ID
     WHERE Bottoms.Garment == '{id}';"""
@@ -789,7 +789,7 @@ def fetchclothesbygarment(id):
     print(f"\n| ID | Name {bnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{bnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
-    
+
     # outerwear name column format
     sql1 = """SELECT Name FROM Outerwear
     ORDER BY Length(Name) desc LIMIT 1;"""
@@ -803,7 +803,7 @@ def fetchclothesbygarment(id):
     sql = f"""SELECT Outerwear.ID, Outerwear.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Outerwear
-    LEFT JOIN Brands ON Outerwear.Brand = Brands.ID  
+    LEFT JOIN Brands ON Outerwear.Brand = Brands.ID
     LEFT JOIN Garments ON Outerwear.Garment = Garments.ID
     LEFT JOIN Colours ON Outerwear.Colour = Colours.ID
     WHERE Outerwear.Garment == '{id}';"""
@@ -812,7 +812,7 @@ def fetchclothesbygarment(id):
     print(f"\n| ID | Name {onsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{onlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
-    
+
     # dresses name column format
     sql1 = """SELECT Name FROM Dresses
     ORDER BY Length(Name) desc LIMIT 1;"""
@@ -826,7 +826,7 @@ def fetchclothesbygarment(id):
     sql = f"""SELECT Dresses.ID, Dresses.Name,
     Brands.Brand_Name, Colours.Colour_Type, Garments.Garment_Type
     FROM Dresses
-    LEFT JOIN Brands ON Dresses.Brand = Brands.ID  
+    LEFT JOIN Brands ON Dresses.Brand = Brands.ID
     LEFT JOIN Garments ON Dresses.Garment = Garments.ID
     LEFT JOIN Colours ON Dresses.Colour = Colours.ID
     WHERE Dresses.Garment == '{id}';"""
@@ -930,7 +930,7 @@ def removeouterwear(id):
     cursor = db.cursor()
     sql = f"DELETE FROM Outerwear WHERE ID = {id};"
     cursor.execute(sql)
-    db.commit() 
+    db.commit()
 
 
 def removedress(id):
@@ -938,7 +938,7 @@ def removedress(id):
     cursor = db.cursor()
     sql = f"DELETE FROM Dresses WHERE ID = {id};"
     cursor.execute(sql)
-    db.commit() 
+    db.commit()
 
 
 def removebrand(id):
@@ -972,7 +972,7 @@ while True:
     Enter 'b' to view all brands
     Enter 'c' to view all garment types
     Enter 'd' to view all colours
-                      
+
     Enter 'e' to add a top
     Enter 'f' to add a bottom
     Enter 'g' to add outerwear item
@@ -980,7 +980,7 @@ while True:
     Enter 'i' to add a brand
     Enter 'j' to add a garment type
     Enter 'k' to add a color
-                      
+
     Enter 'l' to remove a top
     Enter 'm' to remove a bottom
     Enter 'n' to remove an outerwear item
@@ -988,14 +988,14 @@ while True:
     Enter 'p' to remove a brand
     Enter 'q' to remove a garment type
     Enter 'r' to remove a colour
-                      
+
     Enter 's' to view outfits
     Enter 't' to add an outfit
     Enter 'u' to remove an outfit
-                      
+
     Enter 'exit' to exit program
     Enter 'x' at any point of the program to go back :)
-                      
+
     >>> """).lower()
     if userinput == 'a':
         fetchallclothes()
@@ -1015,13 +1015,13 @@ while True:
                     id = input("\nEnter Colour ID: ")
                     if id == 'x' or id == 'X':
                         break
-                    if id.isnumeric() == True:
-                        if checkcolouridisvalid(id) == True:
+                    if id.isnumeric() is True:
+                        if checkcolouridisvalid(id) is True:
                             fetchclothesbycolour(id)
                             break
-                        if checkcolouridisvalid(id) == False:
+                        if checkcolouridisvalid(id) is False:
                             print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...")
-                    if id.isnumeric() == False:
+                    if id.isnumeric() is False:
                         print("\nInvalid Input!\nID must be an Integer.\nTry Again...")
             if userinput1 == 'b':
                 fetchallbrands()
@@ -1029,13 +1029,13 @@ while True:
                     id = input("\nEnter Brand ID: ")
                     if id == 'x' or id == 'X':
                         break
-                    if id.isnumeric() == True:
-                        if checkbrandidisvalid(id) == True:
+                    if id.isnumeric() is True:
+                        if checkbrandidisvalid(id) is True:
                             fetchclothesbybrand(id)
                             break
-                        if checkbrandidisvalid(id) == False:
+                        if checkbrandidisvalid(id) is False:
                             print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...")
-                    if id.isnumeric() == False:
+                    if id.isnumeric() is False:
                         print("\nInvalid Input!\nID must be an Integer.\nTry Again...")
             if userinput1 == 'c':
                 fetchallgarments()
@@ -1043,13 +1043,13 @@ while True:
                     id = input("\nEnter Garment ID: ")
                     if id == 'x' or id == 'X':
                         break
-                    if id.isnumeric() == True:
-                        if checkgarmentidisvalid(id) == True:
+                    if id.isnumeric() is True:
+                        if checkgarmentidisvalid(id) is True:
                             fetchclothesbygarment(id)
                             break
-                        if checkgarmentidisvalid(id) == False:
+                        if checkgarmentidisvalid(id) is False:
                             print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...")
-                    if id.isnumeric() == False:
+                    if id.isnumeric() is False:
                         print("\nInvalid Input!\nID must be an Integer.\nTry Again...")
             if userinput1 == 'd':
                 fetchalltops()
@@ -1070,200 +1070,200 @@ while True:
     if userinput == 'e':
         flag = False
         while True:
-            if flag == True:
+            if flag is True:
                 break
             name = input("Name: ").title()
             if name == 'x' or name == 'X':
                 break
             fetchallbrands()
             while True:
-                if flag == True:
+                if flag is True:
                     break
                 brand = input("Brand ID: ").lower()
                 if brand == 'x':
                     flag = True
-                elif brand.isnumeric() == False:
+                elif brand.isnumeric() is False:
                     print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-                elif brand.isnumeric() == True:
-                    if checkbrandidisvalid(brand) == False:
+                elif brand.isnumeric() is True:
+                    if checkbrandidisvalid(brand) is False:
                         print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                    if checkbrandidisvalid(brand) == True:
+                    if checkbrandidisvalid(brand) is True:
                         fetchcolours()
                         while True:
-                            if flag == True:
+                            if flag is True:
                                 break
                             colour = input("Colour ID: ").lower()
                             if colour == 'x':
                                 flag = True
-                            elif colour.isnumeric() == False:
+                            elif colour.isnumeric() is False:
                                 print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-                            elif colour.isnumeric() == True:
-                                if checkcolouridisvalid(colour) == False:
+                            elif colour.isnumeric() is True:
+                                if checkcolouridisvalid(colour) is False:
                                     print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                                if checkcolouridisvalid(colour) == True:
+                                if checkcolouridisvalid(colour) is True:
                                     fetchallgarments()
                                     while True:
-                                        if flag == True:
+                                        if flag is True:
                                             break
                                         garment = input("Garment ID: ").lower()
                                         if garment == 'x':
                                             flag = True
-                                        elif garment.isnumeric() == False:
+                                        elif garment.isnumeric() is False:
                                             print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-                                        elif garment.isnumeric() == True:
-                                            if checkgarmentidisvalid(garment) == False:
+                                        elif garment.isnumeric() is True:
+                                            if checkgarmentidisvalid(garment) is False:
                                                 print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                                            if checkgarmentidisvalid(garment) == True:
+                                            if checkgarmentidisvalid(garment) is True:
                                                 addtop(name, brand, colour, garment)
                                                 flag = True
                                                 break
     if userinput == 'f':
         flag = False
         while True:
-            if flag == True:
+            if flag is True:
                 break
             name = input("Name: ").title()
             if name == 'x' or name == 'X':
                 break
             fetchallbrands()
             while True:
-                if flag == True:
+                if flag is True:
                     break
                 brand = input("Brand ID: ").lower()
                 if brand == 'x':
                     flag = True
-                elif brand.isnumeric() == False:
+                elif brand.isnumeric() is False:
                     print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-                elif brand.isnumeric() == True:
-                    if checkbrandidisvalid(brand) == False:
+                elif brand.isnumeric() is True:
+                    if checkbrandidisvalid(brand) is False:
                         print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                    if checkbrandidisvalid(brand) == True:
+                    if checkbrandidisvalid(brand) is True:
                         fetchcolours()
                         while True:
-                            if flag == True:
+                            if flag is True:
                                 break
                             colour = input("Colour ID: ").lower()
                             if colour == 'x':
                                 flag = True
-                            elif colour.isnumeric() == False:
+                            elif colour.isnumeric() is False:
                                 print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-                            elif colour.isnumeric() == True:
-                                if checkcolouridisvalid(colour) == False:
+                            elif colour.isnumeric() is True:
+                                if checkcolouridisvalid(colour) is False:
                                     print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                                if checkcolouridisvalid(colour) == True:
+                                if checkcolouridisvalid(colour) is True:
                                     fetchallgarments()
                                     while True:
-                                        if flag == True:
+                                        if flag is True:
                                             break
                                         garment = input("Garment ID: ").lower()
                                         if garment == 'x':
                                             flag = True
-                                        elif garment.isnumeric() == False:
+                                        elif garment.isnumeric() is False:
                                             print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-                                        elif garment.isnumeric() == True:
-                                            if checkgarmentidisvalid(garment) == False:
+                                        elif garment.isnumeric() is True:
+                                            if checkgarmentidisvalid(garment) is False:
                                                 print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                                            if checkgarmentidisvalid(garment) == True:
+                                            if checkgarmentidisvalid(garment) is True:
                                                 addbottom(name, brand, colour, garment)
                                                 flag = True
                                                 break
     if userinput == 'g':
         flag = False
         while True:
-            if flag == True:
+            if flag is True:
                 break
             name = input("Name: ").title()
             if name == 'x' or name == 'X':
                 break
             fetchallbrands()
             while True:
-                if flag == True:
+                if flag is True:
                     break
                 brand = input("Brand ID: ").lower()
                 if brand == 'x':
                     flag = True
-                elif brand.isnumeric() == False:
+                elif brand.isnumeric() is False:
                     print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-                elif brand.isnumeric() == True:
-                    if checkbrandidisvalid(brand) == False:
+                elif brand.isnumeric() is True:
+                    if checkbrandidisvalid(brand) is False:
                         print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                    if checkbrandidisvalid(brand) == True:
+                    if checkbrandidisvalid(brand) is True:
                         fetchcolours()
                         while True:
-                            if flag == True:
+                            if flag is True:
                                 break
                             colour = input("Colour ID: ").lower()
                             if colour == 'x':
                                 flag = True
-                            elif colour.isnumeric() == False:
+                            elif colour.isnumeric() is False:
                                 print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-                            elif colour.isnumeric() == True:
-                                if checkcolouridisvalid(colour) == False:
+                            elif colour.isnumeric() is True:
+                                if checkcolouridisvalid(colour) is False:
                                     print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                                if checkcolouridisvalid(colour) == True:
+                                if checkcolouridisvalid(colour) is True:
                                     fetchallgarments()
                                     while True:
-                                        if flag == True:
+                                        if flag is True:
                                             break
                                         garment = input("Garment ID: ").lower()
                                         if garment == 'x':
                                             flag = True
-                                        elif garment.isnumeric() == False:
+                                        elif garment.isnumeric() is False:
                                             print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-                                        elif garment.isnumeric() == True:
-                                            if checkgarmentidisvalid(garment) == False:
+                                        elif garment.isnumeric() is True:
+                                            if checkgarmentidisvalid(garment) is False:
                                                 print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                                            if checkgarmentidisvalid(garment) == True:
+                                            if checkgarmentidisvalid(garment) is True:
                                                 addouterwear(name, brand, colour, garment)
                                                 flag = True
                                                 break
     if userinput == 'h':
         flag = False
         while True:
-            if flag == True:
+            if flag is True:
                 break
             name = input("Name: ").title()
             if name == 'x' or name == 'X':
                 break
             fetchallbrands()
             while True:
-                if flag == True:
+                if flag is True:
                     break
                 brand = input("Brand ID: ").lower()
                 if brand == 'x':
                     flag = True
-                elif brand.isnumeric() == False:
+                elif brand.isnumeric() is False:
                     print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-                elif brand.isnumeric() == True:
-                    if checkbrandidisvalid(brand) == False:
+                elif brand.isnumeric() is True:
+                    if checkbrandidisvalid(brand) is False:
                         print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                    if checkbrandidisvalid(brand) == True:
+                    if checkbrandidisvalid(brand) is True:
                         fetchcolours()
                         while True:
-                            if flag == True:
+                            if flag is True:
                                 break
                             colour = input("Colour ID: ").lower()
                             if colour == 'x':
                                 flag = True
-                            elif colour.isnumeric() == False:
+                            elif colour.isnumeric() is False:
                                 print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-                            elif colour.isnumeric() == True:
-                                if checkcolouridisvalid(colour) == False:
+                            elif colour.isnumeric() is True:
+                                if checkcolouridisvalid(colour) is False:
                                     print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                                if checkcolouridisvalid(colour) == True:
+                                if checkcolouridisvalid(colour) is True:
                                     fetchallgarments()
                                     while True:
-                                        if flag == True:
+                                        if flag is True:
                                             break
                                         garment = input("Garment ID: ").lower()
                                         if garment == 'x':
                                             flag = True
-                                        elif garment.isnumeric() == False:
+                                        elif garment.isnumeric() is False:
                                             print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-                                        elif garment.isnumeric() == True:
-                                            if checkgarmentidisvalid(garment) == False:
+                                        elif garment.isnumeric() is True:
+                                            if checkgarmentidisvalid(garment) is False:
                                                 print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                                            if checkgarmentidisvalid(garment) == True:
+                                            if checkgarmentidisvalid(garment) is True:
                                                 adddress(name, brand, colour, garment)
                                                 flag = True
                                                 break
@@ -1300,12 +1300,12 @@ while True:
             id = input("ID of top to be deleted: ")
             if id == 'x' or id == 'X':
                 break
-            if id.isnumeric() == False:
+            if id.isnumeric() is False:
                 print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-            if id.isnumeric() == True:
-                if checktopidisvalid(id) == False:
+            if id.isnumeric() is True:
+                if checktopidisvalid(id) is False:
                     print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                if checktopidisvalid(id) == True:
+                if checktopidisvalid(id) is True:
                     removetop(id)
                     break
     if userinput == 'm':
@@ -1314,12 +1314,12 @@ while True:
             id = input("ID of bottom to be deleted: ")
             if id == 'x' or id == 'X':
                 break
-            if id.isnumeric() == False:
+            if id.isnumeric() is False:
                 print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-            if id.isnumeric() == True:
-                if checkbottomidisvalid(id) == False:
+            if id.isnumeric() is True:
+                if checkbottomidisvalid(id) is False:
                     print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                if checkbottomidisvalid(id) == True:
+                if checkbottomidisvalid(id) is True:
                     removebottom(id)
                     break
     if userinput == 'n':
@@ -1328,12 +1328,12 @@ while True:
             id = input("ID of outerwear item to be deleted: ")
             if id == 'x' or id == 'X':
                 break
-            if id.isnumeric() == False:
+            if id.isnumeric() is False:
                 print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-            if id.isnumeric() == True:
-                if checkouterwearidisvalid(id) == False:
+            if id.isnumeric() is True:
+                if checkouterwearidisvalid(id) is False:
                     print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                if checkouterwearidisvalid(id) == True:
+                if checkouterwearidisvalid(id) is True:
                     removeouterwear(id)
                     break
     if userinput == 'o':
@@ -1342,12 +1342,12 @@ while True:
             id = input("ID of dress to be deleted: ")
             if id == 'x' or id == 'X':
                 break
-            if id.isnumeric() == False:
+            if id.isnumeric() is False:
                 print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-            if id.isnumeric() == True:
-                if checkdressidisvalid(id) == False:
+            if id.isnumeric() is True:
+                if checkdressidisvalid(id) is False:
                     print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                if checkdressidisvalid(id) == True:
+                if checkdressidisvalid(id) is True:
                     removedress(id)
                     break
     if userinput == 'p':
@@ -1356,12 +1356,12 @@ while True:
             id = input("ID of brand to be deleted: ")
             if id == 'x' or id == 'X':
                 break
-            if id.isnumeric() == False:
+            if id.isnumeric() is False:
                 print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-            if id.isnumeric() == True:
-                if checkbrandidisvalid(id) == False:
+            if id.isnumeric() is True:
+                if checkbrandidisvalid(id) is False:
                     print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                if checkbrandidisvalid(id) == True:
+                if checkbrandidisvalid(id) is True:
                     removebrand(id)
                     break
     if userinput == 'q':
@@ -1370,12 +1370,12 @@ while True:
             id = input("ID of garment type to be deleted: ")
             if id == 'x' or id == 'X':
                 break
-            if id.isnumeric() == False:
+            if id.isnumeric() is False:
                 print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-            if id.isnumeric() == True:
-                if checkgarmentidisvalid(id) == False:
+            if id.isnumeric() is True:
+                if checkgarmentidisvalid(id) is False:
                     print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                if checkgarmentidisvalid(id) == True:
+                if checkgarmentidisvalid(id) is True:
                     removegarment(id)
                     break
     if userinput == 'r':
@@ -1384,12 +1384,12 @@ while True:
             id = input("ID of colour to be deleted: ")
             if id == 'x' or id == 'X':
                 break
-            if id.isnumeric() == False:
+            if id.isnumeric() is False:
                 print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-            if id.isnumeric() == True:
-                if checkcolouridisvalid(id) == False:
+            if id.isnumeric() is True:
+                if checkcolouridisvalid(id) is False:
                     print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                if checkcolouridisvalid(id) == True:
+                if checkcolouridisvalid(id) is True:
                     removecolour(id)
                     break
     if userinput == 's':
