@@ -97,7 +97,8 @@ def checkgarmentidisvalid(id):
 def fetchallbrands():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql = "SELECT * FROM Brands;"
+    sql = "SELECT * FROM Brands
+    WHERE ;"
     cursor.execute(sql)
     results = cursor.fetchall()
     print("ID | Brand")
@@ -175,7 +176,8 @@ def fetchallclothes():
     FROM Tops
     LEFT JOIN Brands ON Tops.Brand = Brands.ID
     LEFT JOIN Garments ON Tops.Garment = Garments.ID
-    LEFT JOIN Colours ON Tops.Colour = Colours.ID;"""
+    LEFT JOIN Colours ON Tops.Colour = Colours.ID
+    Where Tops.Name != "N/A";"""
     cursor.execute(sql)
     results = cursor.fetchall()
     print(f"\nTops:\n| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
@@ -1445,7 +1447,6 @@ while True:
                     removecolour(id)
                     break
     if userinput == 's':
-        print("\ni havent finished this section yet :p")
         fetchalloutfits()
     if userinput == 't':
         print("\ni havent written this section yet :p")
