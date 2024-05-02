@@ -1078,25 +1078,24 @@ while True:
     Enter 'b' to view all brands
     Enter 'c' to view all garment types
     Enter 'd' to view all colours
+    Enter 'e' to view all outfits
 
-    Enter 'e' to add a top
-    Enter 'f' to add a bottom
-    Enter 'g' to add outerwear item
-    Enter 'h' to add a dress
-    Enter 'i' to add a brand
-    Enter 'j' to add a garment type
-    Enter 'k' to add a color
+    Enter 'f' to add a top
+    Enter 'g' to add a bottom
+    Enter 'h' to add outerwear item
+    Enter 'i' to add a dress
+    Enter 'j' to add a brand
+    Enter 'k' to add a garment type
+    Enter 'l' to add a color
+    Enter 'm' to add an outfit
 
-    Enter 'l' to remove a top
-    Enter 'm' to remove a bottom
-    Enter 'n' to remove an outerwear item
-    Enter 'o' to remove a dress
-    Enter 'p' to remove a brand
-    Enter 'q' to remove a garment type
-    Enter 'r' to remove a colour
-
-    Enter 's' to view outfits
-    Enter 't' to add an outfit
+    Enter 'n' to remove a top
+    Enter 'o' to remove a bottom
+    Enter 'p' to remove an outerwear item
+    Enter 'q' to remove a dress
+    Enter 'r' to remove a brand
+    Enter 's' to remove a garment type
+    Enter 't' to remove a colour
     Enter 'u' to remove an outfit
 
     Enter 'exit' to exit program
@@ -1185,6 +1184,9 @@ while True:
         # view all colours
         fetchcolours()
     if userinput == 'e':
+        # view all outfits
+        fetchalloutfits()
+    if userinput == 'f':
         # add top
         flag = False
         while True:
@@ -1239,7 +1241,7 @@ while True:
                                                 addtop(name, brand, colour, garment)
                                                 flag = True
                                                 break
-    if userinput == 'f':
+    if userinput == 'g':
         # add bottom
         flag = False
         while True:
@@ -1290,7 +1292,7 @@ while True:
                                                 addbottom(name, brand, colour, garment)
                                                 flag = True
                                                 break
-    if userinput == 'g':
+    if userinput == 'h':
         # add outerwear
         flag = False
         while True:
@@ -1341,7 +1343,7 @@ while True:
                                                 addouterwear(name, brand, colour, garment)
                                                 flag = True
                                                 break
-    if userinput == 'h':
+    if userinput == 'i':
         # add dress
         flag = False
         while True:
@@ -1393,7 +1395,7 @@ while True:
                                                 flag = True
                                                 break
     
-    if userinput == 'i':
+    if userinput == 'j':
         # add brand
         fetchallbrands()
         while True:
@@ -1403,7 +1405,7 @@ while True:
             else:
                 addbrand(brand)
                 break
-    if userinput == 'j':
+    if userinput == 'k':
         # add garment
         fetchallgarments()
         while True:
@@ -1413,7 +1415,7 @@ while True:
             else:
                 addgarment(garment)
                 break
-    if userinput == 'k':
+    if userinput == 'l':
         # add colour
         fetchcolours()
         while True:
@@ -1423,115 +1425,7 @@ while True:
             else:
                 addcolour(colour)
                 break
-    if userinput == 'l':
-        # remove top
-        fetchalltops()
-        while True:
-            id = input("ID of top to be deleted: ")
-            if id == 'x' or id == 'X':
-                break
-            if id.isnumeric() is False:
-                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-            if id.isnumeric() is True:
-                if checktopidisvalid(id) is False:
-                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                if checktopidisvalid(id) is True:
-                    removetop(id)
-                    break
     if userinput == 'm':
-        # remove bottom
-        fetchallbottoms()
-        while True:
-            id = input("ID of bottom to be deleted: ")
-            if id == 'x' or id == 'X':
-                break
-            if id.isnumeric() is False:
-                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-            if id.isnumeric() is True:
-                if checkbottomidisvalid(id) is False:
-                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                if checkbottomidisvalid(id) is True:
-                    removebottom(id)
-                    break
-    if userinput == 'n':
-        # remove outerwear
-        fetchallouterwears()
-        while True:
-            id = input("ID of outerwear item to be deleted: ")
-            if id == 'x' or id == 'X':
-                break
-            if id.isnumeric() is False:
-                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-            if id.isnumeric() is True:
-                if checkouterwearidisvalid(id) is False:
-                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                if checkouterwearidisvalid(id) is True:
-                    removeouterwear(id)
-                    break
-    if userinput == 'o':
-        # remove dress
-        fetchalldresses()
-        while True:
-            id = input("ID of dress to be deleted: ")
-            if id == 'x' or id == 'X':
-                break
-            if id.isnumeric() is False:
-                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-            if id.isnumeric() is True:
-                if checkdressidisvalid(id) is False:
-                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                if checkdressidisvalid(id) is True:
-                    removedress(id)
-                    break
-    if userinput == 'p':
-        # remove brand
-        fetchallbrands()
-        while True:
-            id = input("ID of brand to be deleted: ")
-            if id == 'x' or id == 'X':
-                break
-            if id.isnumeric() is False:
-                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-            if id.isnumeric() is True:
-                if checkbrandidisvalid(id) is False:
-                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                if checkbrandidisvalid(id) is True:
-                    removebrand(id)
-                    break
-    if userinput == 'q':
-        # remove garment
-        fetchallgarments()
-        while True:
-            id = input("ID of garment type to be deleted: ")
-            if id == 'x' or id == 'X':
-                break
-            if id.isnumeric() is False:
-                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-            if id.isnumeric() is True:
-                if checkgarmentidisvalid(id) is False:
-                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                if checkgarmentidisvalid(id) is True:
-                    removegarment(id)
-                    break
-    if userinput == 'r':
-        # remove colour
-        fetchcolours()
-        while True:
-            id = input("ID of colour to be deleted: ")
-            if id == 'x' or id == 'X':
-                break
-            if id.isnumeric() is False:
-                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
-            if id.isnumeric() is True:
-                if checkcolouridisvalid(id) is False:
-                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
-                if checkcolouridisvalid(id) is True:
-                    removecolour(id)
-                    break
-    if userinput == 's':
-        # view all outfits
-        fetchalloutfits()
-    if userinput == 't':
         # add outfit
         flag = False
         while True:
@@ -1608,6 +1502,111 @@ while True:
                                                                     addoutfit(topid, bottomid, outerwearid, dressid, styleid)
                                                                     flag = True
                                                                     break
+    if userinput == 'n':
+        # remove top
+        fetchalltops()
+        while True:
+            id = input("ID of top to be deleted: ")
+            if id == 'x' or id == 'X':
+                break
+            if id.isnumeric() is False:
+                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+            if id.isnumeric() is True:
+                if checktopidisvalid(id) is False:
+                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                if checktopidisvalid(id) is True:
+                    removetop(id)
+                    break
+    if userinput == 'o':
+        # remove bottom
+        fetchallbottoms()
+        while True:
+            id = input("ID of bottom to be deleted: ")
+            if id == 'x' or id == 'X':
+                break
+            if id.isnumeric() is False:
+                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+            if id.isnumeric() is True:
+                if checkbottomidisvalid(id) is False:
+                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                if checkbottomidisvalid(id) is True:
+                    removebottom(id)
+                    break
+    if userinput == 'p':
+        # remove outerwear
+        fetchallouterwears()
+        while True:
+            id = input("ID of outerwear item to be deleted: ")
+            if id == 'x' or id == 'X':
+                break
+            if id.isnumeric() is False:
+                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+            if id.isnumeric() is True:
+                if checkouterwearidisvalid(id) is False:
+                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                if checkouterwearidisvalid(id) is True:
+                    removeouterwear(id)
+                    break
+    if userinput == 'q':
+        # remove dress
+        fetchalldresses()
+        while True:
+            id = input("ID of dress to be deleted: ")
+            if id == 'x' or id == 'X':
+                break
+            if id.isnumeric() is False:
+                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+            if id.isnumeric() is True:
+                if checkdressidisvalid(id) is False:
+                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                if checkdressidisvalid(id) is True:
+                    removedress(id)
+                    break
+    if userinput == 'r':
+        # remove brand
+        fetchallbrands()
+        while True:
+            id = input("ID of brand to be deleted: ")
+            if id == 'x' or id == 'X':
+                break
+            if id.isnumeric() is False:
+                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+            if id.isnumeric() is True:
+                if checkbrandidisvalid(id) is False:
+                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                if checkbrandidisvalid(id) is True:
+                    removebrand(id)
+                    break
+    if userinput == 's':
+        # remove garment
+        fetchallgarments()
+        while True:
+            id = input("ID of garment type to be deleted: ")
+            if id == 'x' or id == 'X':
+                break
+            if id.isnumeric() is False:
+                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+            if id.isnumeric() is True:
+                if checkgarmentidisvalid(id) is False:
+                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                if checkgarmentidisvalid(id) is True:
+                    removegarment(id)
+                    break
+    if userinput == 't':
+        # remove colour
+        fetchcolours()
+        while True:
+            id = input("ID of colour to be deleted: ")
+            if id == 'x' or id == 'X':
+                break
+            if id.isnumeric() is False:
+                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+            if id.isnumeric() is True:
+                if checkcolouridisvalid(id) is False:
+                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                if checkcolouridisvalid(id) is True:
+                    removecolour(id)
+                    break
     if userinput == 'u':
         # remove outfit
         fetchalloutfits()
