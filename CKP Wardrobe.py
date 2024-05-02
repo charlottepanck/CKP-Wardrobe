@@ -94,6 +94,19 @@ def checkgarmentidisvalid(id):
     return isvalid
 
 
+def checkoutfitidisvalid(id):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f"SELECT * FROM Outfits WHERE ID == '{id}';"
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    if len(results) != 0:
+        isvalid = True
+    if len(results) == 0:
+        isvalid = False
+    return isvalid
+
+
 def checkstyleidisvalid(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -1051,6 +1064,12 @@ def removecolour(id):
     cursor.execute(sql)
     db.commit()
 
+def removeoutfit(id):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f"DELETE FROM Outfits WHERE ID = {id};"
+    cursor.execute(sql)
+    db.commit()
 
 print("\nCharlotte's Digital Wardrobe <3")
 while True:
@@ -1354,6 +1373,7 @@ while True:
                                                 adddress(name, brand, colour, garment)
                                                 flag = True
                                                 break
+    
     if userinput == 'i':
         fetchallbrands()
         while True:
@@ -1552,6 +1572,18 @@ while True:
                                                                     flag = True
                                                                     break
     if userinput == 'u':
-        print("\ni havent written this section yet :p")
+        fetchalloutfits()
+        while True:
+            id = input("ID of Outfit to be deleted: ").lower()
+            if id == 'x':
+                break
+            if id.isnumeric() is False:
+                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+            if id.isnumeric() is True:
+                if checkoutfitidisvalid(id) is False:
+                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                if checkcolouridisvalid(id) is True:
+                    removeoutfit(id)
+                    break
     if userinput == 'exit':
         break
