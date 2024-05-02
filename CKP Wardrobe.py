@@ -1193,6 +1193,7 @@ while True:
             name = input("Name: ").title()
             if name == 'x' or name == 'X':
                 break
+            # brand
             fetchallbrands()
             while True:
                 if flag is True:
@@ -1206,6 +1207,7 @@ while True:
                     if checkbrandidisvalid(brand) is False:
                         print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
                     if checkbrandidisvalid(brand) is True:
+                        # colour
                         fetchcolours()
                         while True:
                             if flag is True:
@@ -1219,6 +1221,7 @@ while True:
                                 if checkcolouridisvalid(colour) is False:
                                     print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
                                 if checkcolouridisvalid(colour) is True:
+                                    # garment
                                     fetchallgarments()
                                     while True:
                                         if flag is True:
@@ -1232,6 +1235,7 @@ while True:
                                             if checkgarmentidisvalid(garment) is False:
                                                 print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
                                             if checkgarmentidisvalid(garment) is True:
+                                                #add top
                                                 addtop(name, brand, colour, garment)
                                                 flag = True
                                                 break
@@ -1533,6 +1537,7 @@ while True:
         while True:
             if flag is True:
                 break
+            # top
             fetchalltops()
             topid = input("Top ID: ").lower()
             if topid == 'x':
@@ -1543,6 +1548,7 @@ while True:
                 if checktopidisvalid(topid) is False:
                     print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
                 if checktopidisvalid(topid) is True:
+                    # bottom
                     fetchallbottoms()
                     while True:
                         if flag is True:
@@ -1556,6 +1562,7 @@ while True:
                             if checkbottomidisvalid(bottomid) is False:
                                 print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
                             if checkbottomidisvalid(bottomid) is True:
+                                # outerwear
                                 fetchallouterwears()
                                 while True:
                                     if flag is True:
@@ -1569,6 +1576,7 @@ while True:
                                         if checkouterwearidisvalid(outerwearid) is False:
                                             print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
                                         if checkouterwearidisvalid(outerwearid) is True:
+                                            # dress
                                             fetchalldresses()
                                             while True:
                                                 if flag is True:
@@ -1582,6 +1590,7 @@ while True:
                                                     if checkdressidisvalid(dressid) is False:
                                                         print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
                                                     if checkdressidisvalid(dressid) is True:
+                                                        # style
                                                         fetchallstyles()
                                                         while True:
                                                             if flag is True:
@@ -1595,6 +1604,7 @@ while True:
                                                                 if checkstyleidisvalid(styleid) is False:
                                                                     print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
                                                                 if checkstyleidisvalid(styleid) is True:
+                                                                    # add outfit
                                                                     addoutfit(topid, bottomid, outerwearid, dressid, styleid)
                                                                     flag = True
                                                                     break
