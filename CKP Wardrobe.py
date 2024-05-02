@@ -337,7 +337,7 @@ def fetchalldresses():
     LEFT JOIN Colours ON Dresses.Colour = Colours.ID;"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nDresses:\n| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{tnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
     db.close
@@ -391,7 +391,7 @@ def fetchallouterwears():
     LEFT JOIN Colours ON Outerwear.Colour = Colours.ID;"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"| ID | Name {onsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nOuterwear:\n| ID | Name {onsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{onlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
     db.close
@@ -445,7 +445,7 @@ def fetchallbottoms():
     LEFT JOIN Colours ON Bottoms.Colour = Colours.ID;"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nBottoms:\n| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{tnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
     db.close
@@ -499,7 +499,7 @@ def fetchalltops():
     LEFT JOIN Colours ON Tops.Colour = Colours.ID;"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    print(f"| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
+    print(f"\nTops:\n| ID | Name {tnsp}| Brand {bsp}| Colour {csp}| Garment {gsp}|")
     for i in results:
         print(f"| {i[0]:2} | {i[1]:{tnlg}} | {i[2]:{blg}} | {i[3]:{clg}} | {i[4]:{glg}} |")
     db.close
@@ -1116,6 +1116,7 @@ while True:
     Enter 'g' to show dresses only
     >>> """).lower()
             if userinput1 == 'a':
+                # view all clothes by colour
                 fetchcolours()
                 while True:
                     id = input("\nEnter Colour ID: ")
@@ -1130,6 +1131,7 @@ while True:
                     if id.isnumeric() is False:
                         print("\nInvalid Input!\nID must be an Integer.\nTry Again...")
             if userinput1 == 'b':
+            # view all clothes by brand
                 fetchallbrands()
                 while True:
                     id = input("\nEnter Brand ID: ")
@@ -1144,6 +1146,7 @@ while True:
                     if id.isnumeric() is False:
                         print("\nInvalid Input!\nID must be an Integer.\nTry Again...")
             if userinput1 == 'c':
+            # view all clothes by garment
                 fetchallgarments()
                 while True:
                     id = input("\nEnter Garment ID: ")
@@ -1158,22 +1161,31 @@ while True:
                     if id.isnumeric() is False:
                         print("\nInvalid Input!\nID must be an Integer.\nTry Again...")
             if userinput1 == 'd':
+                # view all tops
                 fetchalltops()
             if userinput1 == 'e':
+                # view all bottoms
                 fetchallbottoms()
             if userinput1 == 'f':
+                # view all outerwear
                 fetchallouterwears()
             if userinput1 == 'g':
+                # view all dresses
                 fetchalldresses()
             if userinput1 == 'x':
+                # go back 
                 break
     if userinput == 'b':
+        # view all brands 
         fetchallbrands()
     if userinput == 'c':
+        # view all garments
         fetchallgarments()
     if userinput == 'd':
+        # view all colours
         fetchcolours()
     if userinput == 'e':
+        # add top
         flag = False
         while True:
             if flag is True:
@@ -1224,6 +1236,7 @@ while True:
                                                 flag = True
                                                 break
     if userinput == 'f':
+        # add bottom
         flag = False
         while True:
             if flag is True:
@@ -1274,6 +1287,7 @@ while True:
                                                 flag = True
                                                 break
     if userinput == 'g':
+        # add outerwear
         flag = False
         while True:
             if flag is True:
@@ -1324,6 +1338,7 @@ while True:
                                                 flag = True
                                                 break
     if userinput == 'h':
+        # add dress
         flag = False
         while True:
             if flag is True:
@@ -1375,6 +1390,7 @@ while True:
                                                 break
     
     if userinput == 'i':
+        # add brand
         fetchallbrands()
         while True:
             brand = input("Enter New Brand Name: ").title()
@@ -1384,6 +1400,7 @@ while True:
                 addbrand(brand)
                 break
     if userinput == 'j':
+        # add garment
         fetchallgarments()
         while True:
             garment = input("Enter New Garment Type: ").title()
@@ -1393,6 +1410,7 @@ while True:
                 addgarment(garment)
                 break
     if userinput == 'k':
+        # add colour
         fetchcolours()
         while True:
             colour = input("Enter New Colour: ").title()
@@ -1402,6 +1420,7 @@ while True:
                 addcolour(colour)
                 break
     if userinput == 'l':
+        # remove top
         fetchalltops()
         while True:
             id = input("ID of top to be deleted: ")
@@ -1416,6 +1435,7 @@ while True:
                     removetop(id)
                     break
     if userinput == 'm':
+        # remove bottom
         fetchallbottoms()
         while True:
             id = input("ID of bottom to be deleted: ")
@@ -1430,6 +1450,7 @@ while True:
                     removebottom(id)
                     break
     if userinput == 'n':
+        # remove outerwear
         fetchallouterwears()
         while True:
             id = input("ID of outerwear item to be deleted: ")
@@ -1444,6 +1465,7 @@ while True:
                     removeouterwear(id)
                     break
     if userinput == 'o':
+        # remove dress
         fetchalldresses()
         while True:
             id = input("ID of dress to be deleted: ")
@@ -1458,6 +1480,7 @@ while True:
                     removedress(id)
                     break
     if userinput == 'p':
+        # remove brand
         fetchallbrands()
         while True:
             id = input("ID of brand to be deleted: ")
@@ -1472,6 +1495,7 @@ while True:
                     removebrand(id)
                     break
     if userinput == 'q':
+        # remove garment
         fetchallgarments()
         while True:
             id = input("ID of garment type to be deleted: ")
@@ -1486,6 +1510,7 @@ while True:
                     removegarment(id)
                     break
     if userinput == 'r':
+        # remove colour
         fetchcolours()
         while True:
             id = input("ID of colour to be deleted: ")
@@ -1500,8 +1525,10 @@ while True:
                     removecolour(id)
                     break
     if userinput == 's':
+        # view all outfits
         fetchalloutfits()
     if userinput == 't':
+        # add outfit
         flag = False
         while True:
             if flag is True:
@@ -1572,6 +1599,7 @@ while True:
                                                                     flag = True
                                                                     break
     if userinput == 'u':
+        # remove outfit
         fetchalloutfits()
         while True:
             id = input("ID of Outfit to be deleted: ").lower()
@@ -1586,4 +1614,5 @@ while True:
                     removeoutfit(id)
                     break
     if userinput == 'exit':
+        # exit program
         break
