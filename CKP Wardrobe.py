@@ -94,11 +94,35 @@ def checkgarmentidisvalid(id):
     return isvalid
 
 
+def checkstyleidisvalid(id):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f"SELECT * FROM Styles WHERE ID == '{id}';"
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    if len(results) != 0:
+        isvalid = True
+    if len(results) == 0:
+        isvalid = False
+    return isvalid
+
+
+def fetchallstyles():
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = "SELECT * FROM Styles;"
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    print("ID | Brand")
+    for i in results:
+        print(f"{i[0]:2} | {i[1]}")
+    db.close
+
+
 def fetchallbrands():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql = "SELECT * FROM Brands
-    WHERE ;"
+    sql = "SELECT * FROM Brands;"
     cursor.execute(sql)
     results = cursor.fetchall()
     print("ID | Brand")
@@ -963,6 +987,15 @@ def addcolour(colour):
     db.commit()
 
 
+def addoutfit(topid, bottomid, outerwearid, dressid, styleid):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f'''INSERT INTO Outfits (Top, Bottoms, Outerwear, Dress, Style)
+    VALUES ("{topid}", "{bottomid}", "{outerwearid}", "{dressid}", "{styleid}");'''
+    cursor.execute(sql)
+    db.commit()
+
+
 def removetop(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -1449,8 +1482,75 @@ while True:
     if userinput == 's':
         fetchalloutfits()
     if userinput == 't':
-        print("\ni havent written this section yet :p")
-        
+        flag = False
+        while True:
+            if flag is True:
+                break
+            fetchalltops()
+            topid = input("Top ID: ").lower()
+            if topid == 'x':
+                break
+            elif topid.isnumeric() is False:
+                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+            elif topid.isnumeric() is True:
+                if checktopidisvalid(topid) is False:
+                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                if checktopidisvalid(topid) is True:
+                    fetchallbottoms()
+                    while True:
+                        if flag is True:
+                            break
+                        bottomid = input("Bottoms ID: ").lower()
+                        if bottomid == 'x':
+                            flag = True
+                        elif bottomid.isnumeric() is False:
+                            print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+                        elif bottomid.isnumeric() is True:
+                            if checkbottomidisvalid(bottomid) is False:
+                                print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                            if checkbottomidisvalid(bottomid) is True:
+                                fetchallouterwears()
+                                while True:
+                                    if flag is True:
+                                        break
+                                    outerwearid = input("Outerwear ID: ").lower()
+                                    if outerwearid == 'x':
+                                        flag = True
+                                    elif outerwearid.isnumeric() is False:
+                                        print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+                                    elif outerwearid.isnumeric() is True:
+                                        if checkouterwearidisvalid(outerwearid) is False:
+                                            print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                                        if checkouterwearidisvalid(outerwearid) is True:
+                                            fetchalldresses()
+                                            while True:
+                                                if flag is True:
+                                                    break
+                                                dressid = input("Dress ID: ").lower()
+                                                if dressid == 'x':
+                                                    flag = True
+                                                elif dressid.isnumeric() is False:
+                                                    print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+                                                elif dressid.isnumeric() is True:
+                                                    if checkdressidisvalid(dressid) is False:
+                                                        print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                                                    if checkdressidisvalid(dressid) is True:
+                                                        fetchallstyles()
+                                                        while True:
+                                                            if flag is True:
+                                                                break
+                                                            styleid = input("Style ID: ").lower()
+                                                            if styleid == 'x':
+                                                                flag = True
+                                                            elif styleid.isnumeric() is False:
+                                                                print("\nInvalid Input!\nID must be an Integer.\nTry Again...\n")
+                                                            elif styleid.isnumeric() is True:
+                                                                if checkstyleidisvalid(styleid) is False:
+                                                                    print("\nInvalid Input!\nID Doesn't Exsist.\nTry Again...\n")
+                                                                if checkstyleidisvalid(styleid) is True:
+                                                                    addoutfit(topid, bottomid, outerwearid, dressid, styleid)
+                                                                    flag = True
+                                                                    break
     if userinput == 'u':
         print("\ni havent written this section yet :p")
     if userinput == 'exit':
