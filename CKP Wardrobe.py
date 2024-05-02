@@ -3,6 +3,7 @@ import sqlite3
 DB = 'ckpwardrobe.db'
 
 
+# checks bottom id is valid
 def checkbottomidisvalid(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -16,6 +17,7 @@ def checkbottomidisvalid(id):
     return isvalid
 
 
+# checks top id is valid
 def checktopidisvalid(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -29,6 +31,7 @@ def checktopidisvalid(id):
     return isvalid
 
 
+# checks outerwear id is valid
 def checkouterwearidisvalid(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -42,6 +45,7 @@ def checkouterwearidisvalid(id):
     return isvalid
 
 
+# checks dress id is valid
 def checkdressidisvalid(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -55,6 +59,7 @@ def checkdressidisvalid(id):
     return isvalid
 
 
+# checks brand id is valid
 def checkbrandidisvalid(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -68,6 +73,7 @@ def checkbrandidisvalid(id):
     return isvalid
 
 
+# checks colour id is valid
 def checkcolouridisvalid(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -81,6 +87,7 @@ def checkcolouridisvalid(id):
     return isvalid
 
 
+# checks garment id is valid
 def checkgarmentidisvalid(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -94,6 +101,7 @@ def checkgarmentidisvalid(id):
     return isvalid
 
 
+# checks outfit id is valid
 def checkoutfitidisvalid(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -107,6 +115,7 @@ def checkoutfitidisvalid(id):
     return isvalid
 
 
+# checks style id is valid
 def checkstyleidisvalid(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -120,6 +129,7 @@ def checkstyleidisvalid(id):
     return isvalid
 
 
+# prints all styles in a formatted table
 def fetchallstyles():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -132,6 +142,7 @@ def fetchallstyles():
     db.close
 
 
+# prints all brands in a formatted table
 def fetchallbrands():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -144,6 +155,7 @@ def fetchallbrands():
     db.close
 
 
+# prints all garments in a formatted table
 def fetchallgarments():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -156,6 +168,7 @@ def fetchallgarments():
     db.close
 
 
+# prints all colours in a formatted table
 def fetchcolours():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -168,6 +181,7 @@ def fetchcolours():
     db.close
 
 
+# prints all clothes in formatted tables
 def fetchallclothes():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -289,6 +303,7 @@ def fetchallclothes():
     db.close
 
 
+# prints all dresses in a formatted table
 def fetchalldresses():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -343,6 +358,7 @@ def fetchalldresses():
     db.close
 
 
+# prints all outerwear items in a formatted table
 def fetchallouterwears():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -397,6 +413,7 @@ def fetchallouterwears():
     db.close
 
 
+# prints all bottoms in a formatted table
 def fetchallbottoms():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -451,6 +468,7 @@ def fetchallbottoms():
     db.close
 
 
+# prints all tops in a formatted table
 def fetchalltops():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -505,6 +523,7 @@ def fetchalltops():
     db.close
 
 
+# prints all clothes filtered by colour from userinput in a formatted table
 def fetchclothesbycolour(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -629,6 +648,7 @@ def fetchclothesbycolour(id):
     db.close
 
 
+# prints all clothes filtered by brand from userinput in a formatted table
 def fetchclothesbybrand(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -753,6 +773,7 @@ def fetchclothesbybrand(id):
     db.close
 
 
+# prints all clothes filtered by garment type from userinput in a formatted table
 def fetchclothesbygarment(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -877,6 +898,7 @@ def fetchclothesbygarment(id):
     db.close
 
 
+# prints all outfits in a formatted table
 def fetchalloutfits():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -940,6 +962,7 @@ def fetchalloutfits():
     db.close
 
 
+# adds tops to database
 def addtop(name, brand, colour, garment):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -949,6 +972,7 @@ def addtop(name, brand, colour, garment):
     db.commit()
 
 
+# adds bottoms to database
 def addbottom(name, brand, colour, garment):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -958,6 +982,7 @@ def addbottom(name, brand, colour, garment):
     db.commit()
 
 
+# adds outerwear items to database
 def addouterwear(name, brand, colour, garment):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -967,6 +992,7 @@ def addouterwear(name, brand, colour, garment):
     db.commit()
 
 
+# adds dresses to database
 def adddress(name, brand, colour, garment):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -976,6 +1002,7 @@ def adddress(name, brand, colour, garment):
     db.commit()
 
 
+# adds brands to database
 def addbrand(brand):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -984,6 +1011,7 @@ def addbrand(brand):
     db.commit()
 
 
+# adds garments to database
 def addgarment(garment):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -992,6 +1020,7 @@ def addgarment(garment):
     db.commit()
 
 
+# adds colours to database
 def addcolour(colour):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -1000,6 +1029,7 @@ def addcolour(colour):
     db.commit()
 
 
+# adds an outfit to database
 def addoutfit(topid, bottomid, outerwearid, dressid, styleid):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -1009,6 +1039,7 @@ def addoutfit(topid, bottomid, outerwearid, dressid, styleid):
     db.commit()
 
 
+# removes tops from database
 def removetop(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -1017,6 +1048,7 @@ def removetop(id):
     db.commit()
 
 
+# removes bottoms from database
 def removebottom(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -1025,6 +1057,7 @@ def removebottom(id):
     db.commit()
 
 
+# removes outerwear items from database
 def removeouterwear(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -1033,6 +1066,7 @@ def removeouterwear(id):
     db.commit()
 
 
+# removes dresses from database
 def removedress(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -1041,6 +1075,7 @@ def removedress(id):
     db.commit()
 
 
+# removes brands from database
 def removebrand(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -1049,6 +1084,7 @@ def removebrand(id):
     db.commit()
 
 
+# removes garments from database
 def removegarment(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -1057,6 +1093,7 @@ def removegarment(id):
     db.commit()
 
 
+# removes colours from database
 def removecolour(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
@@ -1064,6 +1101,8 @@ def removecolour(id):
     cursor.execute(sql)
     db.commit()
 
+
+# removes outfits from database
 def removeoutfit(id):
     db = sqlite3.connect(DB)
     cursor = db.cursor()
