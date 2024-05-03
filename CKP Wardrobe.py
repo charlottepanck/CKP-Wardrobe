@@ -136,7 +136,7 @@ def fetchallstyles():
     sql = "SELECT * FROM Styles;"
     cursor.execute(sql)
     results = cursor.fetchall()
-    print("ID | Brand")
+    print("\nStyles:\nID | Brand")
     for i in results:
         print(f"{i[0]:2} | {i[1]}")
     db.close
@@ -149,7 +149,7 @@ def fetchallbrands():
     sql = "SELECT * FROM Brands;"
     cursor.execute(sql)
     results = cursor.fetchall()
-    print("ID | Brand")
+    print("\nBrands:\nID | Brand")
     for i in results:
         print(f"{i[0]:2} | {i[1]}")
     db.close
@@ -162,7 +162,7 @@ def fetchallgarments():
     sql = "SELECT * FROM Garments;"
     cursor.execute(sql)
     results = cursor.fetchall()
-    print("ID | Garment")
+    print("\nGarments:\nID | Garment")
     for i in results:
         print(f"{i[0]:2} | {i[1]}")
     db.close
@@ -175,7 +175,7 @@ def fetchcolours():
     sql = "SELECT * FROM Colours;"
     cursor.execute(sql)
     results = cursor.fetchall()
-    print("ID | Colour")
+    print("\nColours:\nID | Colour")
     for i in results:
         print(f"{i[0]:2} | {i[1]}")
     db.close
