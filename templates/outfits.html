@@ -1,19 +1,23 @@
 {% extends "base.html" %}
 {% block body %}
+
 <br>
 <table class="w3-table-all">
     <tr>
-        <th>Name</th>
-        <th>Brand</th>
-        <th>Colour</th>
-        <th>Garment</th>
+        <th>Tops</th>
+        <th>Bottoms</th>
+        <th>Outerwear</th>
+        <th>Dress</th>
+        <th>Style</th>
+
     </tr>
-    {% for item in results1 %}
+    {% for item in results4 %}
     <tr>
         <td>{{ item[1] }}</td>
         <td>{{ item[2] }}</td>
         <td>{{ item[3] }}</td>
         <td>{{ item[4] }}</td>
+        <td>{{ item[5] }}</td>
     </tr>
     {% endfor %}
 </table>
