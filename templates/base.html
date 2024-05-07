@@ -9,15 +9,17 @@
 <body>
     
     <div class = "w3-container">
-    {% block body %}
+        <h1>Wardrobe Wizard &#128144;</h1>
     <!--NAVIGATION BAR-->
         <div class="w3-bar w3-light-grey">
-            <a href="#" class="w3-bar-item w3-button">Home</a>
-            <a href="#" class="w3-bar-item w3-button">View</a>
-            <a href="#" class="w3-bar-item w3-button">Add</a>
-            <a href="#" class="w3-bar-item w3-button">Remove</a>
+            <a href="/" class="w3-bar-item w3-button">Home</a>
+            <a href="/tops" class="w3-bar-item w3-button">Tops</a>
+            <a href="/bottoms" class="w3-bar-item w3-button">Bottoms</a>
+            <a href="#" class="w3-bar-item w3-button">Outerwear</a>
+            <a href="#" class="w3-bar-item w3-button">Dresses</a>
       </div>
-    {% endblock %}
+      {% block body %}
+      {% endblock %}
     </div>
 </body>
 </html>
