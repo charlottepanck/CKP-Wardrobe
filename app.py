@@ -92,5 +92,15 @@ def outfits():
     return render_template("outfits.html", results4 = results)#str(results)
 
 
+@app.route('/addtops')
+def addtops():
+    return render_template('addtops.html')
+
+
+@app.route('/removetops')
+def removetops():
+    return render_template('removetops.html')
+
+
 if __name__ == "__main__":
     app.run(debug=True)
