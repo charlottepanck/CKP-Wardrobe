@@ -20,7 +20,8 @@ def tops():
     FROM Tops
     LEFT JOIN Brands ON Tops.Brand = Brands.ID
     LEFT JOIN Garments ON Tops.Garment = Garments.ID
-    LEFT JOIN Colours ON Tops.Colour = Colours.ID;"""
+    LEFT JOIN Colours ON Tops.Colour = Colours.ID
+    WHERE Tops.Name != 'N/A';"""
     cursor.execute(sql)
     results = cursor.fetchall()
     db.close()
@@ -36,7 +37,8 @@ def bottoms():
     FROM Bottoms
     LEFT JOIN Brands ON Bottoms.Brand = Brands.ID
     LEFT JOIN Garments ON Bottoms.Garment = Garments.ID
-    LEFT JOIN Colours ON Bottoms.Colour = Colours.ID;"""
+    LEFT JOIN Colours ON Bottoms.Colour = Colours.ID
+    WHERE Bottoms.Name != 'N/A';"""
     cursor.execute(sql)
     results = cursor.fetchall()
     db.close()
@@ -52,7 +54,8 @@ def outerwear():
     FROM Outerwear
     LEFT JOIN Brands ON Outerwear.Brand = Brands.ID
     LEFT JOIN Garments ON Outerwear.Garment = Garments.ID
-    LEFT JOIN Colours ON Outerwear.Colour = Colours.ID;"""
+    LEFT JOIN Colours ON Outerwear.Colour = Colours.ID
+    WHERE Outerwear.Name != 'N/A';"""
     cursor.execute(sql)
     results = cursor.fetchall()
     db.close()
@@ -68,7 +71,8 @@ def dresses():
     FROM Dresses
     LEFT JOIN Brands ON Dresses.Brand = Brands.ID
     LEFT JOIN Garments ON Dresses.Garment = Garments.ID
-    LEFT JOIN Colours ON Dresses.Colour = Colours.ID;"""
+    LEFT JOIN Colours ON Dresses.Colour = Colours.ID
+    WHERE Dresses.Name != 'N/A';"""
     cursor.execute(sql)
     results = cursor.fetchall()
     db.close()
