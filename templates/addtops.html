@@ -1,5 +1,51 @@
 {% extends "base.html" %}
 {% block body %}
-<p>add tops here</p>
+<div class="w3-container">
+    <h2>Add a Top</h2>
+  </div>
+  
+  <div class="w3-row-padding">
+  
+    <div class="w3-quarter">
+      <label>Name</label>
+      <input class="w3-input w3-border" type="text" placeholder="e.g. 'Riri Scoop Neck Tank'">
+    </div>
+    
+    <div class="w3-quarter">
+    <label>Brand</label>
+    <select class="w3-select" name="option">
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">brandname 1</option>
+      <option value="2">brandname 2</option>
+      <option value="3">brandname 3</option>
+    </select>
+    </div>
+    
+    <div class="w3-quarter">
+    <label>Colour</label>
+    <select class="w3-select" name="option">
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">colour 1</option>
+      <option value="2">colour 2</option>
+      <option value="3">colour 3</option>
+    </select>
+    </div>
+    
+    <div class="w3-quarter">
+    <label>Garment</label>
+    <select class="w3-select" name="option">
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">garment 1</option>
+      <option value="2">garment 2</option>
+      <option value="3">garment 3</option>
+    </select>
+    </div>
+  
+    <div class="w3-row">
+      <p>
+      <button class="w3-btn w3-border">Submit</button></p>
+    </div>
+    
+  </div>
 <!-- should i use a Get/Post to get the info from user? -->
 {% endblock %}
