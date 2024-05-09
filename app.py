@@ -97,7 +97,13 @@ def outfits():
 
 
 @app.route('/addtops')
-def addtops():
+def addtops(name, brand, colour, garment):
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = "INSERT INTO Tops (Name, Brand, Colour, Garment) VALUES ("{name}", "{brand}", "{colour}", "{garment}");"
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    db.close()
     return render_template('addtops.html')
 
 
