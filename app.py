@@ -83,7 +83,7 @@ def dresses():
 def outfits():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql = """SELECT Outfits.ID, Tops.Name, Bottoms.Name, Outerwear.Name, Dresses.Name, Styles.Style_Name
+    sql = """SELECT Outfits.ID, Outfits.Outfit_name, Tops.Name, Bottoms.Name, Outerwear.Name, Dresses.Name, Styles.Style_Name
     FROM Outfits
     LEFT JOIN Tops ON Outfits.Top == Tops.ID
     LEFT JOIN Bottoms ON Outfits.Bottoms == Bottoms.ID
@@ -109,7 +109,7 @@ def addtops():
             sql = "INSERT INTO Tops (name, brand, colour, garment) VALUES (?, ?, ?, ?);"
             cursor.execute(sql, (name, brand, colour, garment))
             connection.commit()
-            return render_template('addtops.html', )
+            return render_template('addtops.html')
     else:
         return render_template('addtops.html')
 
@@ -127,18 +127,70 @@ def addbottoms():
             sql = "INSERT INTO Bottoms (name, brand, colour, garment) VALUES (?, ?, ?, ?);"
             cursor.execute(sql, (name, brand, colour, garment))
             connection.commit()
-            return render_template('addbottoms.html', )
+            return render_template('addbottoms.html')
     else:
         return render_template('addbottoms.html')
+
+
+@app.route('/addouterwear', methods = ['GET', 'POST'])
+def addouterwear():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        brand = request.form.get('brand')
+        colour = request.form.get('colour')
+        garment = request.form.get('garment')
+
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql = "INSERT INTO Outerwear (name, brand, colour, garment) VALUES (?, ?, ?, ?);"
+            cursor.execute(sql, (name, brand, colour, garment))
+            connection.commit()
+            return render_template('addouterwear.html')
+    else:
+        return render_template('addouterwear.html')
+
+
+@app.route('/adddresses', methods = ['GET', 'POST'])
+def adddresses():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        brand = request.form.get('brand')
+        colour = request.form.get('colour')
+        garment = request.form.get('garment')
+
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql = "INSERT INTO Dresses (name, brand, colour, garment) VALUES (?, ?, ?, ?);"
+            cursor.execute(sql, (name, brand, colour, garment))
+            connection.commit()
+            return render_template('adddresses.html')
+    else:
+        return render_template('adddresses.html')
+
+
+@app.route('/addoutfits', methods = ['GET', 'POST'])
+def addoutfits():
+    if request.method == 'POST':
+        outfit_name = request.form.get('outfit_name')
+        top = request.form.get('top')
+        bottoms = request.form.get('bottoms')
+        outerwear = request.form.get('outerwear')
+        dress = request.form.get('dress')
+        style = request.form.get('style')
+
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql = "INSERT INTO Outfits (outfit_name, top, bottoms, outerwear, dress, style) VALUES (?, ?, ?, ?, ?, ?);"
+            cursor.execute(sql, (outfit_name, top, bottoms, outerwear, dress, style))
+            connection.commit()
+            return render_template('addoutfits.html')
+    else:
+        return render_template('addoutfits.html')
 
 
 @app.route('/removetops')
 def removetops():
     return render_template('removetops.html')
-#def result():
-#   if request.method == 'POST':
-#      result = request.form
-#      return render_template("result.html",result = result)
 
 
 if __name__ == "__main__":
