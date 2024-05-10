@@ -97,23 +97,23 @@ def outfits():
 
 
 @app.route('/addtops')
-def addtops():
-    #db = sqlite3.connect(DB)
-    #cursor = db.cursor()
-    #sql = "INSERT INTO Tops (Name, Brand, Colour, Garment) VALUES ("{name}", "{brand}", "{colour}", "{garment}");"
-    #cursor.execute(sql)
-    #results = cursor.fetchall()
-    #db.close()
-    return render_template('addtops.html')
+def addtops(name, brand, colour, garment):
+    #with sqlite3.connect(DB) as connection:
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = f'''INSERT INTO Tops (Name, Brand, Colour, Garment)
+    VALUES (?, ?, ?, ?);'''
+    cursor.execute(sql, (name, brand, colour, garment))
+    db.commit()
 
 
 @app.route('/removetops')
 def removetops():
     return render_template('removetops.html')
-def result():
-   if request.method == 'POST':
-      result = request.form
-      return render_template("result.html",result = result)
+#def result():
+#   if request.method == 'POST':
+#      result = request.form
+#      return render_template("result.html",result = result)
 
 
 if __name__ == "__main__":
