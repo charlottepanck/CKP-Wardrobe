@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, request, session, url_for
 import sqlite3
 app = Flask(__name__)
 DB = 'ckpwardrobe.db'
@@ -96,16 +96,21 @@ def outfits():
     return render_template("outfits.html", results4 = results)#str(results)
 
 
-@app.route('/addtops')
-def addtops(name, brand, colour, garment):
-    #with sqlite3.connect(DB) as connection:
-    db = sqlite3.connect(DB)
-    cursor = db.cursor()
-    sql = f'''INSERT INTO Tops (Name, Brand, Colour, Garment)
-    VALUES (?, ?, ?, ?);'''
-    cursor.execute(sql, (name, brand, colour, garment))
-    db.commit()
+@app.route('/addtops', methods = ['GET', 'POST'])
+def addtops():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        brand = request.form.get('brand')
+        colour = request.form.get('colour')
+        garment = request.form.get('garment')
 
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql = "INSERT INTO Tops (name, brand, colour, garment) VALUES (?, ?, ?, ?)"
+            cursor.execute(sql, (name, brand, colour, garment))
+            connection.commit()
+    else:
+        return render_template('Digital wardrobe.html')
 
 @app.route('/removetops')
 def removetops():
