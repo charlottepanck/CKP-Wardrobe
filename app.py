@@ -106,11 +106,31 @@ def addtops():
 
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
-            sql = "INSERT INTO Tops (name, brand, colour, garment) VALUES (?, ?, ?, ?)"
+            sql = "INSERT INTO Tops (name, brand, colour, garment) VALUES (?, ?, ?, ?);"
             cursor.execute(sql, (name, brand, colour, garment))
             connection.commit()
+            return render_template('addtops.html', )
     else:
-        return render_template('Digital wardrobe.html')
+        return render_template('addtops.html')
+
+
+@app.route('/addbottoms', methods = ['GET', 'POST'])
+def addbottoms():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        brand = request.form.get('brand')
+        colour = request.form.get('colour')
+        garment = request.form.get('garment')
+
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql = "INSERT INTO Bottoms (name, brand, colour, garment) VALUES (?, ?, ?, ?);"
+            cursor.execute(sql, (name, brand, colour, garment))
+            connection.commit()
+            return render_template('addbottoms.html', )
+    else:
+        return render_template('addbottoms.html')
+
 
 @app.route('/removetops')
 def removetops():

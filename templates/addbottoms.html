@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block body %}
-<form action="{{ url_for('addtops') }}" method="POST">
+<form action="{{ url_for('addbottoms') }}" method="POST">
 
-  <label> Tops name</label>
+  <label> Bottoms name</label>
   <input name="name" type="text" placeholder=" "><br>
   
   <label>Brand </label>
@@ -38,6 +38,6 @@
   <!-- <label> Garment </label> -->
   <!-- <input name="garment" type="number" placeholder=" "><br> -->
   
-  <input type="submit" value="Add top"><br>
+  <input type="submit" value="Add bottom"><br>
 </form>
 {% endblock %}s
