@@ -2,10 +2,9 @@
 {% block body %}
 <br>
 <div class="w3-cell-row">
-
-    <div class="w3-container w3-light-grey w3-cell">
-        <br>
-        <form class="w3-container w3-card-4" action="{{ url_for('addtops') }}" method="POST">
+  <br>
+    <div class="w3-container w3-light-grey w3-cell w3-card-4" style="width:20%">
+        <form class="w3-container" action="{{ url_for('addtops') }}" method="POST">
           <h2>Add a Top</h2>
           <!-- <p>Add the infomation to create bordered inputs.</p> -->
         
@@ -48,8 +47,9 @@
           <p><input button type="submit" value="Add top" class="w3-button w3-white w3-border"></p>
         </form>
     </div>
-  
-    <div class="w3-container w3-light-grey w3-cell" style="width:80%">
+   <div class="w3-container">
+    </div>
+    <div class="w3-container w3-light-grey w3-cell w3-card-4" style="width:80%">
         <br>
         <table class="w3-table-all">
             <tr>

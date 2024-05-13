@@ -96,7 +96,7 @@ def outfits():
     return render_template("outfits.html", results4 = results)#str(results)
 
 
-@app.route('/addtops', methods = ['GET', 'POST'])
+@app.route('/tops', methods = ['GET', 'POST'])
 def addtops():
     if request.method == 'POST':
         name = request.form.get('name')
@@ -109,10 +109,10 @@ def addtops():
             sql = "INSERT INTO Tops (name, brand, colour, garment) VALUES (?, ?, ?, ?);"
             cursor.execute(sql, (name, brand, colour, garment))
             connection.commit()
-            return render_template('addtops.html')
+            return tops() #render_template('tops.html')
+            
     else:
-        return render_template('addtops.html')
-
+        return tops() #render_template('tops.html')
 
 @app.route('/addbottoms', methods = ['GET', 'POST'])
 def addbottoms():
