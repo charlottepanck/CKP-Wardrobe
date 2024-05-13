@@ -14,10 +14,12 @@
           <label>Brand </label>
           <select name="brand" type="number" class="w3-input w3-border">
             <option value=""> </option>
-            <option value=1>Levi's</option>
-            <option value=2>Brandy Melville</option>
+            {% for item in resultsbrandsbottoms %}
+            <option value={{item[0]}}>{{item[1]}}</option>
+            <!-- <option value=2>Brandy Melville</option>
             <option value=3>Cotton On</option>
-            <option value=4>Glassons</option>
+            <option value=4>Glassons</option> -->
+            {% endfor %}
           </select><br>
           <!-- <label>Brand </label> -->
           <!-- <input name="brand" type="number" placeholder=" "><br> -->
@@ -25,10 +27,12 @@
           <label>Colour </label>
           <select name="colour" type="number" class="w3-input w3-border">
             <option value=""> </option>
-            <option value=1>White</option>
-            <option value=2>Black</option>
+            {% for items in resultscoloursbottoms %}
+            <option value={{items[0]}}>{{items[1]}}</option>
+            <!--<option value=2>Black</option>
             <option value=3>Brown</option>
-            <option value=4>Green</option>
+            <option value=4>Green</option>-->
+            {% endfor %}
           </select><br>
           <!-- <label> Colour </label> -->
           <!-- <input name="colour" type="number" placeholder=" "><br>-->
@@ -36,14 +40,16 @@
           <label>Garment </label>
           <select name="garment" type="number" class="w3-input w3-border">
             <option value=""> </option>
-            <option value=1>Pants</option>
-            <option value=2>Shorts</option>
+            {% for itemss in resultsgarmentsbottoms %}
+            <option value={{itemss[0]}}>{{itemss[1]}}</option>
+            <!--<option value=2>Shorts</option>
             <option value=3>Skirt</option>
-            <option value=4>T Shirt</option>
+            <option value=4>T Shirt</option>-->
+            {% endfor %}
           </select>
           <!-- <label> Garment </label> -->
           <!-- <input name="garment" type="number" placeholder=" "><br> -->
-          
+
           <p><input button type="submit" value="Add bottom" class="w3-button w3-white w3-border"></p>
         </form>
     </div>

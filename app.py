@@ -50,8 +50,17 @@ def bottoms():
     WHERE Bottoms.Name != 'N/A';"""
     cursor.execute(sql)
     results = cursor.fetchall()
+    sql2 = """SELECT ID, Brand_Name FROM Brands WHERE Brand_Name != 'N/A';"""
+    cursor.execute(sql2)
+    resultsbrandsbottoms = cursor.fetchall()
+    sql3 = """SELECT ID, Colour_Type FROM Colours WHERE Colour_Type != 'N/A';"""
+    cursor.execute(sql3)
+    resultscoloursbottoms = cursor.fetchall()
+    sql4 = """SELECT ID, Garment_Type FROM Garments WHERE Garment_Type != 'N/A';"""
+    cursor.execute(sql4)
+    resultsgarmentsbottoms = cursor.fetchall()
     db.close()
-    return render_template("bottoms.html", results1 = results)#str(results)
+    return render_template("bottoms.html", results1 = results, resultsbrandsbottoms = resultsbrandsbottoms, resultscoloursbottoms = resultscoloursbottoms, resultsgarmentsbottoms = resultsgarmentsbottoms)#str(results)
 
 
 @app.route('/outerwear')
@@ -67,8 +76,17 @@ def outerwear():
     WHERE Outerwear.Name != 'N/A';"""
     cursor.execute(sql)
     results = cursor.fetchall()
+    sql2 = """SELECT ID, Brand_Name FROM Brands WHERE Brand_Name != 'N/A';"""
+    cursor.execute(sql2)
+    resultsbrandsouterwear = cursor.fetchall()
+    sql3 = """SELECT ID, Colour_Type FROM Colours WHERE Colour_Type != 'N/A';"""
+    cursor.execute(sql3)
+    resultscoloursouterwear = cursor.fetchall()
+    sql4 = """SELECT ID, Garment_Type FROM Garments WHERE Garment_Type != 'N/A';"""
+    cursor.execute(sql4)
+    resultsgarmentsouterwear = cursor.fetchall()
     db.close()
-    return render_template("outerwear.html", results2 = results)#str(results)
+    return render_template("outerwear.html", results2 = results, resultsbrandsouterwear = resultsbrandsouterwear, resultscoloursouterwear = resultscoloursouterwear, resultsgarmentsouterwear = resultsgarmentsouterwear)#str(results)
 
 
 @app.route('/dresses')
@@ -84,8 +102,17 @@ def dresses():
     WHERE Dresses.Name != 'N/A';"""
     cursor.execute(sql)
     results = cursor.fetchall()
+    sql2 = """SELECT ID, Brand_Name FROM Brands WHERE Brand_Name != 'N/A';"""
+    cursor.execute(sql2)
+    resultsbrandsdresses = cursor.fetchall()
+    sql3 = """SELECT ID, Colour_Type FROM Colours WHERE Colour_Type != 'N/A';"""
+    cursor.execute(sql3)
+    resultscoloursdresses = cursor.fetchall()
+    sql4 = """SELECT ID, Garment_Type FROM Garments WHERE Garment_Type != 'N/A';"""
+    cursor.execute(sql4)
+    resultsgarmentsdresses = cursor.fetchall()
     db.close()
-    return render_template("dresses.html", results3 = results)#str(results)
+    return render_template("dresses.html", results3 = results, resultsbrandsdresses = resultsbrandsdresses, resultscoloursdresses = resultscoloursdresses, resultsgarmentsdresses = resultsgarmentsdresses)#str(results)
 
 
 @app.route('/outfits')
