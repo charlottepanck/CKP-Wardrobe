@@ -190,7 +190,16 @@ def addoutfits():
 
 @app.route('/removetops')
 def removetops():
-    return render_template('removetops.html')
+    if request.method == 'POST':
+        top_id = request.form.get('top_id')
+        with sqlite3.connect(DB) as connection:
+                cursor = connection.cursor()
+                sql = "DELETE FROM Tops WHERE ID = ?;"
+                cursor.execute(sql, top_id)
+                connection.commit()
+                return render_template('addoutfits.html')
+    else:
+        return render_template('removetops.html')
 
 
 if __name__ == "__main__":

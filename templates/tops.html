@@ -1,20 +1,74 @@
 {% extends "base.html" %}
 {% block body %}
 <br>
-<table class="w3-table-all">
-    <tr>
-        <th>Name</th>
-        <th>Brand</th>
-        <th>Colour</th>
-        <th>Garment</th>
-    </tr>
-    {% for item in results %}
-    <tr>
-        <td>{{ item[1] }}</td>
-        <td>{{ item[2] }}</td>
-        <td>{{ item[3] }}</td>
-        <td>{{ item[4] }}</td>
-    </tr>
-    {% endfor %}
-</table>
+<div class="w3-cell-row">
+
+    <div class="w3-container w3-light-grey w3-cell">
+        <br>
+        <form class="w3-container w3-card-4" action="{{ url_for('addtops') }}" method="POST">
+          <h2>Add a Top</h2>
+          <!-- <p>Add the infomation to create bordered inputs.</p> -->
+        
+          <label> Tops name</label>
+          <input name="name" type="text" placeholder=" " class="w3-input w3-border"><br>
+          
+          <label>Brand </label>
+          <select name="brand" type="number" class="w3-input w3-border">
+            <option value=""> </option>
+            <option value=1>Levi's</option>
+            <option value=2>Brandy Melville</option>
+            <option value=3>Cotton On</option>
+            <option value=4>Glassons</option>
+          </select><br>
+          <!-- <label>Brand </label> -->
+          <!-- <input name="brand" type="number" placeholder=" "><br> -->
+        
+          <label>Colour </label>
+          <select name="colour" type="number" class="w3-input w3-border">
+            <option value=""> </option>
+            <option value=1>White</option>
+            <option value=2>Black</option>
+            <option value=3>Brown</option>
+            <option value=4>Green</option>
+          </select><br>
+          <!-- <label> Colour </label> -->
+          <!-- <input name="colour" type="number" placeholder=" "><br>-->
+        
+          <label>Garment </label>
+          <select name="garment" type="number" class="w3-input w3-border">
+            <option value=""> </option>
+            <option value=1>Pants</option>
+            <option value=2>Shorts</option>
+            <option value=3>Skirt</option>
+            <option value=4>T Shirt</option>
+          </select>
+          <!-- <label> Garment </label> -->
+          <!-- <input name="garment" type="number" placeholder=" "><br> -->
+          
+          <p><input button type="submit" value="Add top" class="w3-button w3-white w3-border"></p>
+        </form>
+    </div>
+  
+    <div class="w3-container w3-light-grey w3-cell" style="width:80%">
+        <br>
+        <table class="w3-table-all">
+            <tr>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Colour</th>
+                <th>Garment</th>
+            </tr>
+            {% for item in results %}
+            <tr>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[2] }}</td>
+                <td>{{ item[3] }}</td>
+                <td>{{ item[4] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+    </div>
+  
+  </div>
 {% endblock %}
