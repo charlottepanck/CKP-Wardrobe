@@ -9,6 +9,39 @@ def home():
     return render_template('Digital wardrobe.html')
 
 
+@app.route('/brands')
+def brands():
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql ="SELECT Brand_Name FROM Brands;"
+    cursor.execute(sql)
+    resultsbrands = cursor.fetchall()
+    db.close()
+    return render_template("brands.html", resultsbrands = resultsbrands)
+
+
+@app.route('/colours')
+def colours():
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql ="SELECT Colour_Type FROM Colours;"
+    cursor.execute(sql)
+    resultscolours = cursor.fetchall()
+    db.close()
+    return render_template("colours.html", resultscolours = resultscolours)
+
+
+@app.route('/garments')
+def garments():
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql ="SELECT Garment_Type FROM Garments;"
+    cursor.execute(sql)
+    resultsgarments = cursor.fetchall()
+    db.close()
+    return render_template("garments.html", resultsgarments = resultsgarments)
+
+
 @app.route('/tops')
 def tops():
     # query to find all tops and filter by catagories
@@ -128,8 +161,23 @@ def outfits():
     LEFT JOIN Styles ON Outfits.Style == Styles.ID;"""
     cursor.execute(sql)
     results = cursor.fetchall()
+    sql2 = """SELECT ID, Name FROM Tops;"""
+    cursor.execute(sql2)
+    resultstopsoutfits = cursor.fetchall()
+    sql3 = """SELECT ID, Name FROM Bottoms;"""
+    cursor.execute(sql3)
+    resultsbottomsoutfits = cursor.fetchall()
+    sql4 = """SELECT ID, Name FROM Outerwear;"""
+    cursor.execute(sql4)
+    resultsouterwearoutfits = cursor.fetchall()
+    sql5 = """SELECT ID, Name FROM Dresses;"""
+    cursor.execute(sql5)
+    resultsdressesoutfits = cursor.fetchall()
+    sql6 = """SELECT ID, Style_Name FROM Styles;"""
+    cursor.execute(sql6)
+    resultsstylesoutfits = cursor.fetchall()
     db.close()
-    return render_template("outfits.html", results4 = results)#str(results)
+    return render_template("outfits.html", results4 = results, resultstopsoutfits = resultstopsoutfits, resultsbottomsoutfits = resultsbottomsoutfits, resultsouterwearoutfits = resultsouterwearoutfits, resultsdressesoutfits = resultsdressesoutfits, resultsstylesoutfits = resultsstylesoutfits)#str(results)
 
 
 @app.route('/tops', methods = ['GET', 'POST'])
@@ -186,7 +234,7 @@ def addouterwear():
         return outerwear() #render_template('addouterwear.html')
 
 
-@app.route('/adddresses', methods = ['GET', 'POST'])
+@app.route('/dresses', methods = ['GET', 'POST'])
 def adddresses():
     if request.method == 'POST':
         name = request.form.get('name')
@@ -222,6 +270,51 @@ def addoutfits():
             return outfits() #render_template('addoutfits.html')
     else:
         return outfits() #render_template('addoutfits.html')
+
+
+@app.route('/brands', methods = ['GET', 'POST'])
+def addbrands():
+    if request.method == 'POST':
+        brand_name = request.form.get('brand_name')
+
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql = "INSERT INTO Brands (brand_name) VALUES (?);"
+            cursor.execute(sql, (brand_name,))
+            connection.commit()
+            return brands()
+    else:
+        return brands()
+
+
+@app.route('/colours', methods = ['GET', 'POST'])
+def addcolours():
+    if request.method == 'POST':
+        colour_type = request.form.get('colour_type')
+
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql = "INSERT INTO Colours (colour_type) VALUES (?);"
+            cursor.execute(sql, (colour_type,))
+            connection.commit()
+            return colours()
+    else:
+        return colours()
+
+
+@app.route('/garments', methods = ['GET', 'POST'])
+def addgarments():
+    if request.method == 'POST':
+        garment_type = request.form.get('garment_type')
+
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql = "INSERT INTO Garments (garment_type) VALUES (?);"
+            cursor.execute(sql, (garment_type,))
+            connection.commit()
+            return garments()
+    else:
+        return garments()
 
 
 @app.route('/removetops')
