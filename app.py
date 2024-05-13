@@ -24,8 +24,17 @@ def tops():
     WHERE Tops.Name != 'N/A';"""
     cursor.execute(sql)
     results = cursor.fetchall()
+    sql2 = """SELECT ID, Brand_Name FROM Brands WHERE Brand_Name != 'N/A';"""
+    cursor.execute(sql2)
+    resultsbrandstops = cursor.fetchall()
+    sql3 = """SELECT ID, Colour_Type FROM Colours WHERE Colour_Type != 'N/A';"""
+    cursor.execute(sql3)
+    resultscolourstops = cursor.fetchall()
+    sql4 = """SELECT ID, Garment_Type FROM Garments WHERE Garment_Type != 'N/A';"""
+    cursor.execute(sql4)
+    resultsgarmentstops = cursor.fetchall()
     db.close()
-    return render_template("tops.html", results = results)#str(results)
+    return render_template("tops.html", results = results, resultsbrandstops = resultsbrandstops, resultscolourstops = resultscolourstops, resultsgarmentstops = resultsgarmentstops)#str(results)
 
 
 @app.route('/bottoms')
