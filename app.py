@@ -42,6 +42,17 @@ def garments():
     return render_template("garments.html", resultsgarments = resultsgarments)
 
 
+@app.route('/styles')
+def styles():
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql ="SELECT Style_Name FROM Styles;"
+    cursor.execute(sql)
+    resultsstyles = cursor.fetchall()
+    db.close()
+    return render_template("styles.html", resultsstyles = resultsstyles)
+
+
 @app.route('/tops')
 def tops():
     # query to find all tops and filter by catagories
@@ -315,6 +326,21 @@ def addgarments():
             return garments()
     else:
         return garments()
+
+
+@app.route('/styles', methods = ['GET', 'POST'])
+def addstyles():
+    if request.method == 'POST':
+        style_name = request.form.get('style_name')
+
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql = "INSERT INTO Styles (style_name) VALUES (?);"
+            cursor.execute(sql, (style_name,))
+            connection.commit()
+            return styles()
+    else:
+        return styles()
 
 
 @app.route('/removetops')
