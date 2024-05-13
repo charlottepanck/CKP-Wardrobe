@@ -114,7 +114,7 @@ def addtops():
     else:
         return tops() #render_template('tops.html')
 
-@app.route('/addbottoms', methods = ['GET', 'POST'])
+@app.route('/bottoms', methods = ['GET', 'POST'])
 def addbottoms():
     if request.method == 'POST':
         name = request.form.get('name')
@@ -127,12 +127,12 @@ def addbottoms():
             sql = "INSERT INTO Bottoms (name, brand, colour, garment) VALUES (?, ?, ?, ?);"
             cursor.execute(sql, (name, brand, colour, garment))
             connection.commit()
-            return render_template('addbottoms.html')
+            return bottoms() #render_template('addbottoms.html')
     else:
-        return render_template('addbottoms.html')
+        return bottoms() #render_template('addbottoms.html')
 
 
-@app.route('/addouterwear', methods = ['GET', 'POST'])
+@app.route('/outerwear', methods = ['GET', 'POST'])
 def addouterwear():
     if request.method == 'POST':
         name = request.form.get('name')
@@ -145,9 +145,9 @@ def addouterwear():
             sql = "INSERT INTO Outerwear (name, brand, colour, garment) VALUES (?, ?, ?, ?);"
             cursor.execute(sql, (name, brand, colour, garment))
             connection.commit()
-            return render_template('addouterwear.html')
+            return outerwear() #render_template('addouterwear.html')
     else:
-        return render_template('addouterwear.html')
+        return outerwear() #render_template('addouterwear.html')
 
 
 @app.route('/adddresses', methods = ['GET', 'POST'])
@@ -163,12 +163,12 @@ def adddresses():
             sql = "INSERT INTO Dresses (name, brand, colour, garment) VALUES (?, ?, ?, ?);"
             cursor.execute(sql, (name, brand, colour, garment))
             connection.commit()
-            return render_template('adddresses.html')
+            return dresses() #render_template('adddresses.html')
     else:
-        return render_template('adddresses.html')
+        return dresses() #render_template('adddresses.html')
 
 
-@app.route('/addoutfits', methods = ['GET', 'POST'])
+@app.route('/outfits', methods = ['GET', 'POST'])
 def addoutfits():
     if request.method == 'POST':
         outfit_name = request.form.get('outfit_name')
@@ -183,9 +183,9 @@ def addoutfits():
             sql = "INSERT INTO Outfits (outfit_name, top, bottoms, outerwear, dress, style) VALUES (?, ?, ?, ?, ?, ?);"
             cursor.execute(sql, (outfit_name, top, bottoms, outerwear, dress, style))
             connection.commit()
-            return render_template('addoutfits.html')
+            return outfits() #render_template('addoutfits.html')
     else:
-        return render_template('addoutfits.html')
+        return outfits() #render_template('addoutfits.html')
 
 
 @app.route('/removetops')

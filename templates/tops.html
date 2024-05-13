@@ -4,11 +4,11 @@
 <div class="w3-cell-row">
   <br>
     <div class="w3-container w3-light-grey w3-cell w3-card-4" style="width:20%">
-        <form class="w3-container" action="{{ url_for('addtops') }}" method="POST">
+        <form class="w3-container" action="{{ url_for('tops') }}" method="POST">
           <h2>Add a Top</h2>
           <!-- <p>Add the infomation to create bordered inputs.</p> -->
         
-          <label> Tops name</label>
+          <label> Top name</label>
           <input name="name" type="text" placeholder=" " class="w3-input w3-border"><br>
           
           <label>Brand </label>
@@ -44,7 +44,7 @@
           <!-- <label> Garment </label> -->
           <!-- <input name="garment" type="number" placeholder=" "><br> -->
           
-          <p><input button type="submit" value="Add top" class="w3-button w3-white w3-border"></p>
+          <p><input button type="submit" value="Add Top" class="w3-button w3-white w3-border"></p>
         </form>
     </div>
    <div class="w3-container">
@@ -69,6 +69,6 @@
         </table>
         <br>
     </div>
-  
   </div>
+  <br>
 {% endblock %}
