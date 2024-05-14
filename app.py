@@ -9,6 +9,7 @@ def home():
     return render_template('Digital wardrobe.html')
 
 
+# view all brands
 @app.route('/brands')
 def brands():
     db = sqlite3.connect(DB)
@@ -20,6 +21,7 @@ def brands():
     return render_template("brands.html", resultsbrands = resultsbrands)
 
 
+# view all comments
 @app.route('/colours')
 def colours():
     db = sqlite3.connect(DB)
@@ -31,6 +33,7 @@ def colours():
     return render_template("colours.html", resultscolours=resultscolours)
 
 
+# view all garments
 @app.route('/garments')
 def garments():
     db = sqlite3.connect(DB)
@@ -42,6 +45,7 @@ def garments():
     return render_template("garments.html", resultsgarments=resultsgarments)
 
 
+# view all styles
 @app.route('/styles')
 def styles():
     db = sqlite3.connect(DB)
@@ -53,10 +57,9 @@ def styles():
     return render_template("styles.html", resultsstyles=resultsstyles)
 
 
+# view all tops & fetch all garments, brands, colours
 @app.route('/tops')
 def tops():
-    # query to find all tops and filter by catagories
-    # render poduct page
     db = sqlite3.connect(DB)
     cursor = db.cursor()
     sql = """SELECT Tops.ID, Tops.Name,
@@ -80,6 +83,7 @@ def tops():
     return render_template("tops.html", results = results, resultsbrandstops = resultsbrandstops, resultscolourstops = resultscolourstops, resultsgarmentstops = resultsgarmentstops)#str(results)
 
 
+# view all bottoms & fetch all garments, brands, colours
 @app.route('/bottoms')
 def bottoms():
     db = sqlite3.connect(DB)
@@ -105,6 +109,7 @@ def bottoms():
     return render_template("bottoms.html", results1 = results, resultsbrandsbottoms = resultsbrandsbottoms, resultscoloursbottoms = resultscoloursbottoms, resultsgarmentsbottoms = resultsgarmentsbottoms)#str(results)
 
 
+# view all outerwear & fetch all garments, brands, colours
 @app.route('/outerwear')
 def outerwear():
     db = sqlite3.connect(DB)
@@ -130,6 +135,7 @@ def outerwear():
     return render_template("outerwear.html", results2 = results, resultsbrandsouterwear = resultsbrandsouterwear, resultscoloursouterwear = resultscoloursouterwear, resultsgarmentsouterwear = resultsgarmentsouterwear)#str(results)
 
 
+# view all dresses & fetch all garments, brands, colours
 @app.route('/dresses')
 def dresses():
     db = sqlite3.connect(DB)
@@ -155,6 +161,7 @@ def dresses():
     return render_template("dresses.html", results3 = results, resultsbrandsdresses = resultsbrandsdresses, resultscoloursdresses = resultscoloursdresses, resultsgarmentsdresses = resultsgarmentsdresses)#str(results)
 
 
+# view all outfits & fetch all tops, bottoms, outerwear, dresses, styles
 @app.route('/outfits')
 def outfits():
     db = sqlite3.connect(DB)
@@ -187,6 +194,7 @@ def outfits():
     return render_template("outfits.html", results4=results, resultstopsoutfits=resultstopsoutfits, resultsbottomsoutfits=resultsbottomsoutfits, resultsouterwearoutfits=resultsouterwearoutfits, resultsdressesoutfits=resultsdressesoutfits, resultsstylesoutfits=resultsstylesoutfits)#str(results)
 
 
+# add top
 @app.route('/tops', methods = ['GET', 'POST'])
 def addtops():
     if request.method == 'POST':
@@ -205,6 +213,8 @@ def addtops():
     else:
         return tops() #render_template('tops.html')
 
+
+# add bottom
 @app.route('/bottoms', methods = ['GET', 'POST'])
 def addbottoms():
     if request.method == 'POST':
@@ -223,6 +233,7 @@ def addbottoms():
         return bottoms() #render_template('addbottoms.html')
 
 
+# add outerwear
 @app.route('/outerwear', methods = ['GET', 'POST'])
 def addouterwear():
     if request.method == 'POST':
@@ -241,6 +252,7 @@ def addouterwear():
         return outerwear() #render_template('addouterwear.html')
 
 
+# add dress
 @app.route('/dresses', methods = ['GET', 'POST'])
 def adddresses():
     if request.method == 'POST':
@@ -248,17 +260,17 @@ def adddresses():
         brand = request.form.get('brand')
         colour = request.form.get('colour')
         garment = request.form.get('garment')
-
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
             sql = "INSERT INTO Dresses (name, brand, colour, garment) VALUES (?, ?, ?, ?);"
             cursor.execute(sql, (name, brand, colour, garment))
             connection.commit()
-            return dresses() #render_template('adddresses.html')
+            return dresses()
     else:
-        return dresses() #render_template('adddresses.html')
+        return dresses()
 
 
+# add outfit
 @app.route('/outfits', methods = ['GET', 'POST'])
 def addoutfits():
     if request.method == 'POST':
@@ -279,6 +291,7 @@ def addoutfits():
         return outfits() #render_template('addoutfits.html')
 
 
+# add brands
 @app.route('/brands', methods = ['GET', 'POST'])
 def addbrands():
     if request.method == 'POST':
@@ -294,6 +307,7 @@ def addbrands():
         return brands()
 
 
+# add colours
 @app.route('/colours', methods = ['GET', 'POST'])
 def addcolours():
     if request.method == 'POST':
@@ -309,6 +323,7 @@ def addcolours():
         return colours()
 
 
+# add garments
 @app.route('/garments', methods = ['GET', 'POST'])
 def addgarments():
     if request.method == 'POST':
@@ -324,6 +339,7 @@ def addgarments():
         return garments()
 
 
+# add styles
 @app.route('/styles', methods = ['GET', 'POST'])
 def addstyles():
     if request.method == 'POST':
@@ -339,6 +355,7 @@ def addstyles():
         return styles()
     
 
+# delete top
 @app.route('/delete_top/<int:ID>', methods=['POST'])
 def delete_top(ID):
         with sqlite3.connect(DB) as connection:
@@ -349,16 +366,19 @@ def delete_top(ID):
         return tops()
 
 
+# page not fount error
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('error.html', error='Page not found, Please check that the Web site address is spelled correctly.'), 404
 
 
+# internal server error 
 @app.errorhandler(500)
 def internal_server_error(error):
     return render_template('error.html', error='Internal server error'), 500
 
 
+# somthing else error
 @app.errorhandler(Exception)
 def unexpected_error(error):
     return render_template('error.html', error='Something went wrong'), 500
