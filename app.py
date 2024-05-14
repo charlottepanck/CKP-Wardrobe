@@ -366,6 +366,17 @@ def delete_top(ID):
         return tops()
 
 
+# delete bottom
+@app.route('/delete_bottom/<int:ID>', methods=['POST'])
+def delete_bottom(ID):
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql_delete = "DELETE FROM Bottoms WHERE ID = ?"
+            cursor.execute(sql_delete, (ID,))
+            connection.commit()
+        return bottoms()
+
+
 # page not fount error
 @app.errorhandler(404)
 def page_not_found(error):
