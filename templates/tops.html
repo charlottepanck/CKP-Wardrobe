@@ -9,10 +9,10 @@
           <!-- <p>Add the infomation to create bordered inputs.</p> -->
         
           <label> Top name</label>
-          <input name="name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border"><br>
+          <input name="name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border" required><br>
           
           <label>Brand </label>
-          <select name="brand" type="number" class="w3-input w3-border">
+          <select name="brand" type="number" class="w3-input w3-border" required>
             <option value=""> </option>
             {% for item in resultsbrandstops %}
             <option value={{item[0]}}>{{item[1]}}</option>
@@ -25,7 +25,7 @@
           <!-- <input name="brand" type="number" placeholder=" "><br> -->
         
           <label>Colour </label>
-          <select name="colour" type="number" class="w3-input w3-border">
+          <select name="colour" type="number" class="w3-input w3-border" required>
             <option value=""> </option>
             {% for items in resultscolourstops %}
             <option value={{items[0]}}>{{items[1]}}</option>
@@ -38,7 +38,7 @@
           <!-- <input name="colour" type="number" placeholder=" "><br>-->
         
           <label>Garment </label>
-          <select name="garment" type="number" class="w3-input w3-border">
+          <select name="garment" type="number" class="w3-input w3-border" required>
             <option value=""> </option>
             {% for itemss in resultsgarmentstops %}
             <option value={{itemss[0]}}>{{itemss[1]}}</option>
@@ -57,12 +57,14 @@
     </div>
     <div class="w3-container w3-light-grey w3-cell w3-card-4" style="width:80%">
         <br>
-        <table class="w3-table-all w3-hoverable">
+        <table class="w3-table-all">
             <tr>
                 <th>Name</th>
                 <th>Brand</th>
                 <th>Colour</th>
                 <th>Garment</th>
+                <th> </th>
+                <th> </th>
             </tr>
             {% for item in results %}
             <tr>
@@ -70,7 +72,12 @@
                 <td>{{ item[2] }}</td>
                 <td>{{ item[3] }}</td>
                 <td>{{ item[4] }}</td>
-            </tr>
+                <td><a href='/tops' title="Edit" class="edit-button">&#9998;</a></td>
+                <td>
+                  <form method="POST" action="{{ url_for('delete_top', ID=item[0]) }}">
+                    <input type="submit" title="Delete" class="delete-button" value="&#10006;" onclick="return confirm('Are you sure you want to delete this Top?')">
+                  </form>
+                </td>
             {% endfor %}
         </table>
         <br>

@@ -337,20 +337,16 @@ def addstyles():
             return styles()
     else:
         return styles()
+    
 
-
-@app.route('/removetops')
-def removetops():
-    if request.method == 'POST':
-        top_id = request.form.get('top_id')
+@app.route('/delete_top/<int:ID>', methods=['POST'])
+def delete_top(ID):
         with sqlite3.connect(DB) as connection:
-                cursor = connection.cursor()
-                sql = "DELETE FROM Tops WHERE ID = ?;"
-                cursor.execute(sql, top_id)
-                connection.commit()
-                return render_template('addoutfits.html')
-    else:
-        return render_template('removetops.html')
+            cursor = connection.cursor()
+            sql_delete = "DELETE FROM Tops WHERE ID = ?"
+            cursor.execute(sql_delete, (ID,))
+            connection.commit()
+        return tops()
 
 
 @app.errorhandler(404)

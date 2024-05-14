@@ -9,10 +9,10 @@
           <!-- <p>Add the infomation to create bordered inputs.</p> -->
         
           <label> Dress name</label>
-          <input name="name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border"><br>
+          <input name="name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border" required><br>
           
           <label>Brand </label>
-          <select name="brand" type="number" class="w3-input w3-border">
+          <select name="brand" type="number" class="w3-input w3-border" required>
             <option value=""> </option>
             {% for item in resultsbrandsdresses %}
             <option value={{item[0]}}>{{item[1]}}</option>
@@ -25,7 +25,7 @@
           <!-- <input name="brand" type="number" placeholder=" "><br> -->
         
           <label>Colour </label>
-          <select name="colour" type="number" class="w3-input w3-border">
+          <select name="colour" type="number" class="w3-input w3-border" required>
             <option value=""> </option>
             {% for items in resultscoloursdresses %}
             <option value={{items[0]}}>{{items[1]}}</option>
@@ -36,7 +36,7 @@
           </select><br>
         
           <label>Garment </label>
-          <select name="garment" type="number" class="w3-input w3-border">
+          <select name="garment" type="number" class="w3-input w3-border" required>
             <option value=""> </option>
             {% for itemss in resultsgarmentsdresses %}
             <option value={{itemss[0]}}>{{itemss[1]}}</option>
