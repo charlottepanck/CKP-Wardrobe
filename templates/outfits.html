@@ -8,7 +8,7 @@
             <h2>Add an Outfit</h2>
 
             <label> Outfit name</label>
-            <input name="outfit_name" type="text" placeholder=" " class="w3-input w3-border"><br>
+            <input name="outfit_name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border"><br>
           
             <label>Top </label>
             <select name="top" type="number" class="w3-input w3-border">
@@ -37,7 +37,7 @@
             
             <label>Dress </label>
             <select name="dress" type="number" class="w3-input w3-border">
-              <option value=2> </option>
+              <option value=> </option>
               {% for item in resultsdressesoutfits %}
               <option value={{item[0]}}>{{item[1]}}</option>
               {% endfor %}

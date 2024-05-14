@@ -353,5 +353,20 @@ def removetops():
         return render_template('removetops.html')
 
 
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('error.html', error='Page not found, Please check that the Web site address is spelled correctly.'), 404
+
+
+@app.errorhandler(500)
+def internal_server_error(error):
+    return render_template('error.html', error='Internal server error'), 500
+
+
+@app.errorhandler(Exception)
+def unexpected_error(error):
+    return render_template('error.html', error='Something went wrong'), 500
+
+
 if __name__ == "__main__":
     app.run(debug=True)

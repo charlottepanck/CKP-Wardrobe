@@ -7,7 +7,7 @@
         <form class="w3-container" action="{{ url_for('styles') }}" method="POST">
           <h2>Add a Style</h2>
           <label> Style </label>
-          <input name="style_name" type="text" placeholder=" " class="w3-input w3-border">
+          <input name="style_name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border">
           <p><input button type="submit" value="Add Style" class="w3-button w3-white w3-border"></p>
         </form>
     </div>
