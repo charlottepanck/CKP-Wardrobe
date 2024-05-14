@@ -48,7 +48,7 @@
                 <th>Colour</th>
                 <th>Garment</th>
                 <th>  </th>
-                <th>  </th>
+                <!--<th>  </th>-->
             </tr>
             {% for item in results3 %}
             <tr>
@@ -56,10 +56,10 @@
                 <td>{{ item[2] }}</td>
                 <td>{{ item[3] }}</td>
                 <td>{{ item[4] }}</td>
-                <td class="w3-right-align"><a href='/dresses' title="Edit" class="edit-button">&#9998;</a></td>
+                <!--<td class="w3-right-align"><a href='/dresses' title="Edit" class="edit-button">&#9998;</a></td>-->
                 <td class="w3-right-align">
                   <form method="POST" action="{{ url_for('delete_dresses', ID=item[0]) }}">
-                    <input type="submit" title="Delete" class="delete-button" value="&#10006;" onclick="return confirm('Are you sure you want to delete this Dress?')">
+                    <input type="submit" title="Delete" class="input delete-button" value="&#10006;" onclick="return confirm('Are you sure you want to delete this Dress?')">
                   </form>
                 </td>
             </tr>

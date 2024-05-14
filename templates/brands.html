@@ -18,16 +18,16 @@
         <table class="w3-table-all">
             <tr>
                 <th>Brand Name</th>
-                <th class="w3-right-align">  </th>
-                <th class="w3-right-align">  </th>
+                <th>  </th>
+                <!--<th>  </th>-->
             </tr>
             {% for item in resultsbrands %}
             <tr>
                 <td>{{ item[1] }}</td>
-                <td class="w3-right-align"><a href='/brands' title="Edit" class="edit-button">&#9998;</a></td>
+                <!--<td class="w3-right-align"><a href='/brands' title="Edit" class="edit-button">&#9998;</a></td>-->
                 <td class="w3-right-align">
                   <form method="POST" action="{{ url_for('delete_brand', ID=item[0]) }}">
-                    <input type="submit" title="Delete" class="delete-button" value="&#10006;" onclick="return confirm('Are you sure you want to delete this Brand?')">
+                    <input type="submit" title="Delete" class="input delete-button" value="&#10006;" onclick="return confirm('Are you sure you want to delete this Brand?')">
                   </form>
                 </td>
             </tr>

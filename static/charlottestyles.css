@@ -7,3 +7,11 @@
     color: #008507;
     text-decoration:none;
 }
+
+.input{
+    padding:0px;
+    background-color:#ffffff00;
+    display:inside;
+    border:none;
+    width:100%
+}

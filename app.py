@@ -26,7 +26,7 @@ def brands():
 def colours():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql ="SELECT Colour_Type FROM Colours;"
+    sql ="SELECT * FROM Colours;"
     cursor.execute(sql)
     resultscolours = cursor.fetchall()
     db.close()
@@ -38,7 +38,7 @@ def colours():
 def garments():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql ="SELECT Garment_Type FROM Garments;"
+    sql ="SELECT * FROM Garments;"
     cursor.execute(sql)
     resultsgarments = cursor.fetchall()
     db.close()
@@ -50,7 +50,7 @@ def garments():
 def styles():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql ="SELECT Style_Name FROM Styles;"
+    sql ="SELECT * FROM Styles;"
     cursor.execute(sql)
     resultsstyles = cursor.fetchall()
     db.close()
@@ -418,6 +418,40 @@ def delete_brand(ID):
             cursor.execute(sql_delete, (ID,))
             connection.commit()
         return brands()
+
+
+# delete colour
+@app.route("/delete_colour/<int:ID>", methods=["POST"])
+def delete_colour(ID):
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql_delete = "DELETE FROM Colours WHERE ID = ?"
+            cursor.execute(sql_delete, (ID,))
+            connection.commit()
+        return colours()
+
+
+# delete garment
+@app.route("/delete_garment/<int:ID>", methods=["POST"])
+def delete_garment(ID):
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql_delete = "DELETE FROM Garments WHERE ID = ?"
+            cursor.execute(sql_delete, (ID,))
+            connection.commit()
+        return garments()
+
+
+# delete style
+@app.route("/delete_style/<int:ID>", methods=["POST"])
+def delete_style(ID):
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql_delete = "DELETE FROM Styles WHERE ID = ?"
+            cursor.execute(sql_delete, (ID,))
+            connection.commit()
+        return styles()
+
 
 # page not fount error
 @app.errorhandler(404)
