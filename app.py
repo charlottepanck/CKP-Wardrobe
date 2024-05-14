@@ -377,6 +377,17 @@ def delete_bottom(ID):
         return bottoms()
 
 
+# delete outerwear
+@app.route('/delete_outerwear/<int:ID>', methods=['POST'])
+def delete_outerwear(ID):
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql_delete = "DELETE FROM Outerwear WHERE ID = ?"
+            cursor.execute(sql_delete, (ID,))
+            connection.commit()
+        return outerwear()
+
+
 # page not fount error
 @app.errorhandler(404)
 def page_not_found(error):
