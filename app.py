@@ -388,6 +388,17 @@ def delete_outerwear(ID):
         return outerwear()
 
 
+# delete dress
+@app.route('/delete_dresses/<int:ID>', methods=['POST'])
+def delete_dresses(ID):
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql_delete = "DELETE FROM Dresses WHERE ID = ?"
+            cursor.execute(sql_delete, (ID,))
+            connection.commit()
+        return dresses()
+
+
 # page not fount error
 @app.errorhandler(404)
 def page_not_found(error):
@@ -401,9 +412,9 @@ def internal_server_error(error):
 
 
 # somthing else error
-@app.errorhandler(Exception)
-def unexpected_error(error):
-    return render_template('error.html', error='Something went wrong'), 500
+#@app.errorhandler(Exception)
+#def unexpected_error(error):
+#    return render_template('error.html', error='Something went wrong'), 500
 
 
 if __name__ == "__main__":
