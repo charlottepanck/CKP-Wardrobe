@@ -14,7 +14,7 @@ def home():
 def brands():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql ="SELECT Brand_Name FROM Brands;"
+    sql ="SELECT * FROM Brands;"
     cursor.execute(sql)
     resultsbrands = cursor.fetchall()
     db.close()
@@ -398,6 +398,26 @@ def delete_dresses(ID):
             connection.commit()
         return dresses()
 
+
+# delete outfit
+@app.route('/delete_outft/<int:ID>', methods=['POST'])
+def delete_outfit(ID):
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql_delete = "DELETE FROM Outfits WHERE ID = ?"
+            cursor.execute(sql_delete, (ID,))
+            connection.commit()
+        return outfits()
+
+# delete brand
+@app.route("/delete_brand/<int:ID>", methods=["POST"])
+def delete_brand(ID):
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql_delete = "DELETE FROM Brands WHERE ID = ?"
+            cursor.execute(sql_delete, (ID,))
+            connection.commit()
+        return brands()
 
 # page not fount error
 @app.errorhandler(404)
