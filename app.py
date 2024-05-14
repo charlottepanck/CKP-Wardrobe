@@ -28,7 +28,7 @@ def colours():
     cursor.execute(sql)
     resultscolours = cursor.fetchall()
     db.close()
-    return render_template("colours.html", resultscolours = resultscolours)
+    return render_template("colours.html", resultscolours=resultscolours)
 
 
 @app.route('/garments')
@@ -39,7 +39,7 @@ def garments():
     cursor.execute(sql)
     resultsgarments = cursor.fetchall()
     db.close()
-    return render_template("garments.html", resultsgarments = resultsgarments)
+    return render_template("garments.html", resultsgarments=resultsgarments)
 
 
 @app.route('/styles')
@@ -50,7 +50,7 @@ def styles():
     cursor.execute(sql)
     resultsstyles = cursor.fetchall()
     db.close()
-    return render_template("styles.html", resultsstyles = resultsstyles)
+    return render_template("styles.html", resultsstyles=resultsstyles)
 
 
 @app.route('/tops')
@@ -64,17 +64,16 @@ def tops():
     FROM Tops
     LEFT JOIN Brands ON Tops.Brand = Brands.ID
     LEFT JOIN Garments ON Tops.Garment = Garments.ID
-    LEFT JOIN Colours ON Tops.Colour = Colours.ID
-    WHERE Tops.Name != 'N/A';"""
+    LEFT JOIN Colours ON Tops.Colour = Colours.ID;"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    sql2 = """SELECT ID, Brand_Name FROM Brands WHERE Brand_Name != 'N/A';"""
+    sql2 = """SELECT ID, Brand_Name FROM Brands;"""
     cursor.execute(sql2)
     resultsbrandstops = cursor.fetchall()
-    sql3 = """SELECT ID, Colour_Type FROM Colours WHERE Colour_Type != 'N/A';"""
+    sql3 = """SELECT ID, Colour_Type FROM Colours;"""
     cursor.execute(sql3)
     resultscolourstops = cursor.fetchall()
-    sql4 = """SELECT ID, Garment_Type FROM Garments WHERE Garment_Type != 'N/A';"""
+    sql4 = """SELECT ID, Garment_Type FROM Garments;"""
     cursor.execute(sql4)
     resultsgarmentstops = cursor.fetchall()
     db.close()
@@ -90,17 +89,16 @@ def bottoms():
     FROM Bottoms
     LEFT JOIN Brands ON Bottoms.Brand = Brands.ID
     LEFT JOIN Garments ON Bottoms.Garment = Garments.ID
-    LEFT JOIN Colours ON Bottoms.Colour = Colours.ID
-    WHERE Bottoms.Name != 'N/A';"""
+    LEFT JOIN Colours ON Bottoms.Colour = Colours.ID;"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    sql2 = """SELECT ID, Brand_Name FROM Brands WHERE Brand_Name != 'N/A';"""
+    sql2 = """SELECT ID, Brand_Name FROM Brands;"""
     cursor.execute(sql2)
     resultsbrandsbottoms = cursor.fetchall()
-    sql3 = """SELECT ID, Colour_Type FROM Colours WHERE Colour_Type != 'N/A';"""
+    sql3 = """SELECT ID, Colour_Type FROM Colours;"""
     cursor.execute(sql3)
     resultscoloursbottoms = cursor.fetchall()
-    sql4 = """SELECT ID, Garment_Type FROM Garments WHERE Garment_Type != 'N/A';"""
+    sql4 = """SELECT ID, Garment_Type FROM Garments;"""
     cursor.execute(sql4)
     resultsgarmentsbottoms = cursor.fetchall()
     db.close()
@@ -116,17 +114,16 @@ def outerwear():
     FROM Outerwear
     LEFT JOIN Brands ON Outerwear.Brand = Brands.ID
     LEFT JOIN Garments ON Outerwear.Garment = Garments.ID
-    LEFT JOIN Colours ON Outerwear.Colour = Colours.ID
-    WHERE Outerwear.Name != 'N/A';"""
+    LEFT JOIN Colours ON Outerwear.Colour = Colours.ID;"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    sql2 = """SELECT ID, Brand_Name FROM Brands WHERE Brand_Name != 'N/A';"""
+    sql2 = """SELECT ID, Brand_Name FROM Brands;"""
     cursor.execute(sql2)
     resultsbrandsouterwear = cursor.fetchall()
-    sql3 = """SELECT ID, Colour_Type FROM Colours WHERE Colour_Type != 'N/A';"""
+    sql3 = """SELECT ID, Colour_Type FROM Colours;"""
     cursor.execute(sql3)
     resultscoloursouterwear = cursor.fetchall()
-    sql4 = """SELECT ID, Garment_Type FROM Garments WHERE Garment_Type != 'N/A';"""
+    sql4 = """SELECT ID, Garment_Type FROM Garments;"""
     cursor.execute(sql4)
     resultsgarmentsouterwear = cursor.fetchall()
     db.close()
@@ -142,17 +139,16 @@ def dresses():
     FROM Dresses
     LEFT JOIN Brands ON Dresses.Brand = Brands.ID
     LEFT JOIN Garments ON Dresses.Garment = Garments.ID
-    LEFT JOIN Colours ON Dresses.Colour = Colours.ID
-    WHERE Dresses.Name != 'N/A';"""
+    LEFT JOIN Colours ON Dresses.Colour = Colours.ID;"""
     cursor.execute(sql)
     results = cursor.fetchall()
-    sql2 = """SELECT ID, Brand_Name FROM Brands WHERE Brand_Name != 'N/A';"""
+    sql2 = """SELECT ID, Brand_Name FROM Brands;"""
     cursor.execute(sql2)
     resultsbrandsdresses = cursor.fetchall()
-    sql3 = """SELECT ID, Colour_Type FROM Colours WHERE Colour_Type != 'N/A';"""
+    sql3 = """SELECT ID, Colour_Type FROM Colours;"""
     cursor.execute(sql3)
     resultscoloursdresses = cursor.fetchall()
-    sql4 = """SELECT ID, Garment_Type FROM Garments WHERE Garment_Type != 'N/A';"""
+    sql4 = """SELECT ID, Garment_Type FROM Garments;"""
     cursor.execute(sql4)
     resultsgarmentsdresses = cursor.fetchall()
     db.close()
@@ -188,7 +184,7 @@ def outfits():
     cursor.execute(sql6)
     resultsstylesoutfits = cursor.fetchall()
     db.close()
-    return render_template("outfits.html", results4 = results, resultstopsoutfits = resultstopsoutfits, resultsbottomsoutfits = resultsbottomsoutfits, resultsouterwearoutfits = resultsouterwearoutfits, resultsdressesoutfits = resultsdressesoutfits, resultsstylesoutfits = resultsstylesoutfits)#str(results)
+    return render_template("outfits.html", results4=results, resultstopsoutfits=resultstopsoutfits, resultsbottomsoutfits=resultsbottomsoutfits, resultsouterwearoutfits=resultsouterwearoutfits, resultsdressesoutfits=resultsdressesoutfits, resultsstylesoutfits=resultsstylesoutfits)#str(results)
 
 
 @app.route('/tops', methods = ['GET', 'POST'])
