@@ -15,7 +15,8 @@
     </div>
     <div class="w3-container w3-light-grey w3-cell w3-card-4" style="width:80%">
         <br>
-        <table class="w3-table-all">
+        <input class="w3-input w3-border w3-padding w3-row" type="text" placeholder="Search for garments.." id="myInput" onkeyup="tablenamefilter()">
+        <table class="w3-table-all w3-margin-top" id="myTable">
             <tr>
                 <th>Garment</th>
                 <th>  </th>
@@ -36,4 +37,24 @@
     </div>
   </div>
   <br>
+  <script>
+    function tablenamefilter() {
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
 {% endblock %}
