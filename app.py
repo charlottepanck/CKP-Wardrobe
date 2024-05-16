@@ -80,7 +80,7 @@ def tops():
     cursor.execute(sql4)
     resultsgarmentstops = cursor.fetchall()
     db.close()
-    return render_template("tops.html", results = results, resultsbrandstops = resultsbrandstops, resultscolourstops = resultscolourstops, resultsgarmentstops = resultsgarmentstops)#str(results)
+    return render_template("tops.html", results = results, resultsbrandstops = resultsbrandstops, resultscolourstops = resultscolourstops, resultsgarmentstops = resultsgarmentstops)
 
 
 # view all bottoms & fetch all garments, brands, colours
