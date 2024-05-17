@@ -360,7 +360,7 @@ def addstyles():
 def delete_top(ID):
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
-            sql_delete = "DELETE FROM Tops WHERE ID = ?"
+            sql_delete = "DELETE FROM Tops WHERE ID = ?;"
             cursor.execute(sql_delete, (ID,))
             connection.commit()
         return tops()
@@ -371,7 +371,7 @@ def delete_top(ID):
 def delete_bottom(ID):
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
-            sql_delete = "DELETE FROM Bottoms WHERE ID = ?"
+            sql_delete = "DELETE FROM Bottoms WHERE ID = ?;"
             cursor.execute(sql_delete, (ID,))
             connection.commit()
         return bottoms()
@@ -382,7 +382,7 @@ def delete_bottom(ID):
 def delete_outerwear(ID):
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
-            sql_delete = "DELETE FROM Outerwear WHERE ID = ?"
+            sql_delete = "DELETE FROM Outerwear WHERE ID = ?;"
             cursor.execute(sql_delete, (ID,))
             connection.commit()
         return outerwear()
@@ -393,7 +393,7 @@ def delete_outerwear(ID):
 def delete_dresses(ID):
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
-            sql_delete = "DELETE FROM Dresses WHERE ID = ?"
+            sql_delete = "DELETE FROM Dresses WHERE ID = ?;"
             cursor.execute(sql_delete, (ID,))
             connection.commit()
         return dresses()
@@ -404,7 +404,7 @@ def delete_dresses(ID):
 def delete_outfit(ID):
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
-            sql_delete = "DELETE FROM Outfits WHERE ID = ?"
+            sql_delete = "DELETE FROM Outfits WHERE ID = ?;"
             cursor.execute(sql_delete, (ID,))
             connection.commit()
         return outfits()
@@ -414,7 +414,7 @@ def delete_outfit(ID):
 def delete_brand(ID):
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
-            sql_delete = "DELETE FROM Brands WHERE ID = ?"
+            sql_delete = "DELETE FROM Brands WHERE ID = ?;"
             cursor.execute(sql_delete, (ID,))
             connection.commit()
         return brands()
@@ -425,7 +425,7 @@ def delete_brand(ID):
 def delete_colour(ID):
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
-            sql_delete = "DELETE FROM Colours WHERE ID = ?"
+            sql_delete = "DELETE FROM Colours WHERE ID = ?;"
             cursor.execute(sql_delete, (ID,))
             connection.commit()
         return colours()
@@ -436,7 +436,7 @@ def delete_colour(ID):
 def delete_garment(ID):
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
-            sql_delete = "DELETE FROM Garments WHERE ID = ?"
+            sql_delete = "DELETE FROM Garments WHERE ID = ?;"
             cursor.execute(sql_delete, (ID,))
             connection.commit()
         return garments()
@@ -447,7 +447,7 @@ def delete_garment(ID):
 def delete_style(ID):
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
-            sql_delete = "DELETE FROM Styles WHERE ID = ?"
+            sql_delete = "DELETE FROM Styles WHERE ID = ?;"
             cursor.execute(sql_delete, (ID,))
             connection.commit()
         return styles()
@@ -456,16 +456,18 @@ def delete_style(ID):
 @app.route('/edit_top/<int:ID>', methods=['POST'])
 def edit_top(ID):
     if request.method == 'POST':
-        name = request.form.get('name')
+        Name = request.form.get('Name')
         brand = request.form.get('brand')
         colour = request.form.get('colour')
         garment = request.form.get('garment')
              
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
-            sql_edit = "UPDATE Tops SET name=?, brand=?, colour=?, garment=? WHERE ID=?;"
-            cursor.execute(sql_edit, (name, brand, colour, garment, ID))
+            sql_edit = "UPDATE Tops SET Name = ?, brand = ?, colour = ?, garment = ? WHERE ID = ?;"
+            cursor.execute(sql_edit, (Name, brand, colour, garment, ID))
             connection.commit()
+        return tops()
+    else:
         return tops()
 
 
