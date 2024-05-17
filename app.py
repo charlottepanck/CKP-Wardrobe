@@ -453,22 +453,22 @@ def delete_style(ID):
         return styles()
 
 # edit top
-@app.route('/edit_top/<int:ID>', methods=['POST'])
-def edit_top(Name, brand, colour, garment, ID):
-    if request.method == 'POST':
-        Name = request.form.get('Name')
-        brand = request.form.get('brand')
-        colour = request.form.get('colour')
-        garment = request.form.get('garment')
-             
-        with sqlite3.connect(DB) as connection:
-            cursor = connection.cursor()
-            sql_edit = "UPDATE Tops SET Name = ?, brand = ?, colour = ?, garment = ? WHERE ID = ?;"
-            cursor.execute(sql_edit, (Name, brand, colour, garment, ID))
-            connection.commit()
-            return tops()
-    else:
-        return tops()
+#@app.route('/edit_top/<int:ID>', methods=['POST'])
+#def edit_top(ID):
+#    if request.method == 'POST':
+#        Name = request.form.get('Name')
+#        brand = request.form.get('brand')
+#        colour = request.form.get('colour')
+#        garment = request.form.get('garment')
+
+#        with sqlite3.connect(DB) as connection:
+#            cursor = connection.cursor()
+#            sql_edit = "UPDATE Tops SET Name = ?, brand = ?, colour = ?, garment = ? WHERE ID = ?;"
+#            cursor.execute(sql_edit, (Name, brand, colour, garment, ID))
+#            connection.commit()
+#            return tops()
+#    else:
+#        return tops()
 
 
 # page not fount error
