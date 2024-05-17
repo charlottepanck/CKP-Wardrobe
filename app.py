@@ -466,7 +466,7 @@ def edit_top(ID):
             sql_edit = "UPDATE Tops SET Name = ?, brand = ?, colour = ?, garment = ? WHERE ID = ?;"
             cursor.execute(sql_edit, (Name, brand, colour, garment, ID))
             connection.commit()
-        return tops()
+            return tops()
     else:
         return tops()
 
