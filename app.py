@@ -454,7 +454,7 @@ def delete_style(ID):
 
 # edit top
 @app.route('/edit_top/<int:ID>', methods=['POST'])
-def edit_top(ID):
+def edit_top(Name, brand, colour, garment, ID):
     if request.method == 'POST':
         Name = request.form.get('Name')
         brand = request.form.get('brand')
