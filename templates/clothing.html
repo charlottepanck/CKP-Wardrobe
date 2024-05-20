@@ -42,7 +42,18 @@
 </div>
 
 <div class="w3-container w3-light-grey w3-cell w3-card-4" style="width:80%">
-    <br>
+  <div class="main">
+{% for item in results %}
+<div class="w3-card-4">
+          <img src="/w3images/mountains.jpg" alt="{{item[1]}}" style="width:100%">
+          <h3>{{ item[1] }}</h3>
+          <p>Brand: {{ item[2] }}<br>Type: {{ item[3] }}<br>Colour: {{ item[4] }}</p>
+        </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    <!--<br>
     <input class="w3-input w3-border w3-padding w3-row" type="text" placeholder="Search for names.." id="myInput" onkeyup="tablenamefilter()">
     <table class="w3-table-all w3-margin-top" id="myTable">
     <tr>
@@ -67,7 +78,7 @@
     {% endfor %}
 </table>
 <br>
-</div>
+</div>-->
 </div>
 <br>
 <script>
