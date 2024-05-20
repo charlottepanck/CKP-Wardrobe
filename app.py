@@ -115,6 +115,25 @@ def deleteclothing(ID):
     return viewclothing()
 
 
+# add outfit
+@app.route('/clothing', methods=['GET', 'POST'])
+def addoutfit():
+    if request.method == 'POST':
+        outfit_id = request.form.get('outfit_id')
+        outfit_item = request.form.get('outfit_item')
+        outfit_style = request.form.get('outfit_style')
+        img_file = request.form.get('img_file')
+
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql = "INSERT INTO outfit (outfit_id, outfit_item, outfit_style, img_file) VALUES (?, ?, ?, ?);"
+            cursor.execute(sql, (outfit_id, outfit_item, outfit_style, outfit_img_file))
+            connection.commit()
+            return viewoutfits()
+    else:
+        return viewoutfits()
+
+
 # page not fount error
 @app.errorhandler(404)
 def page_not_found(error):
