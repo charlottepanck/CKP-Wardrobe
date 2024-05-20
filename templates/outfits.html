@@ -1,6 +1,48 @@
 {% extends "base.html" %}
 {% block body %}
 <br>
+<div class="w3-cell-row">
+  <br>
+  <div class="w3-container w3-light-grey w3-cell w3-card-4" style="width:20%">
+    <form class="w3-container" action="{{ url_for('addclothing') }}" method="POST">
+      <h2>Add Clothing</h2>
+    
+      <label> Clothing name</label>
+      <input name="name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border" required><br>
+      
+      <label>Brand </label>
+      <select name="brand" type="number" class="w3-input w3-border" required>
+        <option value=""> </option>
+        {% for item in resultsbrandsc %}
+        <option value={{item[0]}}>{{item[1]}}</option>
+        {% endfor %}
+      </select><br>
+
+      <label>Type </label>
+      <select name="type" type="number" class="w3-input w3-border" required>
+        <option value=""> </option>
+        {% for items in resultstypec %}
+        <option value={{items[0]}}>{{items[1]}}</option>
+        {% endfor %}
+      </select><br>
+    
+      <label>Colour </label>
+      <select name="colour" type="number" class="w3-input w3-border" required>
+        <option value=""> </option>
+        {% for itemss in resultscoloursc %}
+        <option value={{itemss[0]}}>{{itemss[1]}}</option>
+        {% endfor %}
+      </select><br>
+
+      <label for="img_file">Image </label>
+      <input name="img_file" type="file" id="myfile" class="w3-input w3-white w3-border">
+
+      <p><input button type="submit" value="Add Clothing" class="w3-button w3-white w3-border"></p>
+    </form>
+    <p>1. Image file must be a jpeg<br><br>2. Image file must be uploaded from the image folder inside the static folder<br><br>3. Image size preferably 3:4</p>
+  </div>
+
+<!--<br>
 <table class="w3-table-all">
     <tr>
         <th>Outfit ID</th>
@@ -14,5 +56,30 @@
         <td>{{ item[2] }}</td>
     </tr>
     {% endfor %}
-</table>
+</table>-->
+
+<div class="w3-container"></div>
+
+  <div class="w3-container w3-light-grey w3-cell w3-card-4" style="width:80%">
+    <br>
+    <div class="w3-row-padding">
+      {% for item in outfits_results %}
+      <div class="w3-third">
+        <div class="w3-card-4 w3-white">
+          <img src="/static/images/{{item[3]}}" alt=lol class="img" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
+          <div class="padding">
+          <h3>Outfit {{ item[0] }}</h3>
+          <p>Name: {{ item[1] }}<br>Style: {{ item[2] }}</p>
+        </div>
+          <form method="POST" action="{{ url_for('deleteclothing', ID=item[0]) }}">
+            <input type="submit" title="Delete" class="input delete-button w3-right-align" value="&#10006;" onclick="return confirm('Are you sure you want to delete this Item?')">
+          </form>
+        </div>
+        <br>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<br>
 {% endblock %}
