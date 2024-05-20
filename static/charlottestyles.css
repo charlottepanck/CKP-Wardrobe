@@ -17,6 +17,13 @@
     width:100%
 }
 
+
+.img {
+
+  width:300px;
+  height:400px;
+}
+
 /* Button used to open the contact form - fixed at the bottom of the page */
 .open-button {
     border: none;
@@ -145,4 +152,8 @@ h1 {
 
 .-card-4,.w3-hover-shadow:hover {
   box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19)
+}
+
+.ckp-light-pink {
+  color: #ffe5e9ff;
 }

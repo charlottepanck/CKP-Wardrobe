@@ -15,7 +15,7 @@ def viewclothing():
     # render poduct page
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql = """SELECT clothing.clothing_id, clothing.name, brand.brand_name, type.type_name, colour.colour_name 
+    sql = """SELECT clothing.clothing_id, clothing.name, brand.brand_name, type.type_name, colour.colour_name, clothing.img_file 
 FROM clothing 
 LEFT JOIN brand on clothing.brand = brand.brand_id
 LEFT JOIN type on clothing.type = type.type_id

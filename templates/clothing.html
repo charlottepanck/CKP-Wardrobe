@@ -46,7 +46,7 @@
       {% for item in results %}
       <div class="w3-third">
         <div class="w3-card-4 w3-white w3-padding">
-          <img src="images/cargoskirt.jpg" alt="{{item[1]}}" style="width: 100%;">
+          <img src="/static/images/{{item[5]}}" alt="{{item[1]}}" class="img">
           <h3>{{ item[1] }}</h3>
           <p>Brand: {{ item[2] }}<br>Type: {{ item[3] }}<br>Colour: {{ item[4] }}</p>
           <form method="POST" action="{{ url_for('deleteclothing', ID=item[0]) }}">
