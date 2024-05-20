@@ -74,23 +74,20 @@ def viewcolours():
 def viewoutfits():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql = """SELECT outfit.outfit_id, clothing.name, style.style_name, outfit.img_file
+    sql = """SELECT outfit.id, outfit.outfit_id, clothing.name, style.style_name, outfit.img_file
 FROM outfit 
 LEFT JOIN clothing ON outfit.outfit_item = clothing.clothing_id
 LEFT JOIN style ON outfit.outfit_style = style.style_id;"""
     cursor.execute(sql)
     outfits_results = cursor.fetchall()
-    sql2 = "SELECT * FROM brand;"
+    sql1 = "SELECT clothing_id, name FROM clothing;"
+    cursor.execute(sql1)
+    resultsclothingo = cursor.fetchall()
+    sql2 = "SELECT * FROM style;"
     cursor.execute(sql2)
-    resultsbrandsc = cursor.fetchall()
-    sql3 = "SELECT * FROM colour;"
-    cursor.execute(sql3)
-    resultscolourso = cursor.fetchall()
-    sql4 = "SELECT * FROM type;"
-    cursor.execute(sql4)
-    resultstypeo = cursor.fetchall()
+    resultsstyleo = cursor.fetchall()
     db.close()
-    return render_template("outfits.html", outfits_results = outfits_results)
+    return render_template("outfits.html", outfits_results = outfits_results, resultsstyleo=resultsstyleo, resultsclothingo=resultsclothingo)
 
 
 # add clothing
@@ -125,7 +122,7 @@ def deleteclothing(ID):
 
 
 # add outfit
-@app.route('/clothing', methods=['GET', 'POST'])
+@app.route('/outfit', methods=['GET', 'POST'])
 def addoutfit():
     if request.method == 'POST':
         outfit_id = request.form.get('outfit_id')
@@ -136,11 +133,38 @@ def addoutfit():
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
             sql = "INSERT INTO outfit (outfit_id, outfit_item, outfit_style, img_file) VALUES (?, ?, ?, ?);"
-            cursor.execute(sql, (outfit_id, outfit_item, outfit_style, outfit_img_file))
+            cursor.execute(sql, (outfit_id, outfit_item, outfit_style, img_file))
             connection.commit()
             return viewoutfits()
     else:
         return viewoutfits()
+    
+
+# add brand
+@app.route('/brands', methods=['GET', 'POST'])
+def addbrand():
+    if request.method == 'POST':
+        brand_name = request.form.get('brand_name')
+
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql = "INSERT INTO brand (brand_name) VALUES (?);"
+            cursor.execute(sql, (brand_name,))
+            connection.commit()
+            return viewbrands()
+    else:
+        return viewbrands()
+
+
+# delete outfit
+@app.route('/delete_outfit/<int:ID>', methods=['POST'])
+def deleteoutfit(ID):
+    with sqlite3.connect(DB) as connection:
+        cursor = connection.cursor()
+        sql_delete = "DELETE FROM outfit WHERE id = ?;"
+        cursor.execute(sql_delete, (ID,))
+        connection.commit()
+    return viewoutfits()
 
 
 # page not fount error
