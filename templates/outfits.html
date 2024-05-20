@@ -5,35 +5,27 @@
   <br>
   <div class="w3-container w3-light-grey w3-cell w3-card-4" style="width:20%">
     <form class="w3-container" action="{{ url_for('addclothing') }}" method="POST">
-      <h2>Add Clothing</h2>
+      <h2>Add Outfit</h2>
     
-      <label> Clothing name</label>
-      <input name="name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border" required><br>
+      <label> Outfit ID</label>
+      <input name="outfit_id" type="number" maxlength="25" placeholder=" " class="w3-input w3-border" required><br>
       
-      <label>Brand </label>
-      <select name="brand" type="number" class="w3-input w3-border" required>
+      <label>Clothing Item </label>
+      <select name="outfit_item" type="number" class="w3-input w3-border" required>
         <option value=""> </option>
-        {% for item in resultsbrandsc %}
+        {% for item in resultsbrandso %}
         <option value={{item[0]}}>{{item[1]}}</option>
         {% endfor %}
       </select><br>
 
-      <label>Type </label>
-      <select name="type" type="number" class="w3-input w3-border" required>
+      <label>Style </label>
+      <select name="outfit_style" type="number" class="w3-input w3-border" required>
         <option value=""> </option>
-        {% for items in resultstypec %}
+        {% for items in resultstypeo %}
         <option value={{items[0]}}>{{items[1]}}</option>
         {% endfor %}
       </select><br>
-    
-      <label>Colour </label>
-      <select name="colour" type="number" class="w3-input w3-border" required>
-        <option value=""> </option>
-        {% for itemss in resultscoloursc %}
-        <option value={{itemss[0]}}>{{itemss[1]}}</option>
-        {% endfor %}
-      </select><br>
-
+  
       <label for="img_file">Image </label>
       <input name="img_file" type="file" id="myfile" class="w3-input w3-white w3-border">
 

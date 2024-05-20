@@ -80,6 +80,15 @@ LEFT JOIN clothing ON outfit.outfit_item = clothing.clothing_id
 LEFT JOIN style ON outfit.outfit_style = style.style_id;"""
     cursor.execute(sql)
     outfits_results = cursor.fetchall()
+    sql2 = "SELECT * FROM brand;"
+    cursor.execute(sql2)
+    resultsbrandsc = cursor.fetchall()
+    sql3 = "SELECT * FROM colour;"
+    cursor.execute(sql3)
+    resultscolourso = cursor.fetchall()
+    sql4 = "SELECT * FROM type;"
+    cursor.execute(sql4)
+    resultstypeo = cursor.fetchall()
     db.close()
     return render_template("outfits.html", outfits_results = outfits_results)
 
