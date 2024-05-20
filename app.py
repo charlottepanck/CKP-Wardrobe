@@ -101,6 +101,17 @@ def addclothing():
             return viewclothing()
     else:
         return viewclothing()
+    
+
+# delete clothing
+@app.route('/delete_clothing/<int:ID>', methods=['POST'])
+def deleteclothing(ID):
+    with sqlite3.connect(DB) as connection:
+        cursor = connection.cursor()
+        sql_delete = "DELETE FROM clothing WHERE clothing_id = ?;"
+        cursor.execute(sql_delete, (ID,))
+        connection.commit()
+    return viewclothing()
 
 
 # page not fount error
