@@ -18,10 +18,12 @@ function tablenamefilter() {
     }
   }
 
+//open form
 function openForm() {
   document.getElementById("myForm").style.display = "block";
 }
   
+//open form
 function closeForm() {
   document.getElementById("myForm").style.display = "none";
 }

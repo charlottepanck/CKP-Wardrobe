@@ -3,20 +3,16 @@
 <br>
 <table class="w3-table-all">
     <tr>
-        <th>Name</th>
-        <th>Top</th>
-        <th>Bottom</th>
-        <th>Outerwear</th>
-        <th>Dress</th>
+        <th>Outfit ID</th>
+        <th>Clothing Item</th>
         <th>Style</th>
+
     {% for item in outfits_results %}
     <tr>
+        <td>{{ item[0] }}</td>
         <td>{{ item[1] }}</td>
         <td>{{ item[2] }}</td>
-        <td>{{ item[3] }}</td>
-        <td>{{ item[4] }}</td>
-        <td>{{ item[5] }}</td>
-        </tr>
+    </tr>
     {% endfor %}
 </table>
 {% endblock %}

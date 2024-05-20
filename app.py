@@ -1,4 +1,4 @@
-from flask import Flask, render_template#, redirect, request, session, url_for
+from flask import Flask, render_template, redirect, request, session, url_for
 import sqlite3
 app = Flask(__name__)
 DB = 'ckpwardrobe.db'
@@ -19,28 +19,89 @@ def viewclothing():
 FROM clothing 
 LEFT JOIN brand on clothing.brand = brand.brand_id
 LEFT JOIN type on clothing.type = type.type_id
-LEFT JOIN colour on clothing.colour = colour.colour_id;"""
+LEFT JOIN colour on clothing.colour = colour.colour_id
+ORDER BY clothing.name;"""
     cursor.execute(sql)
     results = cursor.fetchall()
+    sql2 = "SELECT * FROM brand;"
+    cursor.execute(sql2)
+    resultsbrandsc = cursor.fetchall()
+    sql3 = "SELECT * FROM colour;"
+    cursor.execute(sql3)
+    resultscoloursc = cursor.fetchall()
+    sql4 = "SELECT * FROM type;"
+    cursor.execute(sql4)
+    resultstypec = cursor.fetchall()
     db.close()
-    return render_template("clothing.html", results = results)#str(results)
+    return render_template("clothing.html", results=results, resultsbrandsc=resultsbrandsc, resultstypec=resultstypec, resultscoloursc=resultscoloursc)
+
+
+@app.route('/brands')
+def viewbrands():
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = "SELECT * FROM brand;"
+    cursor.execute(sql)
+    brands_results = cursor.fetchall()
+    db.close()
+    return render_template("brands.html", brands_results=brands_results)
+
+
+@app.route('/types')
+def viewtypes():
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = "SELECT * FROM type;"
+    cursor.execute(sql)
+    type_results = cursor.fetchall()
+    db.close()
+    return render_template("types.html", type_results=type_results)
+
+
+@app.route('/colours')
+def viewcolours():
+    db = sqlite3.connect(DB)
+    cursor = db.cursor()
+    sql = "SELECT * FROM colour;"
+    cursor.execute(sql)
+    colour_results = cursor.fetchall()
+    db.close()
+    return render_template("colours.html", colour_results=colour_results)
+
 
 
 @app.route('/outfits')
 def viewoutfits():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql = """SELECT outfit.outfit_id, outfit.outfit_name, clothing.name, style.style_name
+    sql = """SELECT outfit.outfit_id, clothing.name, style.style_name
 FROM outfit 
-LEFT JOIN clothing on outfit.top = clothing.clothing_id
-LEFT JOIN clothing on outfit.bottom = clothing.clothing_id
-LEFT JOIN clothing on outfit.outerwear = clothing.clothing_id
-LEFT JOIN clothing on outfit.dress = clothing.clothing_id
-LEFT JOIN style on outfit.style = style.style_id;"""
+LEFT JOIN clothing ON outfit.outfit_item = clothing.clothing_id
+LEFT JOIN style ON outfit.outfit_style = style.style_name;"""
     cursor.execute(sql)
     outfits_results = cursor.fetchall()
     db.close()
-    return render_template("outfits.html", outfits_results = outfits_results)#str(results)
+    return render_template("outfits.html", outfits_results = outfits_results)
+
+
+# add clothing
+@app.route('/clothing', methods=['GET', 'POST'])
+def addclothing():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        brand = request.form.get('brand')
+        type = request.form.get('type')
+        colour = request.form.get('colour')
+
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql = "INSERT INTO clothing (name, brand, type, colour) VALUES (?, ?, ?, ?);"
+            cursor.execute(sql, (name, brand, type, colour))
+            connection.commit()
+            return viewclothing()
+    else:
+        return viewclothing()
+
 
 # page not fount error
 @app.errorhandler(404)

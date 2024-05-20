@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block body %}
+<br>
+<table class="w3-table-all">
+    <tr>
+        <th>Brand Name</th>
+    </tr>
+    {% for item in brands_results %}
+    <tr>
+        <td>{{ item[1] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
