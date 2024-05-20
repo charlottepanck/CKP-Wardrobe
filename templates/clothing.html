@@ -32,10 +32,14 @@
         {% for itemss in resultscoloursc %}
         <option value={{itemss[0]}}>{{itemss[1]}}</option>
         {% endfor %}
-      </select>
+      </select><br>
+
+      <label for="img_file">Image </label>
+      <input name="img_file" type="file" id="myfile" class="w3-input w3-white w3-border">
 
       <p><input button type="submit" value="Add Clothing" class="w3-button w3-white w3-border"></p>
     </form>
+    <p>1. Image file must be a jpeg<br><br>2. Image file must be uploaded from the image folder inside the static folder<br><br>3. Image size preferably 3:4</p>
   </div>
 
   <div class="w3-container"></div>
@@ -46,7 +50,8 @@
       {% for item in results %}
       <div class="w3-third">
         <div class="w3-card-4 w3-white">
-          <img src="/static/images/{{item[5]}}" alt="{{item[1]}}" class="img">
+          <!--<img src="/static/images/{{item[5]}}" id="slay" class="img" onerror="standby()">-->
+          <img src="/static/images/{{item[5]}}" alt=lol class="img" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
           <div class="padding">
           <h3>{{ item[1] }}</h3>
           <p>Brand: {{ item[2] }}<br>Type: {{ item[3] }}<br>Colour: {{ item[4] }}</p>

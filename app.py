@@ -92,11 +92,12 @@ def addclothing():
         brand = request.form.get('brand')
         type = request.form.get('type')
         colour = request.form.get('colour')
+        img_file = request.form.get('img_file')
 
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
-            sql = "INSERT INTO clothing (name, brand, type, colour) VALUES (?, ?, ?, ?);"
-            cursor.execute(sql, (name, brand, type, colour))
+            sql = "INSERT INTO clothing (name, brand, type, colour, img_file) VALUES (?, ?, ?, ?, ?);"
+            cursor.execute(sql, (name, brand, type, colour, img_file))
             connection.commit()
             return viewclothing()
     else:
