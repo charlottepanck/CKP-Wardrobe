@@ -1,7 +1,21 @@
 {% extends "base.html" %}
 {% block body %}
 <br>
-<table class="w3-table-all">
+<div class="w3-cell-row">
+  <br>
+    <div class="w3-container w3-light-grey w3-cell w3-card-4" style="width:20%">
+        <form class="w3-container" action="{{ url_for('addtype') }}" method="POST">
+          <h2>Add a Type</h2>
+          <label> Type name</label>
+          <input name="type_name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border" required>
+          <p><input button type="submit" value="Add Clothing Type" class="w3-button w3-white w3-border"></p>
+        </form>
+    </div>
+    <div class="w3-container"></div>
+    
+    <div class="w3-container w3-light-grey w3-cell w3-card-4" style="width:80%">
+        <br>
+    <table class="w3-table-all">
     <tr>
         <th>Clothing Type</th>
     </tr>
@@ -11,4 +25,8 @@
     </tr>
     {% endfor %}
 </table>
+<br>
+</div>
+</div>
+<br>
 {% endblock %}

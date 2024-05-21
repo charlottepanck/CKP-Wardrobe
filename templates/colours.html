@@ -1,14 +1,38 @@
 {% extends "base.html" %}
 {% block body %}
 <br>
-<table class="w3-table-all">
-    <tr>
-        <th>Colours</th>
-    </tr>
-    {% for item in colour_results %}
-    <tr>
-        <td>{{ item[1] }}</td>
-    </tr>
-    {% endfor %}
-</table>
+<div class="w3-cell-row">
+  <br>
+    <div class="w3-container w3-light-grey w3-cell w3-card-4" style="width:20%">
+        <form class="w3-container" action="{{ url_for('addcolour') }}" method="POST">
+          <h2>Add a Colour</h2>
+          <label> Colour name</label>
+          <input name="colour_name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border" required>
+          <p><input button type="submit" value="Add Colour" class="w3-button w3-white w3-border"></p>
+        </form>
+    </div>
+    <div class="w3-container"></div>
+
+    <div class="w3-container w3-light-grey w3-cell w3-card-4" style="width:80%">
+        <br>
+        <table class="w3-table-all">
+            <tr>
+                <th>  </th>
+                <th>Colours</th>
+            </tr>
+            {% for item in colour_results %}
+            <tr>
+                <td class="w3-left-align">
+                    <form method="POST" action="{{ url_for('delete_colour', ID=item[0]) }}">
+                        <input type="submit" title="Delete" class="input delete-button" value="&#10006;" onclick="return confirm('Are you sure you want to delete this Colour?')">
+                    </form>
+                </td>
+                <td>{{ item[1] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+<br>
+</div>
+</div>
+<br>
 {% endblock %}

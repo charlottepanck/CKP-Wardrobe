@@ -156,6 +156,49 @@ def addbrand():
         return viewbrands()
 
 
+# add coloue
+@app.route('/colours', methods=['GET', 'POST'])
+def addcolour():
+    if request.method == 'POST':
+        colour_name = request.form.get('colour_name')
+
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql = "INSERT INTO colour (colour_name) VALUES (?);"
+            cursor.execute(sql, (colour_name,))
+            connection.commit()
+            return viewcolours()
+    else:
+        return viewcolours()
+    
+
+# delete colour
+@app.route("/delete_colour/<int:ID>", methods=["POST"])
+def delete_colour(ID):
+    with sqlite3.connect(DB) as connection:
+        cursor = connection.cursor()
+        sql_delete = "DELETE FROM colour WHERE colour_id = ?;"
+        cursor.execute(sql_delete, (ID,))
+        connection.commit()
+    return viewcolours()
+
+
+# add type
+@app.route('/type', methods=['GET', 'POST'])
+def addtype():
+    if request.method == 'POST':
+        type_name = request.form.get('type_name')
+
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql = "INSERT INTO type (type_name) VALUES (?);"
+            cursor.execute(sql, (type_name,))
+            connection.commit()
+            return viewtypes()
+    else:
+        return viewtypes()
+
+
 # delete outfit
 @app.route('/delete_outfit/<int:ID>', methods=['POST'])
 def deleteoutfit(ID):
