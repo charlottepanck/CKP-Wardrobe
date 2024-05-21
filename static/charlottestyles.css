@@ -1,3 +1,9 @@
+.responsive {
+  width: 100%;
+  height: auto;
+  max-height: 418px;
+}
+
 .delete-button {
     color: #ff0000;
     cursor: pointer;
@@ -29,9 +35,8 @@
 }
 
 .img {
-  width:355px;
-  height:418px;
-  
+  width: 300px;
+  height: 400px;
 }
 
 /* Button used to open the contact form - fixed at the bottom of the page */

@@ -39,32 +39,33 @@
 
       <p><input button type="submit" value="Add Clothing" class="w3-button w3-white w3-border"></p>
     </form>
-    <p>1. Image file must be a jpeg<br><br>2. Image file must be uploaded from the image folder inside the static folder<br><br>3. Image size preferably 3:4</p>
+    <p>1. Image file must be a jpeg<br><br>2. Image file must be uploaded from the image folder inside the static folder<br><br>3. Image dimentions preferably 3:4</p>
   </div>
 
   <div class="w3-container"></div>
 
-  <div class="w3-container w3-light-grey w3-cell w3-card-4" style="width:80%">
-    <br>
+  <div class="w3-container w3-light-grey w3-cell w3-card-4" style="width:80%"><br>
     <div class="w3-row-padding">
       {% for item in results %}
       <div class="w3-third">
+
         <div class="w3-card-4 w3-white">
-          <!--<img src="/static/images/{{item[5]}}" id="slay" class="img" onerror="standby()">-->
-          <img src="/static/images/{{item[5]}}" alt=lol class="img" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
+          <img src="/static/images/{{item[5]}}" alt=lol class="responsive" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
           <div class="padding">
-          <h3>{{ item[1] }}</h3>
-          <p>Brand: {{ item[2] }}<br>Type: {{ item[3] }}<br>Colour: {{ item[4] }}</p>
-        </div>
+            <h3>{{ item[1] }}</h3>
+            <p>Brand: {{ item[2] }}<br>Type: {{ item[3] }}<br>Colour: {{ item[4] }}</p>
+          </div>
           <form method="POST" action="{{ url_for('deleteclothing', ID=item[0]) }}">
             <input type="submit" title="Delete" class="input delete-button w3-right-align" value="&#10006;" onclick="return confirm('Are you sure you want to delete this Item?')">
           </form>
         </div>
+
         <br>
       </div>
       {% endfor %}
     </div>
   </div>
+
 </div>
 <br>
 {% endblock %}

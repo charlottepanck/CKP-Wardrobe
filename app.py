@@ -8,7 +8,7 @@ DB = 'ckpwardrobe.db'
 def home():
     return render_template('Digital wardrobe.html')
 
-
+# view clothing
 @app.route('/clothing')
 def viewclothing():
     # query to find all tops and filter by catagories
@@ -35,7 +35,7 @@ ORDER BY clothing.name;"""
     db.close()
     return render_template("clothing.html", results=results, resultsbrandsc=resultsbrandsc, resultstypec=resultstypec, resultscoloursc=resultscoloursc)
 
-
+# view brands
 @app.route('/brands')
 def viewbrands():
     db = sqlite3.connect(DB)
@@ -46,7 +46,7 @@ def viewbrands():
     db.close()
     return render_template("brands.html", brands_results=brands_results)
 
-
+# view clothing types
 @app.route('/types')
 def viewtypes():
     db = sqlite3.connect(DB)
@@ -57,7 +57,7 @@ def viewtypes():
     db.close()
     return render_template("types.html", type_results=type_results)
 
-
+# view colours
 @app.route('/colours')
 def viewcolours():
     db = sqlite3.connect(DB)
@@ -69,7 +69,7 @@ def viewcolours():
     return render_template("colours.html", colour_results=colour_results)
 
 
-
+# vire outfits
 @app.route('/outfits')
 def viewoutfits():
     db = sqlite3.connect(DB)
