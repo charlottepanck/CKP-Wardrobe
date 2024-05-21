@@ -4,7 +4,7 @@
 <div class="w3-cell-row">
   <br>
   <div class="w3-container w3-light-grey w3-cell w3-card-4" style="width:20%">
-    <form class="w3-container" action="{{ url_for('addclothing') }}" method="POST">
+    <form class="w3-container" action="{{ url_for('addclothing') }}" method="POST" enctype="multipart/form-data">
       <h2>Add Clothing</h2>
     
       <label> Clothing name</label>
@@ -35,11 +35,11 @@
       </select><br>
 
       <label for="img_file">Image </label>
-      <input name="img_file" type="file" id="myfile" class="w3-input w3-white w3-border">
+      <input type="file" name="file" id="file" accept=".jpeg,.jpg" required/>
 
       <p><input button type="submit" value="Add Clothing" class="w3-button w3-white w3-border"></p>
     </form>
-    <p>1. Image file must be a jpeg<br><br>2. Image file must be uploaded from the image folder inside the static folder<br><br>3. Image dimentions preferably 3:4<br><br>4. If images look stretched try resize the browser window</p>
+    <p>If images look stretched try resize the browser window :p</p>
   </div>
 
   <div class="w3-container"></div>

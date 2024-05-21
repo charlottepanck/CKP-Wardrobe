@@ -1,8 +1,12 @@
-from flask import Flask, render_template, redirect, request, session, url_for
+from flask import Flask, render_template, redirect, request, session, url_for, flash
+from werkzeug.utils import secure_filename
+from config import Config
 import sqlite3
+import os
+
 app = Flask(__name__)
 DB = 'ckpwardrobe.db'
-
+app.config.from_object(Config)
 
 @app.route('/')
 def home():
@@ -98,12 +102,23 @@ def addclothing():
         brand = request.form.get('brand')
         type = request.form.get('type')
         colour = request.form.get('colour')
-        img_file = request.form.get('img_file')
-
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+    
+        file = request.files['file']
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+    
+        if file:
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
             sql = "INSERT INTO clothing (name, brand, type, colour, img_file) VALUES (?, ?, ?, ?, ?);"
-            cursor.execute(sql, (name, brand, type, colour, img_file))
+            cursor.execute(sql, (name, brand, type, colour, filename))
             connection.commit()
             return viewclothing()
     else:
