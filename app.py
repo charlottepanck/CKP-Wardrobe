@@ -144,14 +144,13 @@ def deleteclothing(ID):
 def addoutfit():
     if request.method == 'POST':
         outfit_id = request.form.get('outfit_id',)
-        outfit_item = request.form.get('outfit_item')
         outfit_style = request.form.get('outfit_style')
         outfit_img_file = request.form.get('outfit_img_file')
         
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
-            sql = "INSERT INTO outfit (outfit_id, outfit_item, outfit_style, outfit_img_file) VALUES (?, ?, ?, ?);"
-            cursor.execute(sql, (outfit_id, outfit_item, outfit_style, outfit_img_file))
+            sql = "INSERT INTO outfit (outfit_id, outfit_style, outfit_img_file) VALUES (?, ?, ?);"
+            cursor.execute(sql, (outfit_id, outfit_style, outfit_img_file))
             connection.commit()
             return viewoutfits()
     else:
