@@ -78,13 +78,13 @@ def viewcolours():
 def viewoutfits():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql = """SELECT outfit.id, outfit.outfit_id, clothing.name, style.style_name, outfit.img_file
+    sql = """SELECT outfit.id, outfit.outfit_id, clothing.name, style.style_name, outfit.outfit_img_file
 FROM outfit 
 LEFT JOIN clothing ON outfit.outfit_item = clothing.clothing_id
 LEFT JOIN style ON outfit.outfit_style = style.style_id;"""
     cursor.execute(sql)
     outfits_results = cursor.fetchall()
-    sql1 = "SELECT clothing_id, name FROM clothing;"
+    sql1 = "SELECT clothing_id, name, img_file FROM clothing;"
     cursor.execute(sql1)
     resultsclothingo = cursor.fetchall()
     sql2 = "SELECT * FROM style;"
@@ -140,15 +140,14 @@ def deleteclothing(ID):
 @app.route('/outfit', methods=['GET', 'POST'])
 def addoutfit():
     if request.method == 'POST':
-        outfit_id = request.form.get('outfit_id')
+        outfit_id = request.form.get('outfit_id',)
         outfit_item = request.form.get('outfit_item')
         outfit_style = request.form.get('outfit_style')
-        img_file = request.form.get('img_file')
-
+        
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
-            sql = "INSERT INTO outfit (outfit_id, outfit_item, outfit_style, img_file) VALUES (?, ?, ?, ?);"
-            cursor.execute(sql, (outfit_id, outfit_item, outfit_style, img_file))
+            sql = "INSERT INTO outfit (outfit_id, outfit_item, outfit_style) VALUES (?, ?, ?);"
+            cursor.execute(sql, (outfit_id, outfit_item, outfit_style))
             connection.commit()
             return viewoutfits()
     else:
