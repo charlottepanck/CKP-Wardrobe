@@ -11,12 +11,21 @@
       <input name="outfit_id" type="number" maxlength="25" placeholder=" " class="w3-input w3-border" required><br>
       
       <label>Clothing Item </label>
-      <select name="outfit_item" name="outfit_img_file" type="number" class="w3-input w3-border" required>
+      <select name="outfit_item" type="number" class="w3-input w3-border" required>
         <option value=""> </option>
         {% for item in resultsclothingo %}
-        <option value={{item[0]}} value={{item[3]}}>{{item[1]}}</option>
+        <option value={{item[0]}}>{{item[1]}}</option>
         {% endfor %}
       </select><br>
+
+      <label> Clothing Item Image </label>
+      <select name="outfit_img_file" type="number" class="w3-input w3-border" required>
+        <option value=""> </option>
+        {% for item in resultsimg_fileo %}
+        <option value={{item[0]}}>{{item[1]}}</option>
+        {% endfor %}
+      </select><br>
+
 
       <label>Style </label>
       <select name="outfit_style" type="number" class="w3-input w3-border" required>
@@ -54,7 +63,7 @@
       {% for item in outfits_results %}
       <div class="w3-third">
         <div class="w3-card-4 w3-white">
-          <img src="/static/images/{{item[4]}}" alt=lol class="responsive" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
+          <img src="/static/images/{{ item[4] }}" alt=lol class="responsive" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
           <div class="padding">
           <h3>Outfit {{ item[1] }}</h3>
           <p>Name: {{ item[2] }}<br>Style: {{ item[3] }}</p>
