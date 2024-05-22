@@ -78,10 +78,10 @@ def viewcolours():
 def viewoutfits():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
-    sql = """SELECT outfit.id, outfit.outfit_id, clothing.name, style.style_name, outfit.outfit_img_file
+    sql = """SELECT outfit.id, outfit.outfit_id, clothing.name, style.style_name, clothing.img_file
 FROM outfit 
-LEFT JOIN clothing ON outfit.outfit_item = clothing.clothing_id
-LEFT JOIN style ON outfit.outfit_style = style.style_id;"""
+LEFT JOIN style ON outfit.outfit_style = style.style_id
+LEFT JOIN clothing ON outfit.outfit_img_file = clothing.clothing_id;"""
     cursor.execute(sql)
     outfits_results = cursor.fetchall()
     sql1 = "SELECT clothing_id, name FROM clothing;"
@@ -90,7 +90,7 @@ LEFT JOIN style ON outfit.outfit_style = style.style_id;"""
     sql2 = "SELECT * FROM style;"
     cursor.execute(sql2)
     resultsstyleo = cursor.fetchall()
-    sql3 = "SELECT clothing_id, img_file FROM clothing;"
+    sql3 = "SELECT clothing_id, img_file, name FROM clothing;"
     cursor.execute(sql3)
     resultsimg_fileo = cursor.fetchall()
     db.close()

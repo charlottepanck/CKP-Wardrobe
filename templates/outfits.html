@@ -9,20 +9,12 @@
     
       <label> Outfit ID</label>
       <input name="outfit_id" type="number" maxlength="25" placeholder=" " class="w3-input w3-border" required><br>
-      
-      <label>Clothing Item </label>
-      <select name="outfit_item" type="number" class="w3-input w3-border" required>
-        <option value=""> </option>
-        {% for item in resultsclothingo %}
-        <option value={{item[0]}}>{{item[1]}}</option>
-        {% endfor %}
-      </select><br>
 
-      <label> Clothing Item Image </label>
+      <label> Clothing Item </label>
       <select name="outfit_img_file" type="number" class="w3-input w3-border" required>
         <option value=""> </option>
         {% for item in resultsimg_fileo %}
-        <option value={{item[0]}}>{{item[1]}}</option>
+        <option value={{item[0]}}>{{item[2]}}</option>
         {% endfor %}
       </select><br>
 
