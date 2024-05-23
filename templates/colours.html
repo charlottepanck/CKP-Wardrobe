@@ -17,17 +17,17 @@
         <br>
         <table class="w3-table-all">
             <tr>
-                <th>  </th>
                 <th>Colours</th>
+                <th>  </th>
             </tr>
             {% for item in colour_results %}
             <tr>
-                <td class="w3-left-align">
+                <td>{{ item[1] }}</td>
+                <td class="w3-right-align">
                     <form method="POST" action="{{ url_for('delete_colour', ID=item[0]) }}">
                         <input type="submit" title="Delete" class="input delete-button" value="&#10006;" onclick="return confirm('Are you sure you want to delete this Colour?')">
                     </form>
                 </td>
-                <td>{{ item[1] }}</td>
             </tr>
             {% endfor %}
         </table>
