@@ -3,6 +3,7 @@ html {
   font-size: 15px;
   line-height: 1.5;
   font-weight: normal;
+  background-color: #F5F3EC;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -35,7 +36,7 @@ hr {
 
 .delete-button {
     background-color:#ffffff00;
-    color: #ff0000;
+    color: #e06666;
     display:inside;
     cursor: pointer;
     text-decoration:none;
@@ -48,19 +49,26 @@ hr {
 
 /* W3 Schools Styles */
 
+.w3-round-xlarge{
+  border-radius:16px
+}
+
 /* Button */
 .w3-ckp-button:hover{
   color:#B98684!important;
-  background-color:#D4BDB4!important
+  background-color:#D4BDB4!important;
+  border-radius:16px
 }
 
 .w3-ckp-bar .w3-button{
-  white-space:normal
+  white-space:normal;
+  border-radius:16px;
 }
 
 .w3-ckp-dropdown-hover:hover > .w3-ckp-button:first-child,.w3-ckp-dropdown-click:hover > .w3-ckp-button:first-child{
   background-color:#ccc;
-  color:#000
+  color:#000;
+  border-radius:16px
 }
 
 .w3-ckp-btn,.w3-ckp-button{
@@ -69,11 +77,12 @@ hr {
   -khtml-user-select:none;
   -moz-user-select:none;
   -ms-user-select:none;
-  user-select:none
+  user-select:none;
+  border-radius:16px
 }   
 .w3-ckp-disabled,.w3-ckp-btn:disabled,.w3-ckp-button:disabled{
   cursor:not-allowed;
-  opacity:0.3
+  opacity:0.3;
 }
 .w3-ckp-disabled *,:disabled *{
   pointer-events:none
@@ -86,26 +95,29 @@ hr {
   vertical-align:middle;
   overflow:hidden;
   text-decoration:none;
-  color:inherit;
-  background-color:inherit;
   text-align:center;
   cursor:pointer;
-  white-space:nowrap
+  white-space:nowrap;
+  border-radius:16px
 }
 
 .w3-input{
+  color:#B98684!important;
+  background-color:#F5F3EC!important;
   padding:8px;
   display:block;
   border:none;
   border-bottom:1px solid #ccc;
-  width:100%
+  width:100%;
+  border-radius:16px
 }
 
 .w3-select{
   padding:9px 0;
   width:100%;
   border:none;
-  border-bottom:1px solid #ccc
+  border-bottom:1px solid #ccc;
+  border-radius:16px
 }
 
 
