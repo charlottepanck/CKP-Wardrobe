@@ -39,6 +39,7 @@ ORDER BY clothing.name;"""
     db.close()
     return render_template("clothing.html", results=results, resultsbrandsc=resultsbrandsc, resultstypec=resultstypec, resultscoloursc=resultscoloursc)
 
+
 # view brands
 @app.route('/brands')
 def viewbrands():

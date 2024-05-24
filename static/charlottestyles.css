@@ -44,7 +44,7 @@ hr {
 }
 
 .padding {
-  padding: 8px 16px
+  padding: 8px 16px;
 }
 
 /* W3 Schools Styles */
@@ -122,13 +122,13 @@ hr {
 
 .w3-ckp-table,.w3-ckp-table-all{
   border-collapse:collapse;
-  border-spacing:0;
   width:100%;
-  display:table
+  display:table;
+  border-radius:16px
 }
 
 .w3-ckp-table-all{
-  border:1px solid #B98684
+  border:1px solid #ccc
 }
 .w3-ckp-bordered tr,.w3-table-all tr{
   border-bottom:1px solid #B98684

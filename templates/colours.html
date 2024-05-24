@@ -2,37 +2,92 @@
 {% block body %}
 <br>
 <div class="w3-cell-row">
-  <br>
-    <div class="w3-container colour5 w3-round-xlarge w3-cell w3-card-4" style="width:20%">
-        <form class="w3-container" action="{{ url_for('addcolour') }}" method="POST">
-          <h2>Add a Colour</h2>
-          <label> Colour name</label>
-          <input name="colour_name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border" required>
-          <p><input button type="submit" value="Add Colour" class="w3-ckp-button w3-round-xlarge colour5 w3-white w3-border"></p>
-        </form>
+  <div class="w3-container colour5 w3-round-xlarge w3-cell w3-card-4">
+    <form class="w3-container" action="{{ url_for('addcolour') }}" method="POST">
+      <h2>Add a Colour</h2>
+      <label> Colour name</label>
+      <input name="colour_name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border" required>
+      <p><input button type="submit" value="Add Colour" class="w3-ckp-button w3-round-xlarge colour4 w3-border"></p>
+    </form>
+  <div class="w3-container">
+    <table class="w3-ckp-table colour4">
+      <tr>
+        <th>Colours</th>
+        <th></th>
+      </tr>
+      {% for item in colour_results %}
+      <tr>
+        <td>{{ item[1] }}</td>                
+        <td>
+          <form method="POST" action="{{ url_for('delete_colour', ID=item[0]) }}">
+            <input type="submit" title="Delete" class="input delete-button" value="&#10008;" onclick="return confirm('Are you sure you want to delete this Colour?')">
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br>
     </div>
-    <div class="w3-container w3-round-xlarge colour5 w3-cell w3-card-4" style="width:20%">
-        <br>
-        <table class="w3-ckp-table">
-            <tr>
-                <th>Colours</th>
-                <th> </th>
-            </tr>
-            {% for item in colour_results %}
-            <tr>
-                <td>{{ item[1] }}</td>                
-                <td>
-                    <form method="POST" action="{{ url_for('delete_colour', ID=item[0]) }}">
-                        <input type="submit" title="Delete" class="input delete-button" value="&#10008;" onclick="return confirm('Are you sure you want to delete this Colour?')">
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-<br>
-</div>
-<div class="w3-container"></div>
-</div>
+  </div>
+  <br>
 
+  <div class="w3-container colour5 w3-round-xlarge w3-cell w3-card-4">
+    <form class="w3-container" action="{{ url_for('addcolour') }}" method="POST">
+      <h2>Add a Colour</h2>
+      <label> Colour name</label>
+      <input name="colour_name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border" required>
+      <p><input button type="submit" value="Add Colour" class="w3-ckp-button w3-round-xlarge colour4 w3-border"></p>
+    </form>
+  <div class="w3-container">
+    <table class="w3-ckp-table colour4">
+      <tr>
+        <th>Colours</th>
+        <th></th>
+      </tr>
+      {% for item in colour_results %}
+      <tr>
+        <td>{{ item[1] }}</td>                
+        <td>
+          <form method="POST" action="{{ url_for('delete_colour', ID=item[0]) }}">
+            <input type="submit" title="Delete" class="input delete-button" value="&#10008;" onclick="return confirm('Are you sure you want to delete this Colour?')">
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br>
+    </div>
+  </div>
+  <br>
+
+  <div class="w3-container colour5 w3-round-xlarge w3-cell w3-card-4">
+    <form class="w3-container" action="{{ url_for('addcolour') }}" method="POST">
+      <h2>Add a Colour</h2>
+      <label> Colour name</label>
+      <input name="colour_name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border" required>
+      <p><input button type="submit" value="Add Colour" class="w3-ckp-button w3-round-xlarge colour4 w3-border"></p>
+    </form>
+  <div class="w3-container">
+    <table class="w3-ckp-table colour4">
+      <tr>
+        <th>Colours</th>
+        <th></th>
+      </tr>
+      {% for item in colour_results %}
+      <tr>
+        <td>{{ item[1] }}</td>                
+        <td>
+          <form method="POST" action="{{ url_for('delete_colour', ID=item[0]) }}">
+            <input type="submit" title="Delete" class="input delete-button" value="&#10008;" onclick="return confirm('Are you sure you want to delete this Colour?')">
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br>
+    </div>
+  </div>
+  <br>
+</div>
 <br>
 {% endblock %}
