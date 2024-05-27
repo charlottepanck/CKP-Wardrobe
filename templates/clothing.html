@@ -55,10 +55,10 @@
           <div class="padding">
             <h3>{{ item[1] }}</h3>
             <p>Brand: {{ item[2] }}<br>Type: {{ item[3] }}<br>Colour: {{ item[4] }}</p>
-          </div>
           <form method="POST" action="{{ url_for('deleteclothing', ID=item[0]) }}">
             <input type="submit" title="Delete" class=" w3-padding delete-button w3-right-align" value="&#10008;" onclick="return confirm('Are you sure you want to delete this Item?')">
           </form>
+        </div>
         </div>
 
         <br>
