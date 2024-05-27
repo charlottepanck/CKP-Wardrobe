@@ -184,6 +184,25 @@ def delete_colour(ID):
         connection.commit()
     return viewcatagories()
 
+# delete type
+@app.route("/delete_type/<int:ID>", methods=["POST"])
+def delete_type(ID):
+    with sqlite3.connect(DB) as connection:
+        cursor = connection.cursor()
+        sql_delete = "DELETE FROM type WHERE type_id = ?;"
+        cursor.execute(sql_delete, (ID,))
+        connection.commit()
+    return viewcatagories()
+
+# delete brand
+@app.route("/delete_brand/<int:ID>", methods=["POST"])
+def delete_brand(ID):
+    with sqlite3.connect(DB) as connection:
+        cursor = connection.cursor()
+        sql_delete = "DELETE FROM brand WHERE brand_id = ?;"
+        cursor.execute(sql_delete, (ID,))
+        connection.commit()
+    return viewcatagories()
 
 # add type
 @app.route('/catagories', methods=['GET', 'POST'])

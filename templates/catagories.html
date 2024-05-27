@@ -1,78 +1,74 @@
 {% extends "base.html" %}
 {% block body %}
 <br>
-
 <!--Brands-->
 <div class="w3-row-padding">
-  <div class="w3-col" style="width: 30%;">
-  <div class="w3-container colour5 w3-round-xlarge w3-cell w3-card-4">
-    <form class="w3-container" action="{{ url_for('addbrand') }}" method="POST">
-      <h2>Add a Brand</h2>
-      <label> Brand name</label>
-      <input name="brand_name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border" required>
-      <p><input button type="submit" value="Add Brand" class="w3-ckp-button w3-round-xlarge colour4 w3-border"></p>
-    </form>
-  <div class="w3-container">
-    <table class="w3-ckp-table colour4">
-      <tr>
-        <th>Brands</th>
-        <!--<th></th>-->
-      </tr>
-      {% for item in brands_results %}
-      <tr>
-        <td>{{ item[1] }}</td>                
-        <!--<td>
-          <form method="POST" action="{{ url_for('delete_colour', ID=item[0]) }}">
-            <input type="submit" title="Delete" class="input delete-button" value="&#10008;" onclick="return confirm('Are you sure you want to delete this Colour?')">
-          </form>
-        </td>-->
-      </tr>
-      {% endfor %}
-    </table>
-    <br>
+  <div class="w3-col s4">
+    <div class="w3-container colour5 w3-round-xlarge w3-card-4">
+      <form class="w3-container" action="{{ url_for('addbrand') }}" method="POST">
+        <h2>Add a Brand</h2>
+        <label> Brand name</label>
+        <input name="brand_name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border" required>
+        <p><input button type="submit" value="Add Brand" class="w3-ckp-button w3-round-xlarge colour4 w3-border"></p>
+      </form>
+      <div class="w3-container">
+        <table class="w3-ckp-table colour4">
+          <tr>
+            <th>Brands</th>
+            <!--<th></th>-->
+          </tr>
+          {% for item in brands_results %}
+          <tr>
+            <td>{{ item[1] }}</td>                
+            <td>
+              <form method="POST" action="{{ url_for('delete_brand', ID=item[0]) }}">
+                <input type="submit" title="Delete" class="input delete-button" value="&#10008;" onclick="return confirm('Are you sure you want to delete this Brand?')">
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+        <br>
+      </div>
     </div>
   </div>
-  </div>
-  <br>
-
 
 <!--Types-->
-<div class="w3-col" style="width: 30%;">
-  <div class="w3-container colour5 w3-round-xlarge w3-cell w3-card-4">
-    <form class="w3-container" action="{{ url_for('addtype') }}" method="POST">
-      <h2>Add a Clothing Type</h2>
-      <label> Type name</label>
-      <input name="type_name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border" required>
-      <p><input button type="submit" value="Add Colour" class="w3-ckp-button w3-round-xlarge colour4 w3-border"></p>
-    </form>
-  <div class="w3-container">
-    <table class="w3-ckp-table colour4">
-      <tr>
-        <th>Clothing Types</th>
-        <th></th>
-      </tr>
-      {% for item in type_results %}
-      <tr>
-        <td>{{ item[1] }}</td>                
-        <!--<td>
-          <form method="POST" action="{{ url_for('delete_colour', ID=item[0]) }}">
-            <input type="submit" title="Delete" class="input delete-button" value="&#10008;" onclick="return confirm('Are you sure you want to delete this Colour?')">
-          </form>
-        </td>-->
-      </tr>
-      {% endfor %}
-    </table>
-    <br>
+  <div class="w3-col s4">
+    <div class="w3-container colour5 w3-round-xlarge w3-card-4">
+      <form class="w3-container" action="{{ url_for('addtype') }}" method="POST">
+        <h2>Add a Clothing Type</h2>
+        <label> Type name</label>
+        <input name="type_name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border" required>
+        <p><input button type="submit" value="Add Colour" class="w3-ckp-button w3-round-xlarge colour4 w3-border"></p>
+      </form>
+      <div class="w3-container">
+        <table class="w3-ckp-table colour4">
+          <tr>
+            <th>Clothing Types</th>
+            <th></th>
+          </tr>
+          {% for item in type_results %}
+          <tr>
+            <td>{{ item[1] }}</td>                
+            <td>
+              <form method="POST" action="{{ url_for('delete_type', ID=item[0]) }}">
+                <input type="submit" title="Delete" class="input delete-button" value="&#10008;" onclick="return confirm('Are you sure you want to delete this Clothing Type?')">
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+        <br>
+      </div>
     </div>
   </div>
-</div>
-  <br>
+
 
   
   <!--Colours-->
-  <div class="w3-col" style="width: 30%;">
-
-  <div class="w3-container colour5 w3-round-xlarge w3-cell w3-card-4">
+  <div class="w3-col s4">
+  <div class="w3-container colour5 w3-round-xlarge w3-card-4">
     <form class="w3-container" action="{{ url_for('addcolour') }}" method="POST">
       <h2>Add a Colour</h2>
       <label> Colour name</label>
