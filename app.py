@@ -40,41 +40,25 @@ ORDER BY clothing.name;"""
     return render_template("clothing.html", results=results, resultsbrandsc=resultsbrandsc, resultstypec=resultstypec, resultscoloursc=resultscoloursc)
 
 
-# view brands
-@app.route('/brands')
-def viewbrands():
-    db = sqlite3.connect(DB)
-    cursor = db.cursor()
-    sql = "SELECT * FROM brand;"
-    cursor.execute(sql)
-    brands_results = cursor.fetchall()
-    db.close()
-    return render_template("brands.html", brands_results=brands_results)
-
-# view clothing types
-@app.route('/types')
-def viewtypes():
-    db = sqlite3.connect(DB)
-    cursor = db.cursor()
-    sql = "SELECT * FROM type;"
-    cursor.execute(sql)
-    type_results = cursor.fetchall()
-    db.close()
-    return render_template("types.html", type_results=type_results)
-
-# view colours
-@app.route('/colours')
-def viewcolours():
+# view catagories
+@app.route('/catagories')
+def viewcatagories():
     db = sqlite3.connect(DB)
     cursor = db.cursor()
     sql = "SELECT * FROM colour;"
     cursor.execute(sql)
     colour_results = cursor.fetchall()
+    sql2 = "SELECT * FROM type;"
+    cursor.execute(sql2)
+    type_results = cursor.fetchall()
+    sql3 = "SELECT * FROM brand;"
+    cursor.execute(sql3)
+    brands_results = cursor.fetchall()
     db.close()
-    return render_template("colours.html", colour_results=colour_results)
+    return render_template("catagories.html", colour_results=colour_results, type_results=type_results, brands_results=brands_results)
 
 
-# vire outfits
+# view outfits
 @app.route('/outfits')
 def viewoutfits():
     db = sqlite3.connect(DB)
@@ -159,7 +143,7 @@ def addoutfit():
     
 
 # add brand
-@app.route('/brands', methods=['GET', 'POST'])
+@app.route('/catagories', methods=['GET', 'POST'])
 def addbrand():
     if request.method == 'POST':
         brand_name = request.form.get('brand_name')
@@ -169,13 +153,13 @@ def addbrand():
             sql = "INSERT INTO brand (brand_name) VALUES (?);"
             cursor.execute(sql, (brand_name,))
             connection.commit()
-            return viewbrands()
+            return viewcatagories()
     else:
-        return viewbrands()
+        return viewcatagories()
 
 
 # add coloue
-@app.route('/colours', methods=['GET', 'POST'])
+@app.route('/catagories', methods=['GET', 'POST'])
 def addcolour():
     if request.method == 'POST':
         colour_name = request.form.get('colour_name')
@@ -185,10 +169,10 @@ def addcolour():
             sql = "INSERT INTO colour (colour_name) VALUES (?);"
             cursor.execute(sql, (colour_name,))
             connection.commit()
-            return viewcolours()
+            return viewcatagories()
     else:
-        return viewcolours()
-    
+        return viewcatagories()
+
 
 # delete colour
 @app.route("/delete_colour/<int:ID>", methods=["POST"])
@@ -198,11 +182,11 @@ def delete_colour(ID):
         sql_delete = "DELETE FROM colour WHERE colour_id = ?;"
         cursor.execute(sql_delete, (ID,))
         connection.commit()
-    return viewcolours()
+    return viewcatagories()
 
 
 # add type
-@app.route('/type', methods=['GET', 'POST'])
+@app.route('/catagories', methods=['GET', 'POST'])
 def addtype():
     if request.method == 'POST':
         type_name = request.form.get('type_name')
@@ -212,9 +196,9 @@ def addtype():
             sql = "INSERT INTO type (type_name) VALUES (?);"
             cursor.execute(sql, (type_name,))
             connection.commit()
-            return viewtypes()
+            return viewcatagories()
     else:
-        return viewtypes()
+        return viewcatagories()
 
 
 # delete outfit
