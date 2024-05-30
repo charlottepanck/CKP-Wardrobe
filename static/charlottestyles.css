@@ -48,6 +48,12 @@ hr {
   margin: 20px 0;
 }
 
+img {
+  width: 355px;
+  height: 419px;
+  object-fit: cover;
+}
+
 /* Colors */
 .colour1,.hover-colour1:hover{
   color:#B98684!important;
@@ -79,7 +85,6 @@ hr {
   overflow: hidden;
   width: 100%;
   display: block;
-  object-fit: contain;
 }
 
 .grid-container {

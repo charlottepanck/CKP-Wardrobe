@@ -34,7 +34,7 @@
       </select><br>
 
       <label for="img_file">Image </label>
-      <input type="file" name="file" id="file" accept=".jpeg,.jpg" class="colour4 w3-input w3-border"/>
+      <input type="file" name="file" accept=".jpeg,.jpg" class="colour4 w3-input w3-border"/>
 
       <p><input button type="submit" value="Add Clothing" class="w3-ckp-button w3-round-xlarge colour4 w3-border"></p>
     </form>
@@ -48,7 +48,7 @@
       <div class="w3-third">
 
         <div class="gallery-wrap w3-card-4 w3-round-xlarge colour4">
-          <img src="/static/images/{{item[5]}}" alt=lol class="w3-round-xlarge gallery-wrap" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
+          <img src="/static/images/{{item[5]}}" alt=lol class="gallery-wrap w3-round-xlarge" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
           <div class="padding">
             <h3>{{ item[1] }}</h3>
             <p>Brand: {{ item[2] }}<br>Type: {{ item[3] }}<br>Colour: {{ item[4] }}</p>
@@ -68,5 +68,4 @@
 
 </div>
 <br>
-<script src="myScript.js"></script>
 {% endblock %}
