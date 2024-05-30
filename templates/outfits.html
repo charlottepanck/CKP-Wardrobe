@@ -54,8 +54,8 @@
     <div class="w3-row-padding">
       {% for item in outfits_results %}
       <div class="w3-third">
-        <div class="w3-card-4 colour4 w3-round-xlarge">
-          <img src="/static/images/{{ item[4] }}" alt=lol class="w3-round-xlarge responsive" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
+        <div class="gallery-wrap w3-card-4 colour4 w3-round-xlarge">
+          <img src="/static/images/{{ item[4] }}" alt=lol class="gallery-wrap w3-round-xlarge responsive" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
           <div class="padding">
           <h3>Outfit {{ item[1] }}</h3>
           <p>Name: {{ item[2] }}<br>Style: {{ item[3] }}</p>
