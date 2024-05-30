@@ -79,6 +79,7 @@ hr {
   overflow: hidden;
   width: 100%;
   display: block;
+  object-fit: contain;
 }
 
 .grid-container {
