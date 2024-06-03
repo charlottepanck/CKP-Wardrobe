@@ -143,8 +143,8 @@ def addoutfit():
     
 
 # add brand
-@app.route('/catagories', methods=['GET', 'POST'])
-def addbrand():
+@app.route('/add_brand', methods=['GET', 'POST'])
+def add_brand():
     if request.method == 'POST':
         brand_name = request.form.get('brand_name')
 
@@ -159,8 +159,8 @@ def addbrand():
 
 
 # add coloue
-@app.route('/catagories', methods=['GET', 'POST'])
-def addcolour():
+@app.route('/add_colour', methods=['GET', 'POST'])
+def add_colour():
     if request.method == 'POST':
         colour_name = request.form.get('colour_name')
 
@@ -205,8 +205,8 @@ def delete_brand(ID):
     return viewcatagories()
 
 # add type
-@app.route('/catagories', methods=['GET', 'POST'])
-def addtype():
+@app.route('/add_type', methods=['GET', 'POST'])
+def add_type():
     if request.method == 'POST':
         type_name = request.form.get('type_name')
 
