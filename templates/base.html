@@ -16,9 +16,26 @@
             <a href="/clothing" class="w3-bar-item w3-ckp-button w3-round-xlarge">All Clothing</a>
             <a href="/outfits" class="w3-bar-item w3-ckp-button">Outfits</a>
             <a href="/catagories" class="w3-bar-item w3-ckp-button">Catagories</a>
+            <a href="/login" class="w3-bar-item w3-right-align w3-ckp-button">Login</a>
+            <a href="/signup" class="w3-bar-item w3-right-align w3-ckp-button">Signup</a>
+            <a href="/user" class="w3-bar-item w3-right-align w3-ckp-button">userinfo</a>
         </div>
       {% block body %}
       {% endblock %}
     </div>
+   <!-- This is the main page with most stuff we need in it -->
+    <!-- This starts and ends a 'block' that the child template will fill out with stuff -->
+    {% block content %}{% endblock %}
+
+    <!-- Add the message flashing so we can give the user some feedback about their login process -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
 </body>
 </html>

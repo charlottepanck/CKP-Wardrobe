@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+{%block content%}
+<div>
+    <div>
+    <h1>Sign Up</h1>
+    <!-- following code sourced from https://www.youtube.com/watch?v=-1oE7CWweIE-->
+    {% if error %}
+    <div>{{ error }}</div>
+    {% endif %}
+    <form action="/add_user">
+        <label> User Name</label>
+        <!-- Hinting what the expected value type is. And creating a placeholder -->
+        <input name="username" type="text" placeholder=" "><br>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder=" " required><br>
+
+        <label for="confirm">Confirm Password:</label>
+        <input type="password" id="confirm" name="confirm" placeholder=" ">
+        
+        <input type = "submit">
+    </form>
+    <p>Already have an account?<a href = '/login'>Login here</a><p>
+</div>
+{%endblock%}

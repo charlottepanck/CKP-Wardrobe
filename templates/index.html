@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block body %}
+<title>Wardrobe Wizard</title>
+<h2>Welcome to Wardrobe Wizard</h2>
+{% if session['user'] %}
+<!-- the whole user tuple is stored in the session this time- so it's id,username,passwordhash is available to us at all times -->
+    <p>Welcome {{ session['user'][1] }}</p>
+{% endif %}
+{% endblock %}

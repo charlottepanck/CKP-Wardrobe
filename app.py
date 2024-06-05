@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, request, session, url_for, flash
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
 from config import Config
 import sqlite3
 import os
@@ -8,9 +9,109 @@ app = Flask(__name__)
 DB = 'ckpwardrobe.db'
 app.config.from_object(Config)
 
+
+# Functions
+def add_user(table_name, add_name, add_password):
+    """Add items to the database."""
+    with sqlite3.connect(DB) as connection:
+        cursor = connection.cursor()
+        sql = f"INSERT INTO {table_name} (username, password) VALUES (?, ?)"
+        cursor.execute(sql, (add_name, add_password))
+        connection.commit()
+
+
+def search(username, password):
+    """Check if username and password exist in the database."""
+    with sqlite3.connect(DB) as connection:
+        cursor = connection.cursor()
+        sql = "SELECT * FROM user WHERE username = ?"
+        cursor.execute(sql, (username,))
+        user = cursor.fetchone()
+        if user:
+            stored_password = user[2]
+            if str(password) == str(stored_password):
+                print("Password is correct")
+                return True, user[0]
+            else:
+                print(username, stored_password)
+                print("Password incorrect")
+                return False, None
+        else:
+            print("User doesn't exist")
+            return False, None
+
+@app.route("/user")
+def user():
+    return render_template('user.html')
+
+@app.route("/user/<int:user_id>")
+def get_user_id(user_id):
+    if "user_id" in session and session["user_id"] == user_id:
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT * FROM user WHERE user_id = ?;", (user_id,))
+            user = cursor.fetchone()
+        return render_template("user.html", user = user)
+    else:
+        return redirect(url_for("login"))
+
+
+@app.route("/signup")
+def signup():
+    return render_template('signup.html')
+
+
+@app.route("/login", methods=["POST", "GET"])
+def login():
+    if request.method == "POST":
+        username = request.form.get('username')
+        password = request.form.get('password')
+        user_authentication, sql_id = search(username, password)
+        print(username, password)
+        if user_authentication:
+            session["user_id"] = sql_id
+            print("User authenticated in login function")
+            return redirect(url_for("get_user_id", user_id=sql_id))
+        else:
+            error_message = "Invalid login credentials. Please try again. (Usernames and passwords are case sensitive, spaces also count as cahracters that must be re-entered)"
+            return render_template("login.html", error=error_message)
+    else:
+        if "user_id" in session:
+            return redirect(url_for("get_user_id", user_id=session["user_id"]))
+        return render_template("login.html")
+
+
+#@app.route("/logout")
+#def logout():
+#    session.pop("user_id", None)
+#    return redirect(url_for("login"))
+
+
+@app.route("/add_user")
+def add_user_route():
+    username = request.args.get('username')
+    password = request.args.get('password')
+    confirm_password = request.args.get('confirm')
+    with sqlite3.connect(DB) as connection:
+        cursor = connection.cursor()
+        sql = "SELECT * FROM user WHERE username = ?;"
+        cursor.execute(sql, (username,))
+        user = cursor.fetchone()
+        if user and username == user[1]:
+            error_message = "Username is taken, please use another name"
+            return render_template("signup.html", error_message=error_message)
+        if password == confirm_password:
+            cursor.execute("INSERT INTO user (username, password) VALUES (?, ?);", (username, password))
+            connection.commit()
+            return render_template("user.html")
+        else:
+            error_message = "Your confirmed password is incorrect, please try agaisn"
+            return render_template("signup.html", error_message=error_message)
+
+
 @app.route('/')
 def home():
-    return render_template('Digital wardrobe.html')
+    return render_template('index.html')
 
 # view clothing
 @app.route('/clothing')
