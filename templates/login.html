@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="w3-panel colour4">
 <h1>Login</h1>
 <!-- A form to login with -->
 <!-- POST to the LOGIN route this is set by the action value -->
@@ -10,4 +11,6 @@
     <input type="password" name="password">
     <button type="submit">Login</button>
 </form>
+<p>Don't have an account? <a href = '/signup'>Sign Up Here!</a><p></p>
+</div>
 {% endblock %}

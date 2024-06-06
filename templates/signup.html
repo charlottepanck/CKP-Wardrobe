@@ -1,6 +1,6 @@
 {%extends 'base.html'%}
 {%block content%}
-<div>
+<div class="w3-panel colour4">
     <div>
     <h1>Sign Up</h1>
     <!-- following code sourced from https://www.youtube.com/watch?v=-1oE7CWweIE-->
@@ -8,17 +8,17 @@
     <div>{{ error }}</div>
     {% endif %}
     <form action='/add_user'>
-        <label for="username"> User Name</label>
+        <label for="username">Username: </label>
         <input type="text" id="username" name="username" placeholder=" "><br>
 
-        <label for="password">Password</label>
+        <label for="password">Password: </label>
         <input type="password" id="password" name="password" placeholder=" " required><br>
 
-        <label for="confirm">Confirm Password:</label>
+        <label for="confirm">Confirm Password: </label>
         <input type="password" id="confirm" name="confirm" placeholder=" ">
         
         <input type = "submit">
     </form>
-    <p>Already have an account?<a href = '/login'>Login here</a><p>
+    <p>Already have an account? <a href = '/login'>Login here</a><p>
 </div>
 {%endblock%}
