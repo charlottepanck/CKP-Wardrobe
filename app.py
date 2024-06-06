@@ -48,7 +48,7 @@ def get_user_id(user_id):
             cursor = connection.cursor()
             cursor.execute("SELECT * FROM user WHERE user_id = ?;", (user_id,))
             user = cursor.fetchall()
-        return render_template("index.html", user = user)
+        return render_template("index.html", user=user)
     else:
         return redirect(url_for("login"))
 
@@ -158,16 +158,17 @@ def viewcatagories(user_id):
         cursor.execute("SELECT * FROM type WHERE user_id=?",(user_id,))
         type_results = cursor.fetchall()
         #sql3 = "SELECT * FROM brand;"
-        cursor.execute("SELECT * FROM brand;",(user_id,))
+        cursor.execute("SELECT * FROM brand WHERE user_id =?",(user_id,))
         brands_results = cursor.fetchall()
         db.close()
         return render_template("catagories.html", user_id=user_id, colour_results=colour_results, type_results=type_results, brands_results=brands_results)
     else:
         return redirect(url_for('login'))
 
+
 # view outfits
-@app.route('/outfits')
-def viewoutfits():
+@app.route('/outfits/<int:user_id>')
+def viewoutfits(user_id):
     if 'user_id' in session:
         user_id = session['user_id']
         db = sqlite3.connect(DB)
@@ -179,18 +180,16 @@ def viewoutfits():
     WHERE outfit.user_id=?;""", (user_id,))
         outfits_results = cursor.fetchall()
 
-        #sql1 = "SELECT clothing_id, name FROM clothing WHERE user_id=?;"
         cursor.execute("SELECT clothing_id, name FROM clothing WHERE user_id=?;", (user_id,))
         resultsclothingo = cursor.fetchall()
-        #sql2 = "SELECT * FROM style WHERE user_id=?;"
         cursor.execute("SELECT * FROM style WHERE user_id=?;", (user_id,))
         resultsstyleo = cursor.fetchall()
-        #sql3 = "SELECT clothing_id, img_file, name FROM clothing WHERE user_id=?;"
         cursor.execute("SELECT clothing_id, img_file, name FROM clothing WHERE user_id=?;", (user_id,))
         resultsimg_fileo = cursor.fetchall()
         db.close()
         return render_template("outfits.html", user_id=user_id, outfits_results = outfits_results, resultsstyleo=resultsstyleo, resultsclothingo=resultsclothingo, resultsimg_fileo=resultsimg_fileo)
-
+    else:
+        return redirect(url_for('login'))
 
 # add clothing
 @app.route('/clothing', methods=['GET', 'POST'])
@@ -220,7 +219,8 @@ def addclothing():
                 sql = "INSERT INTO clothing (name, brand, type, colour, img_file, user_id) VALUES (?, ?, ?, ?, ?, ?);"
                 cursor.execute(sql, (name, brand, type, colour, filename, user_id))
                 connection.commit()
-            return redirect(url_for('get_user_id', user_id=user_id))
+            #return redirect(url_for('get_user_id', user_id=user_id))
+            return viewclothing(user_id)
         return viewclothing(user_id)
     else:
         return redirect(url_for('login'))
@@ -238,8 +238,8 @@ def deleteclothing(ID):
 
 
 # add outfit
-@app.route('/outfit', methods=['GET', 'POST'])
-def addoutfit(user_id):
+@app.route('/outfits', methods=['GET', 'POST'])
+def addoutfit():
     if 'user_id' in session:
         user_id = session['user_id']
         if request.method == 'POST':
@@ -252,14 +252,14 @@ def addoutfit(user_id):
                 sql = "INSERT INTO outfit (outfit_id, outfit_style, outfit_img_file, user_id) VALUES (?, ?, ?, ?);"
                 cursor.execute(sql, (outfit_id, outfit_style, outfit_img_file, user_id))
                 connection.commit()
-            return redirect(url_for('get_user_id', user_id=user_id))
+            return viewoutfits(user_id)
         return viewoutfits(user_id)
     else:
         return redirect(url_for('login'))
 
 # add brand
-@app.route('/add_brand', methods=['GET', 'POST'])
-def add_brand(user_id):
+@app.route('/catagories', methods=['GET', 'POST'])
+def add_brand():
     if 'user_id' in session:
         user_id = session['user_id']
         if request.method == 'POST':
@@ -270,14 +270,14 @@ def add_brand(user_id):
                 sql = "INSERT INTO brand (brand_name, user_id) VALUES (?, ?);"
                 cursor.execute(sql, (brand_name, user_id))
                 connection.commit()
-            return redirect(url_for('get_user_id', user_id=user_id))
+            return viewcatagories(user_id)
         return viewcatagories(user_id)
     else:
         return redirect(url_for('login'))
 
 # add coloue
-@app.route('/add_colour', methods=['GET', 'POST'])
-def add_colour(user_id):
+@app.route('/catagories', methods=['GET', 'POST'])
+def add_colour():
     if 'user_id' in session:
         user_id = session['user_id']
         if request.method == 'POST':
@@ -288,15 +288,15 @@ def add_colour(user_id):
                 sql = "INSERT INTO colour (colour_name, user_id) VALUES (?, ?);"
                 cursor.execute(sql, (colour_name, user_id))
                 connection.commit()
-            return redirect(url_for('get_user_id', user_id=user_id))
+            return viewcatagories(user_id)
         return viewcatagories(user_id)
     else:
         return redirect(url_for('login'))
 
 
 # add type
-@app.route('/add_type', methods=['GET', 'POST'])
-def add_type(user_id):
+@app.route('/catagories', methods=['GET', 'POST'])
+def add_type():
     if 'user_id' in session:
         user_id = session['user_id']
         if request.method == 'POST':
@@ -315,7 +315,7 @@ def add_type(user_id):
 
 # delete colour
 @app.route("/delete_colour/<int:ID>", methods=["POST"])
-def delete_colour(ID):
+def delete_colour(ID, user_id):
     if 'user_id' in session:
         user_id = session['user_id']
         with sqlite3.connect(DB) as connection:
@@ -349,13 +349,15 @@ def delete_brand(ID):
 
 # delete outfit
 @app.route('/delete_outfit/<int:ID>', methods=['POST'])
-def deleteoutfit(ID):
-    with sqlite3.connect(DB) as connection:
-        cursor = connection.cursor()
-        sql_delete = "DELETE FROM outfit WHERE id = ?;"
-        cursor.execute(sql_delete, (ID,))
-        connection.commit()
-    return viewoutfits()
+def deleteoutfit(ID, user_id):
+    if 'user_id' in session:
+        user_id = session['user_id']
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql_delete = "DELETE FROM outfit WHERE id = ?;"
+            cursor.execute(sql_delete, (ID,))
+            connection.commit()
+        return viewoutfits(user_id)
 
 
 # page not fount error
