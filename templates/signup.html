@@ -7,10 +7,9 @@
     {% if error %}
     <div>{{ error }}</div>
     {% endif %}
-    <form action="/add_user">
-        <label> User Name</label>
-        <!-- Hinting what the expected value type is. And creating a placeholder -->
-        <input name="username" type="text" placeholder=" "><br>
+    <form action='/add_user'>
+        <label for="username"> User Name</label>
+        <input type="text" id="username" name="username" placeholder=" "><br>
 
         <label for="password">Password</label>
         <input type="password" id="password" name="password" placeholder=" " required><br>
