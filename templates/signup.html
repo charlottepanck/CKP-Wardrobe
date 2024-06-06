@@ -1,6 +1,9 @@
 {%extends 'base.html'%}
 {%block content%}
-<div class="w3-panel colour4">
+<br>
+<div class="w3-container">
+<div class="w3-panel w3-round-xlarge colour5 w3-cell w3-card-4">
+<div class="w3-panel">
     <div>
     <h1>Sign Up</h1>
     <!-- following code sourced from https://www.youtube.com/watch?v=-1oE7CWweIE-->
@@ -9,16 +12,18 @@
     {% endif %}
     <form action='/add_user'>
         <label for="username">Username: </label>
-        <input type="text" id="username" name="username" placeholder=" "><br>
+        <input type="text" id="username" name="username" placeholder=" " class="w3-input w3-border" required><br>
 
         <label for="password">Password: </label>
-        <input type="password" id="password" name="password" placeholder=" " required><br>
+        <input type="password" id="password" name="password" placeholder=" " class="w3-input w3-border" required><br>
 
         <label for="confirm">Confirm Password: </label>
-        <input type="password" id="confirm" name="confirm" placeholder=" ">
+        <input type="password" id="confirm" name="confirm" placeholder=" " class="w3-input w3-border" required><br>
         
-        <input type = "submit">
+        <input type = "submit" class="w3-ckp-button w3-round-xlarge colour4 w3-border">
     </form>
     <p>Already have an account? <a href = '/login'>Login here</a><p>
+</div>
+</div>
 </div>
 {%endblock%}
