@@ -1,16 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="w3-panel colour4">
+<br>
+<div class="w3-container">
+<div class="w3-panel w3-round-xlarge colour5 w3-cell w3-card-4">
+<div class="w3-panel">
+    <div>
 <h1>Login</h1>
 <!-- A form to login with -->
 <!-- POST to the LOGIN route this is set by the action value -->
 <form action="/login" method="POST">
-    <label for="username">Username</label>
-    <input type="text" name="username">
-    <label for="password">Password</label>
-    <input type="password" name="password">
-    <button type="submit">Login</button>
+    <label for="username">Username: </label>
+    <input type="text" name="username" class="w3-input w3-border" required><br>
+    <label for="password">Password: </label>
+    <input type="password" name="password" class="w3-input w3-border" required><br>
+    {% if error_message %}
+    <div class="colour5"> {{ error_message }} </div>
+    {% endif %} <br>
+    <button type="submit" class="w3-ckp-button w3-round-xlarge colour4 w3-border">Login</button>
 </form>
 <p>Don't have an account? <a href = '/signup'>Sign Up Here!</a><p></p>
+</div>
+</div>
 </div>
 {% endblock %}

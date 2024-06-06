@@ -7,9 +7,6 @@
     <div>
     <h1>Sign Up</h1>
     <!-- following code sourced from https://www.youtube.com/watch?v=-1oE7CWweIE-->
-    {% if error %}
-    <div>{{ error }}</div>
-    {% endif %}
     <form action='/add_user'>
         <label for="username">Username: </label>
         <input type="text" id="username" name="username" placeholder=" " class="w3-input w3-border" required><br>
@@ -19,7 +16,9 @@
 
         <label for="confirm">Confirm Password: </label>
         <input type="password" id="confirm" name="confirm" placeholder=" " class="w3-input w3-border" required><br>
-        
+        {% if error_message %}
+        <div class="colour5"> {{ error_message }} </div>
+        {% endif %} <br>
         <input type = "submit" class="w3-ckp-button w3-round-xlarge colour4 w3-border">
     </form>
     <p>Already have an account? <a href = '/login'>Login here</a><p>

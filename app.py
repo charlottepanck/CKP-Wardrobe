@@ -75,8 +75,8 @@ def login():
             print("User authenticated in login function")
             return redirect(url_for("get_user_id", user_id=sql_id))
         else:
-            error_message = "Invalid login credentials. Please try again. (Usernames and passwords are case sensitive, spaces also count as cahracters that must be re-entered)"
-            return render_template("login.html", error=error_message)
+            error_message = "Invalid login credentials. Please try again."
+            return render_template("login.html", error_message=error_message)
     else:
         if "user_id" in session:
             return redirect(url_for("get_user_id", user_id=session["user_id"]))
@@ -107,7 +107,7 @@ def add_user_route():
             connection.commit()
             return render_template("login.html")
         else:
-            error_message = "Your confirmed password is incorrect, please try again"
+            error_message = "Passwords don't match"
             return render_template("signup.html", title="Sign up", error_message=error_message)
 
 
