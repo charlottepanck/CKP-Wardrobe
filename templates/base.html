@@ -15,10 +15,17 @@
             <a href="/" class="w3-bar-item w3-ckp-button w3-round-xlarge">Home</a>
             <a href="/clothing" class="w3-bar-item w3-ckp-button w3-round-xlarge">All Clothing</a>
             <a href="/outfits" class="w3-bar-item w3-ckp-button">Outfits</a>
-            <a href="/catagories" class="w3-bar-item w3-ckp-button">Catagories</a>
+            <div class="w3-ckp-dropdown-hover">
+                <button class="w3-ckp-ckp-button">Catagories</button>
+                <div class="w3-ckp-dropdown-content w3-ckp-bar-block w3-card-4">
+                  <a href="/brands" class="w3-ckp-bar-item w3-ckp-button">Brands</a>
+                  <a href="/types" class="w3-ckp-bar-item w3-ckp-button">Types</a>
+                  <a href="/colours" class="w3-ckp-bar-item w3-ckp-button">Colours</a>
+                </div>
+              </div>
             <a href="/logout" class="w3-bar-item w3-right-align w3-ckp-button w3-right">Logout</a>
             <!--<a href="/login" class="w3-bar-item w3-right-align w3-ckp-button w3-right">Login</a>-->
-            <a href="/signup" class="w3-bar-item w3-right-align w3-ckp-button w3-right">Sign In</a>
+            <a href="/login" class="w3-bar-item w3-right-align w3-ckp-button w3-right">Dashboard</a>
         </div>
       {% block body %}
       {% endblock %}

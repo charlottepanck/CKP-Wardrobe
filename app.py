@@ -86,7 +86,7 @@ def login():
 @app.route("/logout")
 def logout():
     session.pop("user_id", None)
-    return redirect(url_for("home"))
+    return redirect(url_for("login"))
 
             
 @app.route("/add_user")
@@ -141,7 +141,7 @@ WHERE clothing.user_id = ?;""", (user_id,))
         db.close()
         return render_template("clothing.html", user_id=user_id, results=results, resultsbrandsc=resultsbrandsc, resultstypec=resultstypec, resultscoloursc=resultscoloursc)
     else:
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
 
 
 # view catagories
@@ -163,7 +163,7 @@ def viewcatagories(user_id):
         db.close()
         return render_template("catagories.html", user_id=user_id, colour_results=colour_results, type_results=type_results, brands_results=brands_results)
     else:
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
 
 
 # view outfits
@@ -189,7 +189,7 @@ def viewoutfits(user_id):
         db.close()
         return render_template("outfits.html", user_id=user_id, outfits_results = outfits_results, resultsstyleo=resultsstyleo, resultsclothingo=resultsclothingo, resultsimg_fileo=resultsimg_fileo)
     else:
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
 
 # add clothing
 @app.route('/clothing', methods=['GET', 'POST'])
@@ -223,7 +223,7 @@ def addclothing():
             return viewclothing(user_id)
         return viewclothing(user_id)
     else:
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
 
 
 #delete clothing
@@ -255,7 +255,7 @@ def addoutfit():
             return viewoutfits(user_id)
         return viewoutfits(user_id)
     else:
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
 
 # add brand
 @app.route('/catagories', methods=['GET', 'POST'])
@@ -273,7 +273,7 @@ def add_brand():
             return viewcatagories(user_id)
         return viewcatagories(user_id)
     else:
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
 
 # add coloue
 @app.route('/catagories', methods=['GET', 'POST'])
@@ -291,7 +291,7 @@ def add_colour():
             return viewcatagories(user_id)
         return viewcatagories(user_id)
     else:
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
 
 
 # add type
@@ -310,7 +310,7 @@ def add_type():
             return viewcatagories(user_id)
         return viewcatagories(user_id)
     else:
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
 
 
 # delete colour
@@ -325,7 +325,7 @@ def delete_colour(ID, user_id):
             connection.commit()
         return viewcatagories(user_id)
     else:
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
 
 # delete type
 @app.route("/delete_type/<int:ID>", methods=["POST"])

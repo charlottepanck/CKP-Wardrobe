@@ -17,8 +17,8 @@
         <label for="confirm">Confirm Password: </label>
         <input type="password" id="confirm" name="confirm" placeholder=" " class="w3-input w3-border" required><br>
         {% if error_message %}
-        <div class="colour5"> {{ error_message }} </div>
-        {% endif %} <br>
+        <div class="colour5"> {{ error_message }} </div><br>
+        {% endif %}
         <input type = "submit" class="w3-ckp-button w3-round-xlarge colour4 w3-border">
     </form>
     <p>Already have an account? <a href = '/login'>Login here</a><p>
