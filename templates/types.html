@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block body %}
-<!--Types-->
-<div>
+<br>
+<div class="w3-col s4">
     <div class="w3-container colour5 w3-round-xlarge w3-card-4">
       <form class="w3-container" action="{{ url_for('add_type') }}" method="POST">
         <h2>Add a Clothing Type</h2>
@@ -15,7 +15,7 @@
             <th>Clothing Types</th>
             <th></th>
           </tr>
-          {% for item in type_results %}
+          {% for item in types_results %}
           <tr>
             <td>{{ item[1] }}</td>                
             <td>

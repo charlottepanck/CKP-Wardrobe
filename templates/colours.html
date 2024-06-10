@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block body %}
+<br>
 <div class="w3-col s4">
   <div class="w3-container colour5 w3-round-xlarge w3-card-4">
     <form class="w3-container" action="{{ url_for('add_colour') }}" method="POST">
@@ -14,7 +15,7 @@
         <th>Colours</th>
         <th></th>
       </tr>
-      {% for item in colour_results %}
+      {% for item in colours_results %}
       <tr>
         <td>{{ item[1] }}</td>                
         <td>

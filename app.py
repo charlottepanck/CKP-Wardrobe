@@ -144,27 +144,64 @@ WHERE clothing.user_id = ?;""", (user_id,))
         return redirect(url_for('login'))
 
 
-# view catagories
-@app.route('/catagories/<int:user_id>')
-def viewcatagories(user_id):
+# view brands
+@app.route('/brands/<int:user_id>')
+def viewbrands(user_id):
     if 'user_id' in session:
         user_id = session['user_id']
         db = sqlite3.connect(DB)
         cursor = db.cursor()
-        #sql = "SELECT * FROM colour WHERE user_id=?;"
-        cursor.execute("SELECT * FROM colour WHERE user_id=?;",(user_id,))
-        colour_results = cursor.fetchall()
-        #sql2 = "SELECT * FROM type;"
-        cursor.execute("SELECT * FROM type WHERE user_id=?",(user_id,))
-        type_results = cursor.fetchall()
-        #sql3 = "SELECT * FROM brand;"
         cursor.execute("SELECT * FROM brand WHERE user_id =?",(user_id,))
         brands_results = cursor.fetchall()
         db.close()
-        return render_template("catagories.html", user_id=user_id, colour_results=colour_results, type_results=type_results, brands_results=brands_results)
+        return render_template("brands.html", user_id=user_id, brands_results=brands_results)
     else:
         return redirect(url_for('login'))
 
+
+# view styles
+@app.route('/styles/<int:user_id>')
+def viewstyles(user_id):
+    if 'user_id' in session:
+        user_id = session['user_id']
+        db = sqlite3.connect(DB)
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM style WHERE user_id =?",(user_id,))
+        styles_results = cursor.fetchall()
+        db.close()
+        return render_template("styles.html", user_id=user_id, styles_results=styles_results)
+    else:
+        return redirect(url_for('login'))
+
+
+# view types
+@app.route('/types/<int:user_id>')
+def viewtypes(user_id):
+    if 'user_id' in session:
+        user_id = session['user_id']
+        db = sqlite3.connect(DB)
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM type WHERE user_id =?",(user_id,))
+        types_results = cursor.fetchall()
+        db.close()
+        return render_template("types.html", user_id=user_id, types_results=types_results)
+    else:
+        return redirect(url_for('login'))
+
+
+# view colours
+@app.route('/colours/<int:user_id>')
+def viewcolours(user_id):
+    if 'user_id' in session:
+        user_id = session['user_id']
+        db = sqlite3.connect(DB)
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM colour WHERE user_id =?",(user_id,))
+        colours_results = cursor.fetchall()
+        db.close()
+        return render_template("colours.html", user_id=user_id, colours_results=colours_results)
+    else:
+        return redirect(url_for('login'))
 
 # view outfits
 @app.route('/outfits/<int:user_id>')
@@ -257,8 +294,9 @@ def addoutfit():
     else:
         return redirect(url_for('login'))
 
+
 # add brand
-@app.route('/catagories', methods=['GET', 'POST'])
+@app.route('/brands', methods=['GET', 'POST'])
 def add_brand():
     if 'user_id' in session:
         user_id = session['user_id']
@@ -270,13 +308,33 @@ def add_brand():
                 sql = "INSERT INTO brand (brand_name, user_id) VALUES (?, ?);"
                 cursor.execute(sql, (brand_name, user_id))
                 connection.commit()
-            return viewcatagories(user_id)
-        return viewcatagories(user_id)
+            return viewbrands(user_id)
+        return viewbrands(user_id)
     else:
         return redirect(url_for('login'))
 
+
+# add brand
+@app.route('/styles', methods=['GET', 'POST'])
+def add_style():
+    if 'user_id' in session:
+        user_id = session['user_id']
+        if request.method == 'POST':
+            style_name = request.form.get('style_name')
+
+            with sqlite3.connect(DB) as connection:
+                cursor = connection.cursor()
+                sql = "INSERT INTO style (style_name, user_id) VALUES (?, ?);"
+                cursor.execute(sql, (style_name, user_id))
+                connection.commit()
+            return viewstyles(user_id)
+        return viewstyles(user_id)
+    else:
+        return redirect(url_for('login'))
+
+
 # add coloue
-@app.route('/catagories', methods=['GET', 'POST'])
+@app.route('/colours', methods=['GET', 'POST'])
 def add_colour():
     if 'user_id' in session:
         user_id = session['user_id']
@@ -288,14 +346,14 @@ def add_colour():
                 sql = "INSERT INTO colour (colour_name, user_id) VALUES (?, ?);"
                 cursor.execute(sql, (colour_name, user_id))
                 connection.commit()
-            return viewcatagories(user_id)
-        return viewcatagories(user_id)
+            return viewcolours(user_id)
+        return viewcolours(user_id)
     else:
         return redirect(url_for('login'))
 
 
 # add type
-@app.route('/catagories', methods=['GET', 'POST'])
+@app.route('/types', methods=['GET', 'POST'])
 def add_type():
     if 'user_id' in session:
         user_id = session['user_id']
@@ -307,45 +365,71 @@ def add_type():
                 sql = "INSERT INTO type (type_name, user_id) VALUES (?, ?);"
                 cursor.execute(sql, (type_name, user_id))
                 connection.commit()
-            return viewcatagories(user_id)
-        return viewcatagories(user_id)
+            return viewtypes(user_id)
+        return viewtypes(user_id)
+    else:
+        return redirect(url_for('login'))
+
+
+# delete style
+@app.route("/delete_style/<int:ID>", methods=["POST"])
+def delete_style(ID):
+    if 'user_id' in session:
+        user_id = session['user_id']
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql_delete = "DELETE FROM style WHERE style_id = ?;"
+            cursor.execute(sql_delete, (ID,))
+            connection.commit()
+        return viewstyles(user_id)
     else:
         return redirect(url_for('login'))
 
 
 # delete colour
 @app.route("/delete_colour/<int:ID>", methods=["POST"])
-def delete_colour(ID, user_id):
+def delete_colour(ID):
     if 'user_id' in session:
         user_id = session['user_id']
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
-            sql_delete = "DELETE FROM colour WHERE colour_id = ?;"
-            cursor.execute(sql_delete, (ID,))
+            sql_delete = "DELETE FROM colour WHERE colour_id = ? and user_id = ?;"
+            cursor.execute(sql_delete, (ID, user_id))
             connection.commit()
-        return viewcatagories(user_id)
+        return viewcolours(user_id)
     else:
         return redirect(url_for('login'))
+
 
 # delete type
 @app.route("/delete_type/<int:ID>", methods=["POST"])
 def delete_type(ID):
-    with sqlite3.connect(DB) as connection:
-        cursor = connection.cursor()
-        sql_delete = "DELETE FROM type WHERE type_id = ?;"
-        cursor.execute(sql_delete, (ID,))
-        connection.commit()
-    return viewcatagories()
+    if 'user_id' in session:
+        user_id = session['user_id']
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql_delete = "DELETE FROM type WHERE type_id = ? and user_id = ?;"
+            cursor.execute(sql_delete, (ID, user_id))
+            connection.commit()
+        return viewtypes(user_id)
+    else:
+        return redirect(url_for('login'))
+
 
 # delete brand
 @app.route("/delete_brand/<int:ID>", methods=["POST"])
 def delete_brand(ID):
-    with sqlite3.connect(DB) as connection:
-        cursor = connection.cursor()
-        sql_delete = "DELETE FROM brand WHERE brand_id = ?;"
-        cursor.execute(sql_delete, (ID,))
-        connection.commit()
-    return viewcatagories()
+    if 'user_id' in session:
+        user_id = session['user_id']
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql_delete = "DELETE FROM brand WHERE brand_id = ? and user_id = ?;"
+            cursor.execute(sql_delete, (ID, user_id))
+            connection.commit()
+        return viewbrands(user_id)
+    else:
+        return redirect(url_for('login'))
+
 
 # delete outfit
 @app.route('/delete_outfit/<int:ID>', methods=['POST'])
