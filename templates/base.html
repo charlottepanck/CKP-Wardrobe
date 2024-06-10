@@ -8,28 +8,26 @@
     <title>Wardrobe Wizard</title>
 </head>
 <body>
-    <div class = "w3-container colour4 w3-round-xlarge">
-        <h1>Wardrobe Wizard</h1>
+  <div class = "w3-container colour4 w3-round-xlarge">
+    <h1>Wardrobe Wizard</h1>
     <!--NAVIGATION BAR-->
-        <div class="w3-bar w3-round-xlarge colour5">
-            <a href="/" class="w3-bar-item w3-ckp-button">Home</a>
-            <a href="/clothing" class="w3-bar-item w3-ckp-button">All Clothing</a>
-            <a href="/outfits" class="w3-bar-item w3-ckp-button">Outfits</a>
-            <div class="w3-dropdown-hover">
-              <button class="w3-ckp-button w3-round-xlarge colour5">Catagories</button>
-              <div class="w3-round-xlarge w3-dropdown-content w3-bar-block w3-card-4 colour5">
-                <a href="/brands" class="w3-bar-item w3-ckp-button">Brands</a>
-                <a href="/types" class="w3-bar-item w3-ckp-button">Types</a>
-                <a href="/colours" class="w3-bar-item w3-ckp-button">Colours</a>
-                <a href="/styles" class="w3-bar-item w3-ckp-button">Styles</a>
-              </div>
-            </div>
-            <!--<a href="/login" class="w3-bar-item w3-right-align w3-ckp-button w3-right">Login</a>-->
-            <a href="/login" class="w3-bar-item w3-right-align w3-ckp-button w3-right">Dashboard</a>
+    <div class="w3-bar w3-round-xlarge colour5">
+      <a href="/login" class="w3-bar-item w3-ckp-button">Dashboard</a>
+      <a href="/clothing" class="w3-bar-item w3-ckp-button">All Clothing</a>
+      <a href="/outfits" class="w3-bar-item w3-ckp-button">Outfits</a>
+      <div class="w3-dropdown-hover">
+        <button class="w3-ckp-button w3-round-xlarge colour5">Catagories</button>
+        <div class="w3-round-xlarge w3-dropdown-content w3-bar-block w3-card-4 colour5">
+          <a href="/brands" class="w3-bar-item w3-ckp-button">Brands</a>
+          <a href="/types" class="w3-bar-item w3-ckp-button">Types</a>
+          <a href="/colours" class="w3-bar-item w3-ckp-button">Colours</a>
+          <a href="/styles" class="w3-bar-item w3-ckp-button">Styles</a>
         </div>
+      </div>
+    </div>
       {% block body %}
       {% endblock %}
-    </div>
+  </div>
    <!-- This is the main page with most stuff we need in it -->
     <!-- This starts and ends a 'block' that the child template will fill out with stuff -->
     {% block content %}{% endblock %}

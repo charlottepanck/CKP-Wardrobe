@@ -266,12 +266,14 @@ def addclothing():
 #delete clothing
 @app.route('/delete_clothing/<int:ID>', methods=['POST'])
 def deleteclothing(ID):
-    with sqlite3.connect(DB) as connection:
-        cursor = connection.cursor()
-        sql_delete = "DELETE FROM clothing WHERE clothing_id = ?;"
-        cursor.execute(sql_delete, (ID,))
-        connection.commit()
-    return viewclothing()
+    if 'user_id' in session:
+        user_id = session['user_id']
+        with sqlite3.connect(DB) as connection:
+            cursor = connection.cursor()
+            sql_delete = "DELETE FROM clothing WHERE clothing_id = ? and user_id = ?;"
+            cursor.execute(sql_delete, (ID, user_id))
+            connection.commit()
+        return viewclothing(user_id)
 
 
 # add outfit
@@ -433,7 +435,7 @@ def delete_brand(ID):
 
 # delete outfit
 @app.route('/delete_outfit/<int:ID>', methods=['POST'])
-def deleteoutfit(ID, user_id):
+def deleteoutfit(ID):
     if 'user_id' in session:
         user_id = session['user_id']
         with sqlite3.connect(DB) as connection:
