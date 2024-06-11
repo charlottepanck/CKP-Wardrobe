@@ -88,11 +88,6 @@ img {
   display: block;
 }
 
-.container {
-  margin-top: 20px;
-  overflow: hidden;
-}
-
 /* Style the buttons */
 .btn {
   border: none;
