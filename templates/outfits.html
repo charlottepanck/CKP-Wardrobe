@@ -31,29 +31,21 @@
     </form>
   </div>
 
-<!--<br>
-<table class="w3-table-all">
-    <tr>
-        <th>Outfit ID</th>
-        <th>Clothing Item</th>
-        <th>Style</th>
-
-    {% for item in outfits_results %}
-    <tr>
-        <td>{{ item[0] }}</td>
-        <td>{{ item[1] }}</td>
-        <td>{{ item[2] }}</td>
-    </tr>
-    {% endfor %}
-</table>-->
-
 <div class="w3-container"></div>
 
   <div class="w3-container w3-round-xlarge colour5 w3-cell w3-card-4" style="width:80%">
     <br>
     <div class="w3-row-padding">
+      <div id="myBtnContainer">
+        <button class="w3-ckp-button colour4 active" onclick="filterSelection('all')"> Show all</button>
+        {% for item in new_outfits_results %}
+        <button class="w3-ckp-button colour4" onclick="filterSelection('{{item[1]}}')">Outfit {{ item[1] }}</button>
+        {% endfor %}
+      </div>
+      <br>
       {% for item in outfits_results %}
       <div class="w3-third">
+        <div class="filterDiv {{item[1]}}">
         <div class="gallery-wrap w3-card-4 colour4 w3-round-xlarge">
           <img src="/static/images/{{ item[4] }}" alt=lol class="gallery-wrap w3-round-xlarge responsive" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
           <div class="padding">
@@ -64,6 +56,7 @@
             <input type="submit" title="Delete" class="input w3-padding delete-button w3-right-align" value="&#10008;" onclick="return confirm('Are you sure you want to delete this Item?')">
           </form>
         </div>
+      </div>
         <br>
       </div>
       {% endfor %}
@@ -71,4 +64,50 @@
   </div>
 </div>
 <br>
+
+<script>
+  // Source code: https://www.w3schools.com/howto/howto_js_filter_elements.asp
+  filterSelection("all")
+  function filterSelection(c) {
+    var x, i;
+    x = document.getElementsByClassName("filterDiv");
+    if (c == "all") c = "";
+    for (i = 0; i < x.length; i++) {
+      w3RemoveClass(x[i], "show");
+      if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+    }
+  }
+  
+  function w3AddClass(element, name) {
+    var i, arr1, arr2;
+    arr1 = element.className.split(" ");
+    arr2 = name.split(" ");
+    for (i = 0; i < arr2.length; i++) {
+      if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+    }
+  }
+  
+  function w3RemoveClass(element, name) {
+    var i, arr1, arr2;
+    arr1 = element.className.split(" ");
+    arr2 = name.split(" ");
+    for (i = 0; i < arr2.length; i++) {
+      while (arr1.indexOf(arr2[i]) > -1) {
+        arr1.splice(arr1.indexOf(arr2[i]), 1);     
+      }
+    }
+    element.className = arr1.join(" ");
+  }
+  
+  // Add active class to the current button (highlight it)
+  var btnContainer = document.getElementById("myBtnContainer");
+  var btns = btnContainer.getElementsByClassName("btn");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function(){
+      var current = document.getElementsByClassName("active");
+      current[0].className = current[0].className.replace(" active", "");
+      this.className += " active";
+    });
+  }
+  </script>
 {% endblock %}

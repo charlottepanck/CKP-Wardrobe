@@ -216,7 +216,13 @@ def viewoutfits(user_id):
     LEFT JOIN clothing ON outfit.outfit_img_file = clothing.clothing_id
     WHERE outfit.user_id=?;""", (user_id,))
         outfits_results = cursor.fetchall()
-
+        cursor.execute("""SELECT outfit.id, outfit.outfit_id, clothing.name, style.style_name, clothing.img_file, outfit.user_id
+    FROM outfit 
+    LEFT JOIN style ON outfit.outfit_style = style.style_id
+    LEFT JOIN clothing ON outfit.outfit_img_file = clothing.clothing_id
+    WHERE outfit.user_id=?
+    GROUP BY outfit.outfit_id;""", (user_id,))
+        new_outfits_results = cursor.fetchall()
         cursor.execute("SELECT clothing_id, name FROM clothing WHERE user_id=?;", (user_id,))
         resultsclothingo = cursor.fetchall()
         cursor.execute("SELECT * FROM style WHERE user_id=?;", (user_id,))
@@ -224,7 +230,7 @@ def viewoutfits(user_id):
         cursor.execute("SELECT clothing_id, img_file, name FROM clothing WHERE user_id=?;", (user_id,))
         resultsimg_fileo = cursor.fetchall()
         db.close()
-        return render_template("outfits.html", user_id=user_id, outfits_results = outfits_results, resultsstyleo=resultsstyleo, resultsclothingo=resultsclothingo, resultsimg_fileo=resultsimg_fileo)
+        return render_template("outfits.html", user_id=user_id, new_outfits_results=new_outfits_results, outfits_results = outfits_results, resultsstyleo=resultsstyleo, resultsclothingo=resultsclothingo, resultsimg_fileo=resultsimg_fileo)
     else:
         return redirect(url_for('login'))
 
