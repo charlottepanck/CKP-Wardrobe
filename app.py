@@ -126,6 +126,14 @@ LEFT JOIN colour on clothing.colour = colour.colour_id
 WHERE clothing.user_id = ?;""", (user_id,))
         results = cursor.fetchall()
 
+        cursor.execute("""SELECT clothing.clothing_id, clothing.name, brand.brand_name, type.type_name, colour.colour_name, clothing.img_file, clothing.user_id
+FROM clothing 
+LEFT JOIN brand on clothing.brand = brand.brand_id
+LEFT JOIN type on clothing.type = type.type_id
+LEFT JOIN colour on clothing.colour = colour.colour_id
+WHERE clothing.user_id = ?;""", (user_id,))
+        two_results = cursor.fetchall()
+
         #sql2 = "SELECT * FROM brand WHERE user_id =?;"
         cursor.execute("SELECT * FROM brand WHERE user_id =?", (user_id,))
         resultsbrandsc = cursor.fetchall()
@@ -139,7 +147,7 @@ WHERE clothing.user_id = ?;""", (user_id,))
         resultstypec = cursor.fetchall()
 
         db.close()
-        return render_template("clothing.html", user_id=user_id, results=results, resultsbrandsc=resultsbrandsc, resultstypec=resultstypec, resultscoloursc=resultscoloursc)
+        return render_template("clothing.html", user_id=user_id, results=results, two_results=two_results, resultsbrandsc=resultsbrandsc, resultstypec=resultstypec, resultscoloursc=resultscoloursc)
     else:
         return redirect(url_for('login'))
 

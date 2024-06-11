@@ -2,7 +2,7 @@
 {% block body %}
 <title>Wardrobe Wizard</title>
 {% for items in user %}
-<h3>Welcome @{{ items[1] }}</h3>
+<h3 class="heading-padding">Welcome @{{ items[1] }}</h3>
 <a href="/logout" class="w3-ckp-button colour5">Logout</a>
 {% endfor %}
 {% endblock %}
