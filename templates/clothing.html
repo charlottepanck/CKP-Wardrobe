@@ -42,7 +42,7 @@
 
   <div class="w3-container"></div>
 
-  <div class="w3-panel colour5 w3-round-xlarge w3-cell w3-card-4" style="width:80%"><br>
+  <div class="w3-panel colour5 w3-round-xlarge w3-cell w3-card-4" style="width:80%;padding-top: 16px;padding-bottom: 16px;">
     <div class="w3-row-padding">
       {% for item in results %}
       <div class="w3-third">
@@ -60,7 +60,6 @@
             <button id="myBtn">Open Modal</button>
           </div>
         </div>
-        <br>
       </div>
       <div id="myModal" class="modal">
         <div class="modal-content">
@@ -76,11 +75,11 @@
         </div>
       </div>
       {% endfor %}
+      <br>
     </div>
   </div>
 </div>
 <br>
-
 <script>
   // Get the modal
 var modal = document.getElementById("myModal");
