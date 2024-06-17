@@ -46,19 +46,11 @@
     <div class="w3-row-padding">
       {% for item in results %}
       <div class="w3-third">
-
         <div class="gallery-wrap w3-card-4 w3-round-xlarge colour4">
-          <img src="/static/images/{{item[5]}}" alt=lol class="gallery-wrap w3-round-xlarge" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
-          <!--<div class="padding">
-            <h3>{{ item[1] }}</h3>
-            <p>Brand: {{ item[2] }}<br>Type: {{ item[3] }}<br>Colour: {{ item[4] }}</p>
-          </div>-->
           <div class="w3-right-align">
-            <!--<form method="POST" action="{{ url_for('deleteclothing', ID=item[0]) }}">
-              <input type="submit" title="Delete" class="delete-button padding" value="&#10008;" onclick="return confirm('Are you sure you want to delete this Item?')">
-            </form>-->
-            <button class="myBtn" id="{{ item[0] }}">Open Modal</button>
+            <button class="myBtn three-dots" id="{{ item[0] }}">&#xFE19;</button>
           </div>
+          <img src="/static/images/{{item[5]}}" alt=lol class="gallery-wrap w3-round-xlarge" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
         </div>
       </div>
       <div id="m{{ item[0] }}" class="modal">

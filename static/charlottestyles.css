@@ -138,6 +138,17 @@ img {
     border:none;
 }
 
+.three-dots {
+  background-color:#ffffff00;
+  color: #000000;
+  font-size: 18px;
+  display:inside;
+  cursor: pointer;
+  text-decoration:none;
+  border:none;
+}
+
+
 .eight-sixteen-padding {
   padding: 8px 16px;
 }
