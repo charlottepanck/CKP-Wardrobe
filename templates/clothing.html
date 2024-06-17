@@ -49,44 +49,38 @@
 
         <div class="gallery-wrap w3-card-4 w3-round-xlarge colour4">
           <img src="/static/images/{{item[5]}}" alt=lol class="gallery-wrap w3-round-xlarge" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
+          <!--<div class="padding">
+            <h3>{{ item[1] }}</h3>
+            <p>Brand: {{ item[2] }}<br>Type: {{ item[3] }}<br>Colour: {{ item[4] }}</p>
+          </div>-->
+          <div class="w3-right-align">
+            <!--<form method="POST" action="{{ url_for('deleteclothing', ID=item[0]) }}">
+              <input type="submit" title="Delete" class="delete-button padding" value="&#10008;" onclick="return confirm('Are you sure you want to delete this Item?')">
+            </form>-->
+            <button id="myBtn">Open Modal</button>
+          </div>
+        </div>
+        <br>
+      </div>
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <img src="/static/images/{{item[5]}}" alt=lol class="gallery-wrap w3-round-xlarge" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
           <div class="padding">
             <h3>{{ item[1] }}</h3>
             <p>Brand: {{ item[2] }}<br>Type: {{ item[3] }}<br>Colour: {{ item[4] }}</p>
           </div>
-          <div class="w3-right-align">
-            <form method="POST" action="{{ url_for('deleteclothing', ID=item[0]) }}">
-              <input type="submit" title="Delete" class="delete-button padding" value="&#10008;" onclick="return confirm('Are you sure you want to delete this Item?')">
-            </form>
-            <!-- Trigger/Open The Modal -->
-<button id="myBtn">Open Modal</button>
-          </div>
+          <form method="POST" action="{{ url_for('deleteclothing', ID=item[0]) }}">
+            <input type="submit" title="Delete" class="delete-button padding" value="&#10008;" onclick="return confirm('Are you sure you want to delete this Item?')">
+          </form>
         </div>
-
-        <br>
       </div>
       {% endfor %}
     </div>
   </div>
-
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    {% for item in results %}
-    <div class="padding">
-      <h3>{{ item[1] }}</h3>
-      <p>Brand: {{ item[2] }}<br>Type: {{ item[3] }}<br>Colour: {{ item[4] }}</p>
-    </div>
-    {% endfor %}
-  </div>
-
-</div>
-
 </div>
 <br>
+
 <script>
   // Get the modal
 var modal = document.getElementById("myModal");
