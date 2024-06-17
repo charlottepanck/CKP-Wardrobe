@@ -75,7 +75,12 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
+    {% for item in results %}
+    <div class="padding">
+      <h3>{{ item[1] }}</h3>
+      <p>Brand: {{ item[2] }}<br>Type: {{ item[3] }}<br>Colour: {{ item[4] }}</p>
+    </div>
+    {% endfor %}
   </div>
 
 </div>
