@@ -47,8 +47,8 @@
           <div class="eight-sixteen-padding">
             <h3 class="heading-padding">Outfit {{ item[1] }}</h3>
             <p>Name: {{ item[2] }}<br>Style: {{ item[3] }}</p>
-            <form method="POST" action="{{ url_for('deleteoutfit', ID=item[0]) }}">
-              <input type="submit" title="Delete" class="input w3-padding delete-button w3-right-align" value="&#10008;" onclick="return confirm('Are you sure you want to delete this Item?')">
+            <form style="padding-bottom: 8px; padding-top: 8px;" method="POST" action="{{ url_for('deleteoutfit', ID=item[0]) }}">
+              <input type="submit" title="Delete" class="delete-button" value="Delete {{ item[2]}}" onclick="return confirm('Are you sure you want to delete this Item?')">
             </form>
           </div>
         </div>
