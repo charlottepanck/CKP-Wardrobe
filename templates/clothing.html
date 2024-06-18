@@ -57,13 +57,13 @@
       </div>
       <div id="m{{ item[0] }}" class="modal">
         <div class="modal-content w3-row-padding">
-          <span class="close">&times;</span>
           <div class="w3-third">
             <div class="gallery-wrap w3-card-4 w3-round-xlarge colour4">
               <img src="/static/images/{{item[5]}}" alt=lol class="gallery-wrap w3-round-xlarge" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
               </div>
             </div>
-          <div class="padding">
+          <div class="w3-twothird" style="padding-top: 8px;padding-bottom: 8px;">
+            <span class="close">&times;</span>
             <h3>{{ item[1] }}</h3>
             <p>Brand: {{ item[2] }}<br>Type: {{ item[3] }}<br>Colour: {{ item[4] }}</p>
             <form method="POST" action="{{ url_for('deleteclothing', ID=item[0]) }}">

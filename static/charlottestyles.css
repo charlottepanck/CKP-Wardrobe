@@ -135,7 +135,9 @@ img {
     display:inside;
     cursor: pointer;
     text-decoration:none;
-    border:none;
+    border-color: #e06666!important;
+    border-radius:16px;
+    border-width: 3px;
 }
 
 .three-dots {
@@ -178,7 +180,7 @@ img {
 .w3-ckp-button:hover{
   color:#B98684!important;
   background-color:#D4BDB4!important;
-  border-radius:16px
+  border-radius:16px;
 }
 
 .w3-ckp-bar .w3-button{
@@ -303,7 +305,7 @@ img {
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 50%;
+  width: 55%;
   border-radius: 16px;
 }
 
