@@ -2,7 +2,7 @@
 {% block body %}
 <br>
 <div class="w3-cell-row">
-  <div class="w3-round-xlarge colour5 w3-cell w3-card-4" style="width:20%">
+  <div class="w3-round-xlarge colour5 w3-cell w3-card-4" style="width:30%">
     <form class="w3-ckp-container" action="{{ url_for('addoutfit') }}" method="POST" enctype="multipart/form-data">
       <h2>Add Outfit</h2><br>
     
@@ -32,7 +32,7 @@
 
 <div class="w3-container"></div>
 
-  <div class="w3-ckp-container w3-round-xlarge colour5 w3-cell w3-card-4" style="width:80%">
+  <div class="w3-ckp-container w3-round-xlarge colour5 w3-cell w3-card-4" style="width:70%">
       <div class="padding" id="myBtnContainer">
         <button class="w3-ckp-button colour4 active" onclick="filterSelection('all')"> Show all</button>
         {% for item in new_outfits_results %}

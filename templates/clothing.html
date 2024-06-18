@@ -2,7 +2,7 @@
 {% block body %}
 <br>
 <div class="w3-cell-row">
-  <div class="w3-panel w3-round-xlarge colour5 w3-cell w3-card-4" style="width:20%">
+  <div class="w3-panel w3-round-xlarge colour5 w3-cell w3-card-4" style="width:30%">
     <form action="{{ url_for('addclothing') }}" method="POST" enctype="multipart/form-data">
       <h2 class="heading-padding">Add Clothing</h2>
     
@@ -42,7 +42,7 @@
 
   <div class="w3-container"></div>
 
-  <div class="w3-panel colour5 w3-round-xlarge w3-cell w3-card-4" style="width:80%;padding-top: 16px;padding-bottom: 16px;">
+  <div class="w3-panel colour5 w3-round-xlarge w3-cell w3-card-4" style="width:70%;padding-top: 16px;padding-bottom: 16px;">
     <div class="w3-row-padding">
       {% for item in results %}
       <div class="w3-third">
@@ -51,7 +51,7 @@
             <button class="myBtn three-dots" id="{{ item[0] }}">&#xFE19;</button>
           </div>-->
           <div class="myBtn" id="{{ item[0] }}">
-            <img src="/static/images/{{item[5]}}" alt=lol class="gallery-wrap w3-round-xlarge" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
+            <img src="/static/images/{{item[5]}}" alt=lol class="w3-hover-opacity gallery-wrap w3-round-xlarge" onError="this.onerror=null;this.src='/static/images/noimage_lol.jpg';">
           </div>
         </div>
       </div>

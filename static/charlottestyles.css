@@ -113,31 +113,6 @@ img {
   display: block;
 }
 
-.container {
-  position: relative;
-  width: 50%;
-}
-
-.container .btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  background-color: #555;
-  color: white;
-  font-size: 16px;
-  padding: 12px 24px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.container .btn:hover {
-  background-color: black;
-}
-
-
 .grid-container {
   display: grid;
 }
@@ -172,7 +147,6 @@ img {
   text-decoration:none;
   border:none;
 }
-
 
 .eight-sixteen-padding {
   padding: 8px 16px;
@@ -330,6 +304,7 @@ img {
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  border-radius: 16px;
 }
 
 /* The Close Button */
