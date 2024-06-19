@@ -130,14 +130,16 @@ img {
 }
 
 .delete-button {
-    background-color:#ffffff00;
-    color: #e06666;
+    background-color:#a8515121;
+    color: #a85151;
     display:inside;
     cursor: pointer;
     text-decoration:none;
-    border-color: #e06666!important;
+    border-color: #a85151!important;
     border-radius:16px;
     border-width: 3px;
+    border-style: solid;
+
 }
 
 .three-dots {
@@ -305,7 +307,7 @@ img {
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 55%;
+  width: 40%;
   border-radius: 16px;
 }
 
