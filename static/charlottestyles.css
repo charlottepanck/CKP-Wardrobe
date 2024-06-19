@@ -142,14 +142,17 @@ img {
 
 }
 
-.three-dots {
-  background-color:#ffffff00;
-  color: #000000;
-  font-size: 18px;
+.edit-button {
+  background-color:#74a85128;
+  color: #74a851;
   display:inside;
   cursor: pointer;
   text-decoration:none;
-  border:none;
+  border-color: #74a851!important;
+  border-radius:16px;
+  border-width: 3px;
+  border-style: solid;
+
 }
 
 .eight-sixteen-padding {
