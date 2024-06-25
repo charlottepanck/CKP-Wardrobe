@@ -21,7 +21,7 @@ def add_user(table_name, add_name, add_password):
 
 
 def search(username, password):
-    #Check if username and password exist in the database
+    # Check if username and password exist in the database
     with sqlite3.connect(DB) as connection:
         cursor = connection.cursor()
         sql = "SELECT * FROM user WHERE username = ?"
@@ -88,7 +88,7 @@ def logout():
     session.pop("user_id", None)
     return redirect(url_for("login"))
 
-            
+
 @app.route("/add_user")
 def add_user_route():
     username = request.args.get('username')
@@ -118,8 +118,8 @@ def viewclothing(user_id):
         user_id = session['user_id']
         db = sqlite3.connect(DB)
         cursor = db.cursor()
-        cursor.execute("""SELECT clothing.clothing_id, clothing.name, brand.brand_name, type.type_name, colour.colour_name, clothing.img_file, clothing.user_id 
-FROM clothing 
+        cursor.execute("""SELECT clothing.clothing_id, clothing.name, brand.brand_name, type.type_name, colour.colour_name, clothing.img_file, clothing.user_id
+FROM clothing
 LEFT JOIN brand on clothing.brand = brand.brand_id
 LEFT JOIN type on clothing.type = type.type_id
 LEFT JOIN colour on clothing.colour = colour.colour_id
@@ -127,22 +127,19 @@ WHERE clothing.user_id = ?;""", (user_id,))
         results = cursor.fetchall()
 
         cursor.execute("""SELECT clothing.clothing_id, clothing.name, brand.brand_name, type.type_name, colour.colour_name, clothing.img_file, clothing.user_id
-FROM clothing 
+FROM clothing
 LEFT JOIN brand on clothing.brand = brand.brand_id
 LEFT JOIN type on clothing.type = type.type_id
 LEFT JOIN colour on clothing.colour = colour.colour_id
 WHERE clothing.user_id = ?;""", (user_id,))
         two_results = cursor.fetchall()
 
-        #sql2 = "SELECT * FROM brand WHERE user_id =?;"
         cursor.execute("SELECT * FROM brand WHERE user_id =?", (user_id,))
         resultsbrandsc = cursor.fetchall()
 
-        #sql3 = "SELECT * FROM colour WHERE user_id =?;"
         cursor.execute("SELECT * FROM colour WHERE user_id =?", (user_id,))
         resultscoloursc = cursor.fetchall()
 
-        #sql4 = "SELECT * FROM type WHERE user_id =?;"
         cursor.execute("SELECT * FROM type WHERE user_id =?", (user_id,))
         resultstypec = cursor.fetchall()
 
@@ -159,7 +156,7 @@ def viewbrands(user_id):
         user_id = session['user_id']
         db = sqlite3.connect(DB)
         cursor = db.cursor()
-        cursor.execute("SELECT * FROM brand WHERE user_id =?",(user_id,))
+        cursor.execute("SELECT * FROM brand WHERE user_id =?", (user_id,))
         brands_results = cursor.fetchall()
         db.close()
         return render_template("brands.html", user_id=user_id, brands_results=brands_results)
@@ -174,7 +171,7 @@ def viewstyles(user_id):
         user_id = session['user_id']
         db = sqlite3.connect(DB)
         cursor = db.cursor()
-        cursor.execute("SELECT * FROM style WHERE user_id =?",(user_id,))
+        cursor.execute("SELECT * FROM style WHERE user_id =?", (user_id,))
         styles_results = cursor.fetchall()
         db.close()
         return render_template("styles.html", user_id=user_id, styles_results=styles_results)
@@ -189,7 +186,7 @@ def viewtypes(user_id):
         user_id = session['user_id']
         db = sqlite3.connect(DB)
         cursor = db.cursor()
-        cursor.execute("SELECT * FROM type WHERE user_id =?",(user_id,))
+        cursor.execute("SELECT * FROM type WHERE user_id =?", (user_id,))
         types_results = cursor.fetchall()
         db.close()
         return render_template("types.html", user_id=user_id, types_results=types_results)
@@ -204,12 +201,13 @@ def viewcolours(user_id):
         user_id = session['user_id']
         db = sqlite3.connect(DB)
         cursor = db.cursor()
-        cursor.execute("SELECT * FROM colour WHERE user_id =?",(user_id,))
+        cursor.execute("SELECT * FROM colour WHERE user_id =?", (user_id,))
         colours_results = cursor.fetchall()
         db.close()
         return render_template("colours.html", user_id=user_id, colours_results=colours_results)
     else:
         return redirect(url_for('login'))
+
 
 # view outfits
 @app.route('/outfits/<int:user_id>')
@@ -219,13 +217,13 @@ def viewoutfits(user_id):
         db = sqlite3.connect(DB)
         cursor = db.cursor()
         cursor.execute("""SELECT outfit.id, outfit.outfit_id, clothing.name, style.style_name, clothing.img_file, outfit.user_id
-    FROM outfit 
+    FROM outfit
     LEFT JOIN style ON outfit.outfit_style = style.style_id
     LEFT JOIN clothing ON outfit.outfit_img_file = clothing.clothing_id
     WHERE outfit.user_id=?;""", (user_id,))
         outfits_results = cursor.fetchall()
         cursor.execute("""SELECT outfit.id, outfit.outfit_id, clothing.name, style.style_name, clothing.img_file, outfit.user_id
-    FROM outfit 
+    FROM outfit
     LEFT JOIN style ON outfit.outfit_style = style.style_id
     LEFT JOIN clothing ON outfit.outfit_img_file = clothing.clothing_id
     WHERE outfit.user_id=?
@@ -238,9 +236,10 @@ def viewoutfits(user_id):
         cursor.execute("SELECT clothing_id, img_file, name FROM clothing WHERE user_id=?;", (user_id,))
         resultsimg_fileo = cursor.fetchall()
         db.close()
-        return render_template("outfits.html", user_id=user_id, new_outfits_results=new_outfits_results, outfits_results = outfits_results, resultsstyleo=resultsstyleo, resultsclothingo=resultsclothingo, resultsimg_fileo=resultsimg_fileo)
+        return render_template("outfits.html", user_id=user_id, new_outfits_results=new_outfits_results, outfits_results=outfits_results, resultsstyleo=resultsstyleo, resultsclothingo=resultsclothingo, resultsimg_fileo=resultsimg_fileo)
     else:
         return redirect(url_for('login'))
+
 
 # add clothing
 @app.route('/clothing', methods=['GET', 'POST'])
@@ -255,29 +254,29 @@ def addclothing():
             if 'file' not in request.files:
                 flash('No file part')
                 return redirect(request.url)
-        
+
             file = request.files['file']
             if file.filename == '':
                 flash('No selected file')
                 return redirect(request.url)
-        
+
             if file:
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            
+
             with sqlite3.connect(DB) as connection:
                 cursor = connection.cursor()
                 sql = "INSERT INTO clothing (name, brand, type, colour, img_file, user_id) VALUES (?, ?, ?, ?, ?, ?);"
                 cursor.execute(sql, (name, brand, type, colour, filename, user_id))
                 connection.commit()
-            #return redirect(url_for('get_user_id', user_id=user_id))
+            # return redirect(url_for('get_user_id', user_id=user_id))
             return viewclothing(user_id)
         return viewclothing(user_id)
     else:
         return redirect(url_for('login'))
 
 
-#delete clothing
+# delete clothing
 @app.route('/delete_clothing/<int:ID>', methods=['POST'])
 def deleteclothing(ID):
     if 'user_id' in session:
@@ -299,7 +298,7 @@ def addoutfit():
             outfit_id = request.form.get('outfit_id',)
             outfit_style = request.form.get('outfit_style')
             outfit_img_file = request.form.get('outfit_img_file')
-            
+
             with sqlite3.connect(DB) as connection:
                 cursor = connection.cursor()
                 sql = "INSERT INTO outfit (outfit_id, outfit_style, outfit_img_file, user_id) VALUES (?, ?, ?, ?);"
@@ -466,16 +465,16 @@ def page_not_found(error):
     return render_template('error.html', error='Page not found, Please check that the Web site address is spelled correctly.'), 404
 
 
-# internal server error 
+# internal server error
 @app.errorhandler(500)
 def internal_server_error(error):
     return render_template('error.html', error='Internal server error'), 500
 
 
 # somthing else error
-#@app.errorhandler(Exception)
-#def unexpected_error(error):
-#    return render_template('error.html', error='Something went wrong'), 500
+@app.errorhandler(Exception)
+def unexpected_error(error):
+    return render_template('error.html', error='Something went wrong'), 500
 
 
 if __name__ == "__main__":
