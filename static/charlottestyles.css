@@ -135,20 +135,6 @@ img {
 
 }
 
-
-.edit-button {
-  background-color:#74a85128;
-  color: #74a851;
-  display:inside;
-  cursor: pointer;
-  text-decoration:none;
-  border-color: #74a851!important;
-  border-radius:16px;
-  border-width: 3px;
-  border-style: solid;
-
-}
-
 .eight-sixteen-padding {
   padding: 8px 16px;
 }
@@ -310,19 +296,4 @@ img {
   border: 1px solid #888;
   width: 40%;
   border-radius: 16px;
-}
-
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
 }
