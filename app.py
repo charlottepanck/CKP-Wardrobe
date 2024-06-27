@@ -29,7 +29,7 @@ def search(username, password):
         user = cursor.fetchone()
         if user:
             stored_password = user[2]
-            if str(password) == str(stored_password):
+            if check_password_hash(str(stored_password), str(password)): #str(password) == str(stored_password):
                 print("Password is correct")
                 return True, user[0]
             else:
@@ -103,7 +103,8 @@ def add_user_route():
             error_message = "Username is taken, please use another name"
             return render_template("signup.html", title="Sign up", error_message=error_message)
         if password == confirm_password:
-            cursor.execute("INSERT INTO user (username, password) VALUES (?, ?)", (username, password))
+            hashed = generate_password_hash(password)
+            cursor.execute("INSERT INTO user (username, password) VALUES (?, ?)", (username, hashed))
             connection.commit()
             return render_template("login.html")
         else:
