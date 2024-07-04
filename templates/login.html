@@ -8,13 +8,13 @@
 <h1 class="heading-padding">Login</h1>
 <form action="/login" method="POST">
     <label for="username">Username: </label>
-    <input type="text" name="username" class="w3-input w3-border" required><br>
+    <input type="text" name="username" maxlength="25" class="w3-input" required><br>
     <label for="password">Password: </label>
-    <input type="password" name="password" class="w3-input w3-border" required><br>
+    <input type="password" name="password" class="w3-input" required><br>
     {% if error_message %}
     <div class="colour5"> {{ error_message }} </div><br>
     {% endif %}
-    <button type="submit" class="w3-ckp-button w3-round-xlarge colour4 w3-border">Login</button>
+    <button type="submit" class="w3-ckp-input-button w3-round-xlarge">Login</button>
 </form>
 <p>Don't have an account? <a href = '/signup'>Sign Up Here!</a><p></p>
 </div>

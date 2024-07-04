@@ -7,10 +7,10 @@
       <h2 class="heading-padding">Add Clothing</h2>
     
       <label> Clothing name</label>
-      <input name="name" type="text" maxlength="25" placeholder=" " class="w3-input w3-border" required><br>
+      <input name="name" type="text" maxlength="25" placeholder=" " class="w3-input" required><br>
       
       <label>Brand </label>
-      <select name="brand" type="number" class="w3-input w3-border" required>
+      <select name="brand" type="number" class="w3-input" required>
         <option value=""> </option>
         {% for item in resultsbrandsc %}
         <option value={{item[0]}}>{{item[1]}}</option>
@@ -18,7 +18,7 @@
       </select><br>
 
       <label>Type </label>
-      <select name="type" type="number" class="w3-input w3-border" required>
+      <select name="type" type="number" class="w3-input" required>
         <option value=""> </option>
         {% for items in resultstypec %}
         <option value={{items[0]}}>{{items[1]}}</option>
@@ -26,7 +26,7 @@
       </select><br>
     
       <label>Colour </label>
-      <select name="colour" type="number" class="w3-input w3-border" required>
+      <select name="colour" type="number" class="w3-input" required>
         <option value=""> </option>
         {% for itemss in resultscoloursc %}
         <option value={{itemss[0]}}>{{itemss[1]}}</option>
@@ -34,9 +34,9 @@
       </select><br>
 
       <label for="img_file">Image </label>
-      <input type="file" name="file" accept=".jpeg,.jpg" class="colour4 w3-input w3-border"/>
+      <input type="file" name="file" accept=".jpeg,.jpg" class="colour4 w3-input"/>
 
-      <p><input button type="submit" value="Add Clothing" class="w3-ckp-button w3-round-xlarge colour4 w3-border"></p>
+      <p><input button type="submit" value="Add Clothing" class="w3-ckp-input-button w3-round-xlarge"></p>
     </form>
   </div>
 

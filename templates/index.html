@@ -2,7 +2,122 @@
 {% block body %}
 <title>Digital Wardrobe</title>
 {% for items in user %}
-<h3 class="heading-padding">Welcome @{{ items[1] }}</h3>
-<a href="/logout" class="w3-ckp-button colour5">Logout</a>
+<div class="hi">
+  <h3 class="heading-padding">Welcome @{{ items[1] }}</h3>
+  <a href="/logout" class="w3-ckp-button" style=" margin-bottom: 32px;">Logout</a>
+</div>
+
+<button class="accordion">How do I view my clothing items?</button>
+<div class="accordionPanel">
+  <br>
+  <h6>Navigate to the Clothing Page:</h6>
+  <p style="margin-top: 0px; margin-bottom: 0px;">Click on the “All Clothing” button on the navigation bar.</p>
+  <br>
+  <h6>View Clothing Items:</h6>
+  <p style="margin-top: 0px; margin-bottom: 0px;">Given that you have added some clothing data, Images of your clothing items will be displayed on the right-hand side of the page.</p>
+  <br>
+  <h6>View Details of a Clothing Item:</h6>
+  <p style="margin-top: 0px; margin-bottom: 0px;">Click on an image of a particular clothing item.<br>A window will pop up with more details about the selected item.</p>
+  <br>
+</div><br>
+
+<button class="accordion">How do I add clothing items?</button>
+<div class="accordionPanel">
+  <br>
+  <h6>Navigate to the Clothing Page:</h6>
+  <p style="margin-top: 0px; margin-bottom: 0px;">Click on the “All Clothing” button on the navigation bar.</p>
+  <br>
+  <h6>Fill Out the Add Clothing Form:</h6>
+  <p style="margin-top: 0px; margin-bottom: 0px;">Locate the “Add Clothing” form on the left-hand side of the page.<br>Fill in all the required fields with the details of your clothing item.</p>
+  <br>
+  <h6>Add New Brand, Colour, or Clothing Type (If Needed):</h6>
+  <p style="margin-top: 0px; margin-bottom: 0px;">If the brand, colour, or type of the clothing item is not already in the database, you will need to add them first.</p>
+  <br>
+</div><br>
+
+<button class="accordion">How do I detele a clothing item?</button>
+<div class="accordionPanel">
+    <br>
+    <h6>Navigate to the Clothing Page:</h6>
+    <p style="margin-top: 0px; margin-bottom: 0px;">Click on the “All Clothing” button on the navigation bar.</p>
+    <br>
+    <h6>Select the Item to Delete:</h6>
+    <p style="margin-top: 0px; margin-bottom: 0px;">Click on the image of the item you would like to delete.<br>A window will pop up with information about the selected item.</p>
+    <br>
+    <h6>Delete the Item:</h6>
+    <p style="margin-top: 0px; margin-bottom: 0px;">At the bottom of the window, click the delete button.<br>An alert will pop up asking you to confirm that you wish to delete the item.<br>Click "Okay" to confirm the deletion.</p>
+    <br>
+</div><br>
+
+<button class="accordion">How do I view my outfits?</button>
+<div class="accordionPanel">
+  <br>
+  <h6>Navigate to the Outfits Page:</h6>
+  <p style="margin-top: 0px; margin-bottom: 0px;">Click on the “Outfits” button on the navigation bar.</p>
+  <br>
+  <h6>View Your Outfits:</h6>
+  <p style="margin-top: 0px; margin-bottom: 0px;">Images of your outfits will be displayed, along with the Outfit ID, name of the clothing item, and the style of the outfit.</p>
+  <br>
+</div><br>
+
+<button class="accordion">How do I add a new outfit?</button>
+<div class="accordionPanel">
+  <br>
+  <h6>Navigate to the Outfits Page:</h6>
+  <p style="margin-top: 0px; margin-bottom: 0px;">Click on the “Outfits” button on the navigation bar.</p>
+  <br>
+  <h6>Locate the Add Outfit Form:</h6>
+  <p style="margin-top: 0px; margin-bottom: 0px;">Find the form labeled “Add Outfit” on the left-hand side of the page.</p>
+  <br>
+  <h6>Create or Add to an Outfit:</h6>
+  <p style="margin-top: 0px; margin-bottom: 0px;">If you are creating a new outfit, create a unique ID for the outfit.<br>If you are adding items to an existing outfit, enter the ID of the outfit you wish to add the clothes to.</p>
+  <br>
+  <h6>Add Clothing Items to the Outfit:</h6>
+  <p style="margin-top: 0px; margin-bottom: 0px;">Enter the correct outfit ID.<br>Use the next field to add a clothing item to the outfit.</p>
+  <br>
+  <h6>Repeat for Additional Items:</h6>
+  <p style="margin-top: 0px; margin-bottom: 0px;">Repeat the above steps for each clothing item you wish to add to the outfit.</p>
+  <br>
+</div><br>
+
+<button class="accordion">How do I delete an item from an outfit?</button>
+<div class="accordionPanel">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div><br>
+
+<button class="accordion">How do I delete an outfit?</button>
+<div class="accordionPanel">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div><br>
+
+<button class="accordion">How do I add a Brand / Colour / Type / Style?</button>
+<div class="accordionPanel">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div><br>
+
+<button class="accordion">How do I delete a Brand / Colour / Type / Style?</button>
+<div class="accordionPanel">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div><br>
+
+
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("accoActive");
+    var accordionPanel = this.nextElementSibling;
+    if (accordionPanel.style.maxHeight) {
+      accordionPanel.style.maxHeight = null;
+    } else {
+      accordionPanel.style.maxHeight = accordionPanel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
 {% endfor %}
 {% endblock %}

@@ -8,7 +8,7 @@
     <h1 class="heading-padding">Sign Up</h1>
     <form action='/add_user'>
         <label for="username">Username: </label>
-        <input type="text" id="username" name="username" placeholder=" " class="w3-input w3-border" required><br>
+        <input type="text" id="username" name="username" maxlength="25" placeholder=" " class="w3-input w3-border" required><br>
 
         <label for="password">Password: </label>
         <input type="password" id="password" name="password" placeholder=" " class="w3-input w3-border" required><br>
@@ -18,7 +18,7 @@
         {% if error_message %}
         <div class="colour5"> {{ error_message }} </div><br>
         {% endif %}
-        <input type = "submit" class="w3-ckp-button w3-round-xlarge colour4 w3-border">
+        <input type = "submit" class="w3-ckp-input-button w3-round-xlarge w3-border">
     </form>
     <p>Already have an account? <a href = '/login'>Login here</a><p>
 </div>

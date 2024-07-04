@@ -7,10 +7,10 @@
       <h2>Add Outfit</h2><br>
     
       <label> Outfit ID</label>
-      <input name="outfit_id" type="number" maxlength="25" placeholder=" " class="w3-input w3-border" required><br>
+      <input name="outfit_id" type="number" maxlength="25" placeholder=" " class="w3-input" required><br>
 
       <label> Clothing Item </label>
-      <select name="outfit_img_file" type="number" class="w3-input w3-border" required>
+      <select name="outfit_img_file" type="number" class="w3-input" required>
         <option value=""> </option>
         {% for item in resultsimg_fileo %}
         <option value={{item[0]}}>{{item[2]}}</option>
@@ -19,14 +19,14 @@
 
 
       <label>Style </label>
-      <select name="outfit_style" type="number" class="w3-input w3-border" required>
+      <select name="outfit_style" type="number" class="w3-input" required>
         <option value=""> </option>
         {% for items in resultsstyleo %}
         <option value={{items[0]}}>{{items[1]}}</option>
         {% endfor %}
       </select>
 
-      <p><input button type="submit" value="Add Outfit" class="w3-ckp-button w3-round-xlarge colour4 w3-border"></p>
+      <p><input button type="submit" value="Add Outfit" class="w3-ckp-input-button w3-round-xlarge"></p>
     </form>
   </div>
 
@@ -34,9 +34,9 @@
 
   <div class="w3-ckp-container w3-round-xlarge colour5 w3-cell w3-card-4" style="width:70%">
       <div class="padding" id="myBtnContainer">
-        <button class="w3-ckp-button colour4 active" onclick="filterSelection('all')"> Show all</button>
+        <button class="w3-ckp-filter-button active" onclick="filterSelection('all')"> Show all</button>
         {% for item in new_outfits_results %}
-        <button class="w3-ckp-button colour4" onclick="filterSelection('{{item[1]}}')">Outfit {{ item[1] }}</button>
+        <button class="w3-ckp-filter-button" onclick="filterSelection('{{item[1]}}')">Outfit {{ item[1] }}</button>
         {% endfor %}
       </div>
       {% for item in outfits_results %}
