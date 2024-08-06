@@ -36,7 +36,7 @@
       <div class="padding" id="myBtnContainer">
         <button class="w3-ckp-filter-button active" onclick="filterSelection('all')"> Show all</button>
         {% for item in new_outfits_results %}
-        <button class="w3-ckp-filter-button" onclick="filterSelection('{{item[1]}}')">Outfit {{ item[1] }}</button>
+        <button style="margin-top: 4px; margin-bottom: 4px;" class="w3-ckp-filter-button" onclick="filterSelection('{{item[1]}}')">Outfit {{ item[1] }}</button>
         {% endfor %}
       </div>
       {% for item in outfits_results %}
