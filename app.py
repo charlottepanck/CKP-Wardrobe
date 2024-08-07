@@ -15,18 +15,20 @@ def add_user(table_name, add_name, add_password):
     """Add items to the database."""
     with sqlite3.connect(DB) as connection:
         cursor = connection.cursor()
+        #add user name and password to database
         sql = f"INSERT INTO {table_name} (username, password) VALUES (?, ?);"
         cursor.execute(sql, (add_name, add_password))
         connection.commit()
 
 
 def search(username, password):
-    # Check if username and password exist in the database
+    """check if username and password exist in the database"""
     with sqlite3.connect(DB) as connection:
         cursor = connection.cursor()
         sql = "SELECT * FROM user WHERE username = ?"
         cursor.execute(sql, (username,))
         user = cursor.fetchone()
+        # check if entered password is correct
         if user:
             stored_password = user[2]
             if check_password_hash(str(stored_password), str(password)): #str(password) == str(stored_password):
@@ -36,6 +38,7 @@ def search(username, password):
                 print(username, stored_password)
                 print("Password incorrect")
                 return False, None
+        # if user doesn't exist
         else:
             print("User doesn't exist")
             return False, None
@@ -43,6 +46,7 @@ def search(username, password):
 
 @app.route("/index/<int:user_id>")
 def get_user_id(user_id):
+    """fetch user id"""
     if "user_id" in session and session["user_id"] == user_id:
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
@@ -55,11 +59,13 @@ def get_user_id(user_id):
 
 @app.route('/')
 def home():
+    """route to login when site loads"""
     return render_template('login.html')
 
 
 @app.route("/signup")
 def signup():
+    """load sign up form"""
     return render_template('signup.html')
 
 
@@ -77,10 +83,12 @@ def login():
             session["user_id"] = sql_id
             print("User authenticated in login function")
             return redirect(url_for("get_user_id", user_id=sql_id))
+        # username or password dont match database
         else:
             error_message = "Invalid login credentials. Please try again."
             return render_template("login.html", error_message=error_message)
     else:
+        #user logged in
         if "user_id" in session:
             return redirect(url_for("get_user_id", user_id=session["user_id"]))
         return render_template("login.html")
@@ -124,6 +132,7 @@ def add_user_route():
 # view clothing
 @app.route('/clothing/<int:user_id>')
 def viewclothing(user_id):
+    """view clothing"""
     if 'user_id' in session:
         user_id = session['user_id']
         db = sqlite3.connect(DB)
