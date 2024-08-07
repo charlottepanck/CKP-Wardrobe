@@ -55,7 +55,7 @@ def get_user_id(user_id):
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('login.html')
 
 
 @app.route("/signup")
@@ -65,9 +65,12 @@ def signup():
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
+    """Log user in"""
+    # get data from form
     if request.method == "POST":
         username = request.form.get('username')
         password = request.form.get('password')
+        # check if username and password exist in the database
         user_authentication, sql_id = search(username, password)
         print(username, password)
         if user_authentication:
@@ -85,12 +88,16 @@ def login():
 
 @app.route("/logout")
 def logout():
+    """log user out"""
     session.pop("user_id", None)
+    #return to login page
     return redirect(url_for("login"))
 
 
 @app.route("/add_user")
 def add_user_route():
+    """add user to database"""
+    #get data from form
     username = request.args.get('username')
     password = request.args.get('password')
     confirm_password = request.args.get('confirm')
@@ -99,9 +106,11 @@ def add_user_route():
         sql = "SELECT * FROM user WHERE username = ?"
         cursor.execute(sql, (username,))
         user = cursor.fetchone()
+        #check username isn't taken
         if user and username == user[1]:
             error_message = "Username is taken, please use another name"
             return render_template("signup.html", title="Sign up", error_message=error_message)
+        #check passwords match
         if password == confirm_password:
             hashed = generate_password_hash(password)
             cursor.execute("INSERT INTO user (username, password) VALUES (?, ?)", (username, hashed))
