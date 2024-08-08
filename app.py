@@ -132,11 +132,13 @@ def add_user_route():
 # view clothing
 @app.route('/clothing/<int:user_id>')
 def viewclothing(user_id):
-    """view clothing"""
+    """View clothing"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         db = sqlite3.connect(DB)
         cursor = db.cursor()
+        # select data from database
         cursor.execute("""SELECT clothing.clothing_id, clothing.name, brand.brand_name, type.type_name, colour.colour_name, clothing.img_file, clothing.user_id
 FROM clothing
 LEFT JOIN brand on clothing.brand = brand.brand_id
@@ -171,6 +173,8 @@ WHERE clothing.user_id = ?;""", (user_id,))
 # view brands
 @app.route('/brands/<int:user_id>')
 def viewbrands(user_id):
+    """View brands"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         db = sqlite3.connect(DB)
@@ -186,6 +190,8 @@ def viewbrands(user_id):
 # view styles
 @app.route('/styles/<int:user_id>')
 def viewstyles(user_id):
+    """view styles"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         db = sqlite3.connect(DB)
@@ -201,6 +207,8 @@ def viewstyles(user_id):
 # view types
 @app.route('/types/<int:user_id>')
 def viewtypes(user_id):
+    """view types"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         db = sqlite3.connect(DB)
@@ -216,6 +224,8 @@ def viewtypes(user_id):
 # view colours
 @app.route('/colours/<int:user_id>')
 def viewcolours(user_id):
+    """view colours"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         db = sqlite3.connect(DB)
@@ -231,10 +241,13 @@ def viewcolours(user_id):
 # view outfits
 @app.route('/outfits/<int:user_id>')
 def viewoutfits(user_id):
+    """view outfits"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         db = sqlite3.connect(DB)
         cursor = db.cursor()
+        # get data from database
         cursor.execute("""SELECT outfit.id, outfit.outfit_id, clothing.name, style.style_name, clothing.img_file, outfit.user_id
     FROM outfit
     LEFT JOIN style ON outfit.outfit_style = style.style_id
@@ -263,9 +276,12 @@ def viewoutfits(user_id):
 # add clothing
 @app.route('/clothing', methods=['GET', 'POST'])
 def addclothing():
+    """add clothing"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         if request.method == 'POST':
+            # get data from user form
             name = request.form.get('name')
             brand = request.form.get('brand')
             type = request.form.get('type')
@@ -282,7 +298,7 @@ def addclothing():
             if file:
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
+            # add new data to database
             with sqlite3.connect(DB) as connection:
                 cursor = connection.cursor()
                 sql = "INSERT INTO clothing (name, brand, type, colour, img_file, user_id) VALUES (?, ?, ?, ?, ?, ?);"
@@ -298,6 +314,8 @@ def addclothing():
 # delete clothing
 @app.route('/delete_clothing/<int:ID>', methods=['POST'])
 def deleteclothing(ID):
+    """delete clothing"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         with sqlite3.connect(DB) as connection:
@@ -311,15 +329,19 @@ def deleteclothing(ID):
 # add outfit
 @app.route('/outfits', methods=['GET', 'POST'])
 def addoutfit():
+    """add outfit"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         if request.method == 'POST':
+            # get data from user from form
             outfit_id = request.form.get('outfit_id',)
             outfit_style = request.form.get('outfit_style')
             outfit_img_file = request.form.get('outfit_img_file')
 
             with sqlite3.connect(DB) as connection:
                 cursor = connection.cursor()
+                # add data to database
                 sql = "INSERT INTO outfit (outfit_id, outfit_style, outfit_img_file, user_id) VALUES (?, ?, ?, ?);"
                 cursor.execute(sql, (outfit_id, outfit_style, outfit_img_file, user_id))
                 connection.commit()
@@ -332,13 +354,17 @@ def addoutfit():
 # add brand
 @app.route('/brands', methods=['GET', 'POST'])
 def add_brand():
+    """add brand"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         if request.method == 'POST':
+            #get data from form
             brand_name = request.form.get('brand_name')
 
             with sqlite3.connect(DB) as connection:
                 cursor = connection.cursor()
+                # add data to database
                 sql = "INSERT INTO brand (brand_name, user_id) VALUES (?, ?);"
                 cursor.execute(sql, (brand_name, user_id))
                 connection.commit()
@@ -351,13 +377,17 @@ def add_brand():
 # add brand
 @app.route('/styles', methods=['GET', 'POST'])
 def add_style():
+    """add style"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         if request.method == 'POST':
+            # get data from form
             style_name = request.form.get('style_name')
 
             with sqlite3.connect(DB) as connection:
                 cursor = connection.cursor()
+                # add data to database
                 sql = "INSERT INTO style (style_name, user_id) VALUES (?, ?);"
                 cursor.execute(sql, (style_name, user_id))
                 connection.commit()
@@ -367,16 +397,20 @@ def add_style():
         return redirect(url_for('login'))
 
 
-# add coloue
+# add colour
 @app.route('/colours', methods=['GET', 'POST'])
 def add_colour():
+    """add colour"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         if request.method == 'POST':
+            # get data from form
             colour_name = request.form.get('colour_name')
 
             with sqlite3.connect(DB) as connection:
                 cursor = connection.cursor()
+                # add data to database
                 sql = "INSERT INTO colour (colour_name, user_id) VALUES (?, ?);"
                 cursor.execute(sql, (colour_name, user_id))
                 connection.commit()
@@ -389,13 +423,17 @@ def add_colour():
 # add type
 @app.route('/types', methods=['GET', 'POST'])
 def add_type():
+    """add type"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         if request.method == 'POST':
+            # get data from form
             type_name = request.form.get('type_name')
 
             with sqlite3.connect(DB) as connection:
                 cursor = connection.cursor()
+                # add data to database
                 sql = "INSERT INTO type (type_name, user_id) VALUES (?, ?);"
                 cursor.execute(sql, (type_name, user_id))
                 connection.commit()
@@ -408,10 +446,13 @@ def add_type():
 # delete style
 @app.route("/delete_style/<int:ID>", methods=["POST"])
 def delete_style(ID):
+    """delete style"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
+            #delete data from database
             sql_delete = "DELETE FROM style WHERE style_id = ?;"
             cursor.execute(sql_delete, (ID,))
             connection.commit()
@@ -423,10 +464,13 @@ def delete_style(ID):
 # delete colour
 @app.route("/delete_colour/<int:ID>", methods=["POST"])
 def delete_colour(ID):
+    """delete colour"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
+            #delete database
             sql_delete = "DELETE FROM colour WHERE colour_id = ? and user_id = ?;"
             cursor.execute(sql_delete, (ID, user_id))
             connection.commit()
@@ -438,10 +482,13 @@ def delete_colour(ID):
 # delete type
 @app.route("/delete_type/<int:ID>", methods=["POST"])
 def delete_type(ID):
+    """delete type"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
+            #delete data from database
             sql_delete = "DELETE FROM type WHERE type_id = ? and user_id = ?;"
             cursor.execute(sql_delete, (ID, user_id))
             connection.commit()
@@ -453,10 +500,13 @@ def delete_type(ID):
 # delete brand
 @app.route("/delete_brand/<int:ID>", methods=["POST"])
 def delete_brand(ID):
+    """delete brand"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
+            # delete data from database
             sql_delete = "DELETE FROM brand WHERE brand_id = ? and user_id = ?;"
             cursor.execute(sql_delete, (ID, user_id))
             connection.commit()
@@ -468,31 +518,34 @@ def delete_brand(ID):
 # delete outfit
 @app.route('/delete_outfit/<int:ID>', methods=['POST'])
 def deleteoutfit(ID):
+    """delete outfit"""
+    #check user is logged in
     if 'user_id' in session:
         user_id = session['user_id']
         with sqlite3.connect(DB) as connection:
             cursor = connection.cursor()
+            # delete data from database
             sql_delete = "DELETE FROM outfit WHERE id = ?;"
             cursor.execute(sql_delete, (ID,))
             connection.commit()
         return viewoutfits(user_id)
 
 
-# page not fount error
 @app.errorhandler(404)
 def page_not_found(error):
+    """page not fount error"""
     return render_template('error.html', error='Page not found, Please check that the Web site address is spelled correctly.'), 404
 
 
-# internal server error
 @app.errorhandler(500)
 def internal_server_error(error):
+    """internal server error"""
     return render_template('error.html', error='Internal server error'), 500
 
 
-# somthing else error
 @app.errorhandler(Exception)
 def unexpected_error(error):
+    """somthing else error"""
     return render_template('error.html', error='Something went wrong'), 500
 
 
